@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('menus', function (Blueprint $table) {
-            // $table->string('slug')->nullable()->after('id');
+            $table->string('slug')->nullable()->after('id');
             $table->unsignedBigInteger('menu_type_id')->after('slug')->nullable();
             $table->foreign('menu_type_id')->references('id')->on('menu_types')->onDelete('cascade')->nullable();
             $table->unsignedBigInteger('parent_id')->nullable()->after('status');;
