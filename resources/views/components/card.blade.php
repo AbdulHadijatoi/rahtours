@@ -1,16 +1,26 @@
-<div class="w-full mx-auto mb-10 md:mb-0">
-    <a href="{{ url($card_link ?? '#') }}">
-        <img src="{{ url($card_image) }}" alt="" class="rounded-t shadow-2xl w-full object-cover"/>
-        <div class="bg-white shadow rounded-b min-h-[10rem]">
-            <div class="px-4">
-                <h2 class="text-gray-700 text-xl font-medium pt-6">{!! $card_title !!}</h2>
-                <p class="text-gray-500 pt-2 text-sm">{!! $card_text !!}</p>
-            </div>
-            @if(!empty($card_btn_text))
-                <div class="bg-blue-700 w-72 lg:w-5/6 m-auto my-6 p-2 hover:bg-indigo-500 rounded text-white text-center shadow-xl">
-                    <button class="lg:text-sm text-lg font-bold">{{ $card_btn_text }}</button>
-                </div>
-            @endif
+<a href="{{ url($card_link ?? '#') }}" class="card mx-auto card-compact bg-base-100 w-full border">
+  <figure class="h-[13rem] bg-cover bg-center" style="background-image: url({{ url($card_image) }})">
+  </figure>
+  <div class="card-body h-[8rem] flex flex-column justify-between">
+    <h2 class="text-md font-extrabold">{{ Str::limit($card_title, 55, '...') }}</h2>
+    
+    <div>
+    @if(!empty($card_rating))
+        @include('components.rating', ['card_rating', $card_rating, 'reviews' => $card_reviews])
+    @endif
+    
+    @if(!empty($card_price))
+    <div class="flex">
+        <span class="text-sm font-extrabold mr-1 text-secondary">From AED {{ $card_price }}</span>
+        <span class="text-sm text-gray-500 mr-1">Per person</span>
+    </div>
+    @endif
+    
+    @if(!empty($card_btn_text))
+        <div class="card-actions justify-end">
+            <button class="btn btn-primary">{{ $card_btn_text }}</button>
         </div>
-    </a>
-</div>
+    @endif
+    </div>
+  </div>
+</a>

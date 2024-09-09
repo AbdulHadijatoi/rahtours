@@ -9,42 +9,42 @@ body{
 }
 
 .text-primary{
-  color: #00397a;
+  color: #ee8e3b;
 }
 
 .bg-primary{
-  background-color:#00397a;
+  background-color:#ee8e3b;
 }
 
 .text-secondary{
-  color: #eb493c !important;
+  color: #ee8e3b !important;
 }
 
 .bg-secondary{
-  background-color: #eb493c;
+  background-color: #ee8e3b;
 }
 
 .hover-text-secondary:hover{
-  color: #eb493c !important;
+  color: #ee8e3b !important;
 }
 
 .hover-bg-secondary:hover{
-  background-color: #eb493c;
+  background-color: #ee8e3b;
 }
 
 .hover-border-secondary:hover{
-  border-color: #eb493c;
+  border-color: #ee8e3b;
 }
 
 .border-secondary{
-  border-color: #eb493c !important;
+  border-color: #ee8e3b !important;
 }
 
 .nav{
-  position: fixed;
+  /* position: fixed;
   top: 0;
   left: 0;
-  z-index: 99;
+  z-index: 99; */
   width: 100%;
   height: 100%;
   height: 70px;
@@ -55,15 +55,23 @@ body{
   transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.nav.scrolled {
+.nav2 {
+  width: 100%;
+}
+.nav2.scrolled {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99;
+  transition: transform 0.3s ease;
   background-color: white !important;
-  border: 1px solid rgba(0, 0, 0, 0.08);
+  border: 0.5 solid rgba(0, 0, 0, 0.07);
   /* transform: translateY(0); */
 }
 
 .nav.light-nav {
   background-color: white !important;
-  border: 1px solid rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.07);
   /* transform: translateY(0); */
 }
 
@@ -109,20 +117,18 @@ body{
   padding: 0 14px;
 }
 .nav .navbar .links li a{
-  height: 100%;
+
   text-decoration: none;
   white-space: nowrap;
-  color: #FFF;
-  font-size: 15px;
-  font-weight: 500;
+  font-size: 13px;
 }
-
+/* 
 .nav.scrolled .navbar .links li a{
   color: #374151;
 }
 .nav.light-nav .navbar .links li a{
   color: #374151;
-}
+} */
 
 .links li:hover .htmlcss-arrow,
 .links li:hover .js-arrow{

@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Category;
 use App\Models\Menu;
 use App\Models\PageSetting;
 use App\Models\Setting;
@@ -8,6 +9,13 @@ if (!function_exists('settings')) {
     function settings() {
         $settings = Setting::first();
         return $settings;
+    }
+}
+
+if (!function_exists('allCategories')) {
+    function allCategories() {
+        $categories = Category::get(['id','name']);
+        return $categories;
     }
 }
 

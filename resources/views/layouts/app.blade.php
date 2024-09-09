@@ -29,9 +29,14 @@
 </head>
 {{-- <body class="font-sans antialiased dark:bg-black dark:text-white/50"> --}}
 <body class="font-sans antialiased">
-    <div class="nav {{ Route::currentRouteName() !== 'home' ? 'light-nav' : '' }}">
+    <div class="nav light-nav">
         @include('components.navbar')
     </div>
+    <div class="nav2 hidden md:block">
+        @include('components.navbar2')
+    </div>
+    {{-- WHITE SPACE BELOW SECOND NAV --}}
+    <div class="hidden" id="below-nav-space" style="margin-top: 55px"></div>
 
     <main>
         @if(count(request()->segments()) == 0)
@@ -43,7 +48,7 @@
         @yield('content')
     </main>
 
-    <footer class="bg-white border-t border-gray-200">
+    <footer class="bg-white border-t border-gray-100">
         @include('components.footer')
     </footer>
 
