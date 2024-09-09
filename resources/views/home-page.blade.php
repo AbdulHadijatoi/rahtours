@@ -7,7 +7,7 @@
     <div class="mx-auto px-5 md:px-0 sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 mb-20 mt-10">
         
         <h1 class="w-full text-3xl sm:text-4xl text-gray-800 mb-6 text-center">
-            Why choose Lexusline?
+            Why choose RAH?
         </h1>
         {{-- <p class="text-md text-gray-600 mb-8">
             {{ settings()->choose_us_text }}
