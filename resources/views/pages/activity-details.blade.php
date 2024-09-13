@@ -12,7 +12,7 @@
                         Travelers' Favorite Choice Travelers' Favorite Choice Travelers
                     </h2>
                     <div class="flex items-center text-sm">
-                        @include('components.rating', ['card_rating'=> 3, 'card_reviews'=> 5, 'textColor'=>'text-white'])
+                        @include('components.rating', ['card_rating'=> 3, 'card_reviews'=> 5])
                         <span class="ml-1">Reviews</span>
                         <span class="ml-10">Operated By: <span class="underline">RAH Tourism</span></span>
                     </div>
