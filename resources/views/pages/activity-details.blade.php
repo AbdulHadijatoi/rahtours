@@ -4,10 +4,10 @@
 
 @section('content')
     <div class="relative">
-        <img src="{{ url('storage/uploads/card1_image.jpeg') }}" class="absolute inset-0 object-cover w-full h-full" alt="hero_image" />
-        <div class="relative bg-gray-900 bg-opacity-60 pb-1 pt-5 backdrop-blur-md">
+        {{-- <img src="{{ url('storage/uploads/card1_image.jpeg') }}" class="absolute inset-0 object-cover w-full h-full" alt="hero_image" /> --}}
+        <div class="relative pb-1 pt-5">
             <div class="flex justify-between items-start px-2 md:px-0 items-end mx-auto md:px-0 sm:max-w-xl md:max-w-full lg:max-w-screen-xl mb-5">
-                <div class="text-white">
+                <div class="">
                     <h2 class="text-2xl md:text-4xl">
                         Travelers' Favorite Choice Travelers' Favorite Choice Travelers
                     </h2>
@@ -17,7 +17,7 @@
                         <span class="ml-10">Operated By: <span class="underline">RAH Tourism</span></span>
                     </div>
                 </div>
-                <button class="flex items-center whitespace-nowrap space-x-2 bg-transparent text-gray-100 px-4 py-2 rounded-full hover:bg-white hover:text-black transition-colors duration-300">
+                <button class="flex items-center whitespace-nowrap space-x-2 bg-transparent text-gray-800 px-4 py-2 rounded-full hover:bg-white hover:text-black transition-colors duration-300">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-7 w-7 md:w-5 md:h-5">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 016.364 0L12 7.93l1.318-1.612a4.5 4.5 0 016.364 6.364l-7.5 7.5a.75.75 0 01-1.06 0l-7.5-7.5a4.5 4.5 0 010-6.364z" />
                     </svg>
@@ -30,7 +30,7 @@
                 <div class="container mx-auto">
                     <div class="grid grid-cols-1 md:grid-cols-[70%_30%] gap-2">
                         <!-- Large Image (70% width) -->
-                        <div class="relative w-full h-[400px] md:h-[500px] overflow-hidden rounded-lg">
+                        <div class="relative w-full h-[400px] md:h-[500px] overflow-hidden rounded-sm">
                             <img src="{{ url('storage/uploads/card1_image.jpeg') }}" alt="Large Image" class="w-full h-full object-cover">
                             <!-- Back Button -->
                             <button class="absolute top-5 left-5 bg-white text-black rounded-full py-2 px-5 shadow">
@@ -41,11 +41,11 @@
                         <!-- Right Column with Two Small Images (30% width) -->
                         <div class="hidden md:flex flex-col gap-2">
                             <!-- Small Image 1 -->
-                            <div class="w-full h-[195px] md:h-[245px] overflow-hidden rounded-lg">
+                            <div class="w-full h-[195px] md:h-[245px] overflow-hidden rounded-sm">
                                 <img src="{{ url('storage/uploads/card2_image.jpeg') }}" alt="Small Image 1" class="w-full h-full object-cover">
                             </div>
                             <!-- Small Image 2 -->
-                            <div class="w-full h-[195px] md:h-[245px] overflow-hidden rounded-lg">
+                            <div class="w-full h-[195px] md:h-[245px] overflow-hidden rounded-sm">
                                 <img src="{{ url('storage/uploads/card3_image.jpeg') }}" alt="Small Image 2" class="w-full h-full object-cover">
                             </div>
                         </div>
