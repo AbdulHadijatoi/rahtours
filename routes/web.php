@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HomeActivityController;
 use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Route;
 
@@ -21,7 +22,7 @@ use Illuminate\Support\Facades\Route;
 // }
 
 Route::get('/', [PageController::class, 'homePage'])->name('home');
-Route::get('/who-we-are', [PageController::class, 'whoWeAre'])->name('who-we-are');
+Route::get('/dubai-activities/{slug?}', [HomeActivityController::class, 'ActivityDetails'])->name('dubaiActivity');
 Route::get('/dry-cargo', [PageController::class, 'dryCargo'])->name('dry-cargo');
 Route::get('/reefer-cargo', [PageController::class, 'reeferCargo'])->name('reefer-cargo');
 Route::get('/liquid-cargo', [PageController::class, 'liquidCargo'])->name('liquid-cargo');

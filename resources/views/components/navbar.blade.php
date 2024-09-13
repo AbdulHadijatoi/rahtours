@@ -1,5 +1,5 @@
 
-<div class="navbar mx-auto px-5 md:px-0 sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
+<div class="navbar mx-auto px-5 md:px-0 sm:max-w-xl md:max-w-full lg:max-w-screen-xl">
     <i class='bx bx-menu'></i>
     <div class="w-auto md:w-2/6">
         <div class="logo mr-0 md:mr-6">
@@ -47,17 +47,31 @@
                         </a>
                     </li>
 
-                    <li>
-                        {{-- <a class="cursor-pointer transition hover-text-secondary border-transparent">
-                            Recently Viewed
-                        </a> --}}
+                    <li class="hidden md:block">
                         <div class="dropdown">
                             <a tabindex="0" role="button" class="transition hover-text-secondary border-transparent">Recently Viewed</a>
-                            <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
-                                <li><a>Item 1</a></li>
-                                <li><a>Item 2</a></li>
+                            <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded z-[1] w-[25rem] p-2 shadow mt-5">
+                                <li class="w-full" style="padding: 0px !important;">
+                                    <a class="w-full flex items-center p-2 border-b border-gray-200 hover:bg-gray-100">
+                                        <img src="{{ url('storage/uploads/insight1.webp') }}" alt="Desert" class="w-16 h-16 rounded object-cover mr-4">
+                                        <div class="flex flex-col justify-between flex-wrap flex-1 w-auto">
+                                            <p class="text-sm font-semibold text-gray-900 w-[15rem] text-wrap">{{ Str::limit('Morning Desert Dune Drive With Sand Boarding, Camel Ride', 55, '...') }}</p>
+                                            <p class="text-xs text-gray-500 w-full flex justify-between items-center mt-1"><span>Per person Price</span> <span class="text-lg font-bold text-orange-500">AED 125</span></p>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="w-full" style="padding: 0px !important;">
+                                    <a class="w-full flex items-center p-2 border-b border-gray-200 hover:bg-gray-100">
+                                        <img src="{{ url('storage/uploads/insight1.webp') }}" alt="Desert" class="w-16 h-16 rounded object-cover mr-4">
+                                        <div class="flex flex-col justify-between flex-wrap flex-1 w-auto">
+                                            <p class="text-sm font-semibold text-gray-900 w-[15rem] text-wrap">{{ Str::limit('Morning Desert Dune Drive With Sand Boarding, Camel Ride', 55, '...') }}</p>
+                                            <p class="text-xs text-gray-500 w-full flex justify-between items-center mt-1"><span>Per person Price</span> <span class="text-lg font-bold text-orange-500">AED 125</span></p>
+                                        </div>
+                                    </a>
+                                </li>
                             </ul>
                         </div>
+
                     </li>
 
                     
@@ -69,7 +83,7 @@
                     </li>
                     @else 
                         <li>
-                            <button class="btn rounded-full btn-accent px-5 text-white text-xs btn-sm" style="background-color: #ee8e3b">Login</button>
+                            <button class="btn rounded-full btn-accent px-5 text-white text-xs btn-sm" data-modal-target="authentication-modal" data-modal-toggle="authentication-modal" type="button" style="background-color: #ee8e3b">Login</button>
                         </li>
                     @endauth
                 {{-- @endforeach

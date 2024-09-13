@@ -4,6 +4,7 @@ use App\Models\Category;
 use App\Models\Menu;
 use App\Models\PageSetting;
 use App\Models\Setting;
+use Illuminate\Support\Facades\Route;
 
 if (!function_exists('settings')) {
     function settings() {
@@ -16,6 +17,12 @@ if (!function_exists('allCategories')) {
     function allCategories() {
         $categories = Category::get(['id','name']);
         return $categories;
+    }
+}
+
+if (!function_exists('isRoute')) {
+    function isRoute($routeName) {
+        return Route::currentRouteName() == $routeName;
     }
 }
 

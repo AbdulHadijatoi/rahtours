@@ -1,5 +1,5 @@
 <div class="border-b border-gray-100 py-8">
-    <div class="mx-auto max-w-screen-xl text-center flex sm:justify-between sm:text-left">
+    <div class="mx-auto max-w-screen-xl text-center flex justify-center md:justify-between md:text-left flex-wrap">
         <p class="mt-4 text-md font-medium sm:mt-0 flex">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
                 <path d="M12 2C7.03 2 3 6.03 3 11v6c0 1.66 1.34 3 3 3h2v-8H5v-1c0-3.86 3.14-7 7-7s7 3.14 7 7v1h-3v8h2c1.66 0 3-1.34 3-3v-6c0-4.97-4.03-9-9-9zM7 16h2v5H7v-5zm8 5v-5h2v5h-2z"/>
@@ -8,7 +8,7 @@
             <span class="ml-3">Speak to our expert at</span>
             <a href="tel:+971529331100" class="ml-1 text-secondary font-semibold">+971 52 933 1100</a>
         </p>
-        <div class="text-md flex align-center">
+        <div class="text-md flex align-center mt-3 md:mt-0">
             <span class="mr-5">Follow Us</span>
             <a href="https://www.facebook.com/rahtravels" rel="noreferrer" target="_blank" class="mx-3 text-teal-700 transition hover:text-teal-700/75">
                 <span class="sr-only">Facebook</span>
@@ -195,9 +195,9 @@
                         </p>
                     </li>
                     <li>
-                        <div class="flex items-center bg-gray-100 rounded-md shadow-inner pl-4 mt-3">
-                            <input class="ml-2 w-full bg-transparent outline-none border-none focus:outline-none focus:ring-0 text-md md:text-lg" type="text" placeholder="Enter your email">
-                            <button class="btn rounded-md" >Search</button>
+                        <div class="flex items-center bg-gray-100 rounded-md shadow-inner mt-3">
+                            <input class="ml-2 w-full bg-transparent outline-none border-none focus:outline-none focus:ring-0 text-sm" type="text" placeholder="Enter your email">
+                            <button class="btn rounded-md px-6 text-gray-500">Search</button>
                         </div>
                     </li>
                 </ul>

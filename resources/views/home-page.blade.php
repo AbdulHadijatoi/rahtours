@@ -4,7 +4,7 @@
 
 @section('content')
     
-    <div class="mx-auto px-5 md:px-0 sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 mb-20 mt-10">
+    <div class="mx-auto px-5 md:px-0 sm:max-w-xl md:max-w-full lg:max-w-screen-xl mb-20 mt-10">
         
         <h1 class="w-full text-3xl sm:text-4xl text-gray-800 mb-6 text-center">
             Why choose RAH?
@@ -37,7 +37,7 @@
 
     </div>
     
-    <div class="mx-auto px-5 md:px-0 sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 mb-10">
+    <div class="mx-auto px-5 md:px-0 sm:max-w-xl md:max-w-full lg:max-w-screen-xl mb-10">
 
             <h2 class="w-full text-center text-2xl sm:text-4xl mb-6">
                 Travelers' Favorite Choice
@@ -46,6 +46,7 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             @include('components.card', [
+                'card_link' => 'dubai-activities/activity1',
                 'card_image' => 'storage/uploads/card1_image.jpeg',
                 'card_title' => "Dubai Quad Bike ATV Desert Tour with Sandboarding & Camel Ride 12345", 
                 'card_rating' => 5,

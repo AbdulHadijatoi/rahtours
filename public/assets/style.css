@@ -13,6 +13,10 @@ body{
   color: #ee8e3b;
 }
 
+.fill-secondary{
+  fill: #ee8e3b;
+}
+
 .bg-primary{
   background-color:#ee8e3b;
 }
@@ -22,6 +26,10 @@ body{
 }
 
 .bg-secondary{
+  background-color: #ee8e3b;
+}
+
+.bg-secondary2{
   background-color: #ee8e3b;
 }
 
@@ -35,6 +43,10 @@ body{
 
 .hover-border-secondary:hover{
   border-color: #ee8e3b;
+}
+
+.border-secondary2{
+  border-color: #ee8e3b !important;
 }
 
 .border-secondary{

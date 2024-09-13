@@ -50,9 +50,8 @@
         @if(count(request()->segments()) == 0)
             @include('components.hero-section')
         @else
-            @include('components.hero-common')
+            @include('components.breadcrumb')
         @endif
-
         @yield('content')
     </main>
 
@@ -60,9 +59,13 @@
         @include('components.footer')
     </footer>
 
+
+    @include('components.login-dialog')
     <script src="{{ asset('assets/script.js') }}"></script>
     <script src="https://unpkg.com/@themesberg/flowbite@1.2.0/dist/flowbite.bundle.js"></script>
     
+    <script>
+    </script>
     @yield('scripts')
 </body>
 </html>

@@ -1,7 +1,7 @@
 <div class="relative">
     <img src="{{ url(getHeroImage()) }}" class="absolute inset-0 object-cover w-full h-full" alt="hero_image" />
     <div class="relative bg-gray-900 bg-opacity-75">
-        <div class="mx-auto px-5 md:px-0 sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
+        <div class="mx-auto px-5 md:px-0 sm:max-w-xl md:max-w-full lg:max-w-screen-xl">
             <div class="breadcrumbs text-sm text-base-300" style="margin-top: 70px;">
                 <ul>
                     <li><a href="{{ url('/') }}">Home</a></li>
