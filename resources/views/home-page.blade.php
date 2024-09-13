@@ -54,6 +54,7 @@
                 'card_price' => 500,
             ])
             @include('components.card', [
+                'card_link' => 'dubai-activities/activity1',
                 'card_image' => 'storage/uploads/card1_image.jpeg',
                 'card_title' => "Supply Chain and Logistics", 
                 'card_rating' => 1,
@@ -61,6 +62,7 @@
                 'card_price' => 300,
             ])
             @include('components.card', [
+                'card_link' => 'dubai-activities/activity1',
                 'card_image' => 'storage/uploads/card2_image.jpeg',
                 'card_title' => "Supply Chain and Logistics", 
                 'card_rating' => 2,
@@ -68,6 +70,7 @@
                 'card_price' => 400,
             ])
             @include('components.card', [
+                'card_link' => 'dubai-activities/activity1',
                 'card_image' => 'storage/uploads/card3_image.jpeg',
                 'card_title' => "Supply Chain and Logistics", 
                 'card_rating' => 3,
@@ -76,6 +79,7 @@
             ])
             
             @include('components.card', [
+                'card_link' => 'dubai-activities/activity1',
                 'card_image' => 'storage/uploads/card3_image.jpeg',
                 'card_title' => "Supply Chain and Logistics", 
                 'card_rating' => 4,
