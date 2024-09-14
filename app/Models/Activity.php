@@ -25,7 +25,6 @@ class Activity extends Model
 
     protected $appends = ['image_url', 'average_rating', 'number_of_reviews'];
 
-
     protected function imagePath(): Attribute
     {
         $path = '';

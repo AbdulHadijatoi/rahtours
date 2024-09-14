@@ -1,5 +1,5 @@
 <a href="{{ url($card_link ?? '#') }}" class="card mx-auto card-compact bg-base-100 w-full border">
-  <figure class="h-[13rem] bg-cover bg-center" style="background-image: url({{ url($card_image) }})">
+  <figure class="h-[13rem] bg-cover bg-center" style="background-image: url('{{ url($card_image) }}')">
   </figure>
   <div class="card-body h-[8rem] flex flex-column justify-between">
     <h2 class="text-md font-extrabold">{{ Str::limit($card_title, 55, '...') }}</h2>
