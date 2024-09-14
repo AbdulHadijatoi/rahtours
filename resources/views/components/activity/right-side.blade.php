@@ -1,8 +1,13 @@
 
 
-<h2 class="text-lg text-secondary font-semibold mb-4">AED 500</h2>
-<div class="bg-white p-6 text-sm rounded-lg border w-full">
-    <!-- Package Selection -->
+<div>
+    <div class="flex justify-end items-center">
+        <h2 class="text-lg text-secondary font-semibold">AED 500</h2>
+        <a href="#choosePackage" class="btn btn-sm px-4 py-2 bg-secondary2 text-white font-semibold rounded-full ml-3">Select Options</a>
+    </div>
+    <p class="text-xs text-gray-500 mb-2 w-full text-right">Price varies by vehicles, group sizes and other selections</p>
+</div>
+<div id="choosePackage" class="bg-white p-6 text-sm rounded-lg border w-full">
     <h2 class="text-lg font-semibold mb-4">Choose a package</h2>
     <div class="border border-secondary2 rounded-lg p-4 mb-6">
         <div class="flex items-start">
@@ -15,8 +20,8 @@
                 <p class="text-sm text-gray-500">Private Chauffeur for 10 Hours in Dubai or Abu Dhabi</p>
                 <p class="text-lg font-semibold text-gray-700 mt-2">AED 500</p>
                 <div class="flex space-x-2 mt-4">
-                    <button class="px-4 py-2 bg-secondary2 text-white font-semibold rounded-md hover:bg-orange-600">Add To Cart</button>
-                    <button class="px-4 py-2 bg-secondary2 text-white font-semibold rounded-md hover:bg-orange-600">Book Now</button>
+                    <button class="px-4 py-2 bg-secondary2 text-white font-semibold rounded-md">Add To Cart</button>
+                    <button class="px-4 py-2 bg-secondary2 text-white font-semibold rounded-md">Book Now</button>
                 </div>
             </div>
         </div>

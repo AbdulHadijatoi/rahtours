@@ -1,4 +1,4 @@
-<div class="mt-5">
+<div id="{{ $id }}" class="mt-5">
     <h2 class="text-lg md:text-xl text-secondary mb-3">
         {!! $heading !!}
     </h2>

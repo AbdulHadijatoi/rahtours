@@ -1,6 +1,7 @@
 @include('components.activity.constants')
 @include('components.activity.activity-text', [
     'heading' => 'Description', 
+    'id' => 'description', 
     'paragraph' => "
         This tour takes us to the greenest of the emirates - Al Ain. This 'garden city' boasts a popular university, located at 120km from Dubai. Lush green farms of vegetables and date palms are abundant. Our next destination is the largest camel market in the U.A.E, where dealers come from around the Gulf to buy and sell racing animals. We then arrive at the Hili Gardens, famous for archaeological excavations from the third millennium B.0 and ancient tombs.
         <br><br>
@@ -12,6 +13,7 @@
 
 @include('components.activity.activity-text', [
     'heading' => 'Highlights', 
+    'id' => 'highlights', 
     'paragraph' => "
         • Explore Al Ain City for lots of adventurous activities<br>
         • View the city's dramatic setting and its surroundings<br>
@@ -21,7 +23,8 @@
 ])
 
 @include('components.activity.activity-text', [
-    'heading' => 'Itinerary', 
+    'heading' => 'itinerary', 
+    'id' => 'itinerary', 
     'paragraph' => "
         • Jabel Hafeet <br>
         • Green Mubazzarah Hot Springs <br>
@@ -34,7 +37,8 @@
 ])
 
 @include('components.activity.activity-text', [
-    'heading' => 'What Included', 
+    'heading' => 'what_included', 
+    'id' => 'what_included', 
     'paragraph' => "
         • Pickup and drop-off from Dubai by air-conditioned vehicle <br>
         • English-speaking guide <br>
@@ -44,6 +48,7 @@
 
 @include('components.activity.activity-text', [
     'heading' => 'What`s not Included', 
+    'id' => 'whats_not_included', 
     'paragraph' => "
         • All personal expenses spend during the tour.
     ", 

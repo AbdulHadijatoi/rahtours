@@ -1,3 +1,7 @@
+html{
+  scroll-behavior: smooth;
+}
+
 *{
   margin: 0;
   padding: 0;
@@ -30,7 +34,7 @@ body{
 }
 
 .bg-secondary2{
-  background-color: #ee8e3b;
+  background-color: #ee8e3b !important;
 }
 
 .hover-text-secondary:hover{

@@ -1,20 +1,20 @@
 <div class="border-b pb-4 w-full">
-    <a href="#" class="transition-colors font-medium duration-300 transform mr-1.5 sm:mr-6 hover-text-secondary">
+    <a href="#description" class="transition-colors font-medium duration-300 transform mr-1.5 sm:mr-6 hover-text-secondary">
         Description
     </a>
-    <a href="#" class="transition-colors font-medium duration-300 transform mr-1.5 sm:mr-6 hover-text-secondary">
+    <a href="#highlights" class="transition-colors font-medium duration-300 transform mr-1.5 sm:mr-6 hover-text-secondary">
         Highlight
     </a>
     <a href="#" class="transition-colors font-medium duration-300 transform mr-1.5 sm:mr-6 hover-text-secondary">
         Itinerary
     </a>
-    <a href="#" class="transition-colors font-medium duration-300 transform mr-1.5 sm:mr-6 hover-text-secondary">
+    <a href="#itinerary" class="transition-colors font-medium duration-300 transform mr-1.5 sm:mr-6 hover-text-secondary">
         What’s Included
     </a>
-    <a href="#" class="transition-colors font-medium duration-300 transform mr-1.5 sm:mr-6 hover-text-secondary">
+    <a href="#what_included" class="transition-colors font-medium duration-300 transform mr-1.5 sm:mr-6 hover-text-secondary">
         What’s not Included
     </a>
-    <a href="#" class="transition-colors font-medium duration-300 transform mr-1.5 sm:mr-6 hover-text-secondary">
+    <a href="#whats_not_included" class="transition-colors font-medium duration-300 transform mr-1.5 sm:mr-6 hover-text-secondary">
         Trip Instructions
     </a>
 </div>

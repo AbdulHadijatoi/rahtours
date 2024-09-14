@@ -5,7 +5,7 @@
 @section('content')
     <div class="relative">
         {{-- <img src="{{ url('storage/uploads/card1_image.jpeg') }}" class="absolute inset-0 object-cover w-full h-full" alt="hero_image" /> --}}
-        <div class="relative pb-1 pt-5">
+        <div class="relative pt-3">
             <div class="flex justify-between items-start px-2 md:px-0 items-end mx-auto md:px-0 sm:max-w-xl md:max-w-full lg:max-w-screen-xl mb-5">
                 <div class="">
                     <h2 class="text-2xl md:text-4xl">
@@ -23,14 +23,13 @@
                     </svg>
                     <span class="hidden md:block">Add to Wishlist</span>
                 </button>
-
             </div>
             
-            <div class="relative mx-auto md:px-0 sm:max-w-xl md:max-w-full lg:max-w-screen-xl mb-5">
+            <div class="relative mx-auto md:px-0 sm:max-w-xl md:max-w-full lg:max-w-screen-xl">
                 <div class="container mx-auto">
                     <div class="grid grid-cols-1 md:grid-cols-[70%_30%] gap-2">
                         <!-- Large Image (70% width) -->
-                        <div class="relative w-full h-[400px] md:h-[500px] overflow-hidden rounded-sm">
+                        <div class="relative w-full h-[400px] md:h-[600px] overflow-hidden rounded-md">
                             <img src="{{ url('storage/uploads/card1_image.jpeg') }}" alt="Large Image" class="w-full h-full object-cover">
                             <!-- Back Button -->
                             <button class="absolute top-5 left-5 bg-white text-black rounded-full py-2 px-5 shadow">
@@ -41,11 +40,11 @@
                         <!-- Right Column with Two Small Images (30% width) -->
                         <div class="hidden md:flex flex-col gap-2">
                             <!-- Small Image 1 -->
-                            <div class="w-full h-[195px] md:h-[245px] overflow-hidden rounded-sm">
+                            <div class="w-full h-[195px] md:h-[295px] overflow-hidden rounded-md">
                                 <img src="{{ url('storage/uploads/card2_image.jpeg') }}" alt="Small Image 1" class="w-full h-full object-cover">
                             </div>
                             <!-- Small Image 2 -->
-                            <div class="w-full h-[195px] md:h-[245px] overflow-hidden rounded-sm">
+                            <div class="w-full h-[195px] md:h-[295px] overflow-hidden rounded-md">
                                 <img src="{{ url('storage/uploads/card3_image.jpeg') }}" alt="Small Image 2" class="w-full h-full object-cover">
                             </div>
                         </div>
@@ -60,9 +59,9 @@
     </div>
     
 
-    <div class="container mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl flex items-center justify-start py-3 mx-auto capitalize px-4 md:px-0 flex-wrap mt-3">
+    <div class="container mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl flex items-center justify-start py-3 mx-auto capitalize px-4 md:px-0 flex-wrap">
         <div class="grid grid-cols-1 md:grid-cols-[70%_30%] gap-2">
-            <div class="pr-0 md:pr-8">
+            <div class="pr-0 md:pr-8 mt-4">
                 @include('components.activity.left-side')
             </div>
             <div class="flex flex-col mt-5 md:mt-0">
