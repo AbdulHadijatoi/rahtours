@@ -11,45 +11,20 @@ class Activity extends Model
 {
     use HasFactory;
 
-    public const UPLOADS_IMAGE_PATH = 'uploads/media/';
+    public const UPLOADS_IMAGE_PATH = 'uploads/';
 
     public const DEFAULT_IMAGE_PATH = '../../assets/images/';
 
     public const DEFAULT_IMAGE_NAME = '5.jpg';
 
-    protected $fillable = [
-        'slug',
-        'page_title',
-        'category_id',
-        'subcategory_id',
-        'name',
-        'duration',
-        'cancellation_duration',
-        'image',
-        'meetup',
-        'description',
-        'whats_not_included',
-        'minimum_travelers',
-        'whats_included',
-        'highlights',
-        'itinerary',
-        'features',
-        'discount_offer',
-        'booking_count',
-        'most_popular_activity',
-        'otherexpereience_activity',
-        'home_activity',
-        'home_experience_activity',
-        'available_activity',
-        'start_time',
-
-    ];
+    protected $guarded = [];
 
     protected $casts = [
         'features' => 'array',
     ];
 
-    protected $appends = ['image_url'];
+    protected $appends = ['image_url', 'average_rating', 'number_of_reviews'];
+
 
     protected function imagePath(): Attribute
     {
@@ -183,22 +158,23 @@ class Activity extends Model
         return $this->hasMany(Review::class);
     }
 
-    public function calculateReviewStats()
-    {
-        $reviews = $this->reviews(); // Get the related reviews
+    // public function calculateReviewStats()
+    // {
 
-        // Calculate the average rating, handle the case when there are no reviews
-        $averageRating = $reviews->avg('rating') ?? 0;
+    //     $reviews = $this->reviews(); // Get the related reviews
 
-        // Get the number of reviews
-        $numberOfReviews = $reviews->count();
+    //     // Calculate the average rating, handle the case when there are no reviews
+    //     $averageRating = $reviews->avg('rating') ?? 0;
 
-        // Return both values as an array
-        return [
-            'average_rating' => round($averageRating, 1), // Round the average to 1 decimal place
-            'number_of_reviews' => $numberOfReviews,
-        ];
-    }
+    //     // Get the number of reviews
+    //     $numberOfReviews = $reviews->count();
+
+    //     // Return both values as an array
+    //     return [
+    //         'average_rating' => round($averageRating, 1), // Round the average to 1 decimal place
+    //         'number_of_reviews' => $numberOfReviews,
+    //     ];
+    // }
 
     public function wishlists()
     {
@@ -227,5 +203,18 @@ class Activity extends Model
     public function instructions()
     {
         return $this->hasMany(ActivityInstruction::class);
+    }
+
+    // Accessor for average rating
+    public function getAverageRatingAttribute()
+    {
+        $reviews = $this->reviews();
+        return round($reviews->avg('rating'), 1) ?? 0; // Default to 0 if no reviews
+    }
+
+    // Accessor for number of reviews
+    public function getNumberOfReviewsAttribute()
+    {
+        return $this->reviews()->count();
     }
 }

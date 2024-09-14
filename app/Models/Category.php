@@ -11,5 +11,15 @@ class Category extends Model
 
     protected $guarded = [];
 
-    
+    protected $with = ['subCategory', 'activity'];
+
+    public function subCategory()
+    {
+        return $this->hasMany(SubCategory::class);
+    }
+
+    public function activity()
+    {
+        return $this->hasMany(Activity::class);
+    }
 }
