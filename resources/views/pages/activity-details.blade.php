@@ -9,10 +9,10 @@
             <div class="flex justify-between items-start px-2 md:px-0 items-end mx-auto md:px-0 sm:max-w-xl md:max-w-full lg:max-w-screen-xl mb-5">
                 <div class="">
                     <h2 class="text-2xl md:text-4xl">
-                        Travelers' Favorite Choice Travelers' Favorite Choice Travelers
+                        {{ $activity->name }}
                     </h2>
                     <div class="flex items-center text-sm">
-                        @include('components.rating', ['card_rating'=> 3, 'card_reviews'=> 5])
+                        @include('components.rating', ['card_rating'=> $activity->average_rating, 'card_reviews'=> $activity->number_of_reviews])
                         <span class="ml-1">Reviews</span>
                         <span class="ml-10">Operated By: <span class="underline">RAH Tourism</span></span>
                     </div>
@@ -30,22 +30,24 @@
                     <div class="grid grid-cols-1 md:grid-cols-[70%_30%] gap-2">
                         <!-- Large Image (70% width) -->
                         <div class="relative w-full h-[400px] md:h-[600px] overflow-hidden rounded-md">
-                            <img src="{{ url('storage/uploads/card1_image.jpeg') }}" alt="Large Image" class="w-full h-full object-cover">
+                            <img src="{{ url($activity->activityImages[0]->image_url) }}" alt="Large Image" class="w-full h-full object-cover">
                             <!-- Back Button -->
-                            <button class="absolute top-5 left-5 bg-white text-black rounded-full py-2 px-5 shadow">
+                            <button class="absolute top-5 left-5 bg-white text-black rounded-full py-2 px-5 shadow" 
+                                onclick="window.location.href = '/';">
                                 ← Back
                             </button>
+
                         </div>
 
                         <!-- Right Column with Two Small Images (30% width) -->
                         <div class="hidden md:flex flex-col gap-2">
                             <!-- Small Image 1 -->
                             <div class="w-full h-[195px] md:h-[295px] overflow-hidden rounded-md">
-                                <img src="{{ url('storage/uploads/card2_image.jpeg') }}" alt="Small Image 1" class="w-full h-full object-cover">
+                                <img src="{{ url($activity->activityImages[1]->image_url) }}" alt="Small Image 1" class="w-full h-full object-cover">
                             </div>
                             <!-- Small Image 2 -->
                             <div class="w-full h-[195px] md:h-[295px] overflow-hidden rounded-md">
-                                <img src="{{ url('storage/uploads/card3_image.jpeg') }}" alt="Small Image 2" class="w-full h-full object-cover">
+                                <img src="{{ url($activity->activityImages[2]->image_url) }}" alt="Small Image 2" class="w-full h-full object-cover">
                             </div>
                         </div>
                     </div>
@@ -70,7 +72,7 @@
         </div>
         <div class="w-full mt-8">
             <h2 class="text-lg md:text-xl mb-3">
-                Al Ain City Tour Reviews
+                {{ $activity->name }} Reviews
             </h2>
             <hr>
 
@@ -206,48 +208,83 @@
 
     </div>
 
-    @include('components.photos-dialog', [
-        'photos' => [
-            'storage/uploads/card1_image.jpeg',
-            'storage/uploads/card2_image.jpeg',
-            'storage/uploads/card3_image.jpeg',
-        ]
-    ]);
+    @include('components.photos-dialog');
     
 @endsection
 
 @section('scripts')
 <script>
-    // Function to toggle the person selection section
-    document.getElementById('selectPersonBtn').addEventListener('click', function() {
-        const personSelection = document.getElementById('personSelection');
-        if (personSelection.classList.contains('hidden')) {
-            personSelection.classList.remove('hidden');
+    // Function to toggle between private and sharing package count sections
+    function handlePackageChange(radio) {
+        const packageType = radio.getAttribute('data-package-type');
+        const groupCountSection = document.getElementById('groupCountSection');
+        const adultChildCountSection = document.getElementById('adultChildCountSection');
+
+        if (packageType === 'private') {
+            groupCountSection.classList.remove('hidden');
+            adultChildCountSection.classList.add('hidden');
         } else {
-            personSelection.classList.add('hidden');
+            groupCountSection.classList.add('hidden');
+            adultChildCountSection.classList.remove('hidden');
         }
-    });
+    }
 
     // Function to increment the count
-    function increment(id) {
-        const countElement = document.getElementById(id);
-        let count = parseInt(countElement.textContent);
-        countElement.textContent = count + 1;
+    function increment(id, price) {
+        let countElement = document.getElementById(id);
+        let count = parseInt(countElement.innerText);
+        count += 1;
+        countElement.innerText = count;
+        updatePrice(price);
     }
 
     // Function to decrement the count with a minimum value of 0
-    function decrement(id) {
-        const countElement = document.getElementById(id);
-        let count = parseInt(countElement.textContent);
+    function decrement(id, price) {
+        let countElement = document.getElementById(id);
+        let count = parseInt(countElement.innerText);
         if (count > 0) {
-            countElement.textContent = count - 1;
+            count -= 1;
+            countElement.innerText = count;
+            updatePrice(-price);
+        }
+    }
+
+    // Update the total price based on selected package
+    function updatePrice(change) {
+        const selectedPackage = document.querySelector('[name="selectedPackage"]:checked');
+        
+        // Check if a package is selected
+        if (selectedPackage) {
+            const packageKey = selectedPackage.getAttribute('data-key');
+            const totalPriceElement = document.getElementById(`totalPrice${packageKey}`);
+            
+            // Check if the price element exists
+            if (totalPriceElement) {
+                let totalPrice = parseFloat(totalPriceElement.innerText);
+                totalPrice += change;
+                totalPriceElement.innerText = totalPrice.toFixed(2);
+            } else {
+                console.error('Price element not found.');
+            }
+        } else {
+            console.error('No package selected.');
         }
     }
 
 
-    // Get today's date in the format YYYY-MM-DD
+    // Set today's date in date picker
     const today = new Date().toISOString().split('T')[0];
-    // Set the min attribute to today's date
-    document.getElementById('date').setAttribute('min', today);
+    document.getElementById("date").setAttribute("min", today);
+
+    function selectPackage(element) {
+        const radioInput = element.querySelector('input[type="radio"]');
+        
+        if (radioInput) {
+            radioInput.checked = true;
+            // Trigger the change event in case there is additional logic tied to it
+            radioInput.dispatchEvent(new Event('change'));
+        }
+    }
 </script>
+
 @endsection

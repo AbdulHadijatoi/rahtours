@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Activity;
 use Illuminate\Http\Request;
 
 class HomeActivityController extends Controller {
     
     public function activityDetails($slug = null) {
-        // $activity = Activi
-        return view('pages.activity-details');
+        $activity = Activity::where('slug', $slug)->first();
+        // return $activity;
+        return view('pages.activity-details',compact('activity'));
     }
     
     public function CommonPage() {

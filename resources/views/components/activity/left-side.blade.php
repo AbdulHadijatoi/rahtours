@@ -2,56 +2,31 @@
 @include('components.activity.activity-text', [
     'heading' => 'Description', 
     'id' => 'description', 
-    'paragraph' => "
-        This tour takes us to the greenest of the emirates - Al Ain. This 'garden city' boasts a popular university, located at 120km from Dubai. Lush green farms of vegetables and date palms are abundant. Our next destination is the largest camel market in the U.A.E, where dealers come from around the Gulf to buy and sell racing animals. We then arrive at the Hili Gardens, famous for archaeological excavations from the third millennium B.0 and ancient tombs.
-        <br><br>
-        Proceeding towards Al Ain Museum and the palm oasis, we witness thousands of palm trees so typical of Arabia. 
-        <br><br>
-        We proceed to Jebel Hafeet - the tallest mountain in the U.A.E. A stunning bird's-eye view from Jebel Hafeet and the hot springs at the foot of the mountain create a lasting sensory experience. We proceed for lunch and shopping at Al Ain mall before returning to Dubai.
-    ", 
+    'paragraph' => $activity->description, 
 ])
 
 @include('components.activity.activity-text', [
     'heading' => 'Highlights', 
     'id' => 'highlights', 
-    'paragraph' => "
-        • Explore Al Ain City for lots of adventurous activities<br>
-        • View the city's dramatic setting and its surroundings<br>
-        • Spend time with families and at the zoo and public parks<br>
-        • Check out camel racing events at the camel market
-    ", 
+    'paragraph' => $activity->highlights, 
 ])
 
 @include('components.activity.activity-text', [
     'heading' => 'itinerary', 
     'id' => 'itinerary', 
-    'paragraph' => "
-        • Jabel Hafeet <br>
-        • Green Mubazzarah Hot Springs <br>
-        • Al Ain Zoo ( Entry Tickets Included ) <br>
-        • Al Ain Museum <br>
-        • Al Ain Fort <br>
-        • Al Ain Oasis <br>
-        • Camel Marke <br>
-    ", 
+    'paragraph' => $activity->itinerary, 
 ])
 
 @include('components.activity.activity-text', [
     'heading' => 'what_included', 
     'id' => 'what_included', 
-    'paragraph' => "
-        • Pickup and drop-off from Dubai by air-conditioned vehicle <br>
-        • English-speaking guide <br>
-        • Cold mineral water <br>
-    ", 
+    'paragraph' => $activity->whats_included, 
 ])
 
 @include('components.activity.activity-text', [
     'heading' => 'What`s not Included', 
     'id' => 'whats_not_included', 
-    'paragraph' => "
-        • All personal expenses spend during the tour.
-    ", 
+    'paragraph' => $activity->whats_not_included, 
 ])
 
 <div class="mt-5">
@@ -59,51 +34,25 @@
         Trip Instructions / Essentials
     </h2>
     <hr>
-    <!-- Accordion Item 1 -->
-    <div class="border border-gray-200 rounded-sm mt-5">
-    <button class="w-full text-left p-2 px-4 flex justify-between items-center focus:outline-none toggle-accordion" data-target="accordion-1">
-        <span class="text-lg font-medium">What to expect</span>
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transition-transform duration-200 transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-        </svg>
-    </button>
-    <div id="accordion-1" class="max-h-0 overflow-hidden transition-all duration-300">
-        <div class="p-4 text-gray-600">
-        Check out the oasis of Al Ain City when in Abu Dhabi. The city's dramatic setting and the craggy mountain surrounding it are some beautiful features of the city that'll leave you mesmerized.
-        </div>
-    </div>
-    </div>
+    @if(!empty($activity->instructions))
+        @foreach($activity->instructions as $index => $instruction)
+            <!-- Accordion Item -->
+            <div class="border border-gray-200 rounded-sm mt-5">
+                <button class="w-full text-left p-2 px-4 flex justify-between items-center focus:outline-none toggle-accordion" data-target="accordion-{{ $index }}">
+                    <span class="text-lg font-medium">{{ $instruction->instruction_title }}</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transition-transform duration-200 transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </button>
+                <div id="accordion-{{ $index }}" class="max-h-0 overflow-hidden transition-all duration-300">
+                    <div class="p-4 text-gray-600">
+                        {{ $instruction->instruction_description }}
+                    </div>
+                </div>
+            </div>
+        @endforeach
+    @endif
 
-    <!-- Accordion Item 2 -->
-    <div class="border border-gray-200 rounded-sm">
-    <button class="w-full text-left p-2 px-4 flex justify-between items-center focus:outline-none toggle-accordion" data-target="accordion-2">
-        <span class="text-lg font-medium">Booking confirmation</span>
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transition-transform duration-200 transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-        </svg>
-    </button>
-    <div id="accordion-2" class="max-h-0 overflow-hidden transition-all duration-300">
-        <div class="p-4 text-gray-600">
-        You'll get confirmation within minutes.<br>
-        If you don't see any confirmation, reach out to our customer support.
-        </div>
-    </div>
-    </div>
-
-    <!-- Accordion Item 3 -->
-    <div class="border border-gray-200 rounded-sm">
-    <button class="w-full text-left p-2 px-4 flex justify-between items-center focus:outline-none toggle-accordion" data-target="accordion-3">
-        <span class="text-lg font-medium">How to use?</span>
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transition-transform duration-200 transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-        </svg>
-    </button>
-    <div id="accordion-3" class="max-h-0 overflow-hidden transition-all duration-300">
-        <div class="p-4 text-gray-600">
-            The voucher is valid only on the specified date.
-        </div>
-    </div>
-    </div>
 </div>
 
 <script>

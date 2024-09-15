@@ -26,6 +26,71 @@ if (!function_exists('isRoute')) {
     }
 }
 
+if (!function_exists('getDiscount')) {
+    function getDiscountPrice($activity, $type = "sharing") {
+
+        if($type == 'private'){
+            $price = $activity->packages[0]->price - (($activity->packages[0]->price * $activity->discount_offer) / 100);
+        }else{
+            $price = $activity->packages[0]->adult_price - (($activity->packages[0]->adult_price * $activity->discount_offer) / 100);
+        }
+
+        return $price;
+    }
+}
+
+if (!function_exists('getPrice')) {
+    function getPrice($activity) {
+        if($activity->discount_offer > 0){
+            if($activity->packages[0]->category == 'private'){
+                $price = $activity->packages[0]->price - (($activity->packages[0]->price * $activity->discount_offer) / 100);
+            }else{
+                $price = $activity->packages[0]->adult_price - (($activity->packages[0]->adult_price * $activity->discount_offer) / 100);
+            }
+        }else{
+            if($activity->packages[0]->category == 'private'){
+                $price = $activity->packages[0]->price;
+            }else{
+                $price = $activity->packages[0]->adult_price;
+            } 
+        }
+
+        return $price;
+    }
+}
+
+if (!function_exists('getPrice')) {
+    function getPrice($activity) {
+        if($activity->discount_offer > 0){
+            if($activity->packages[0]->category == 'private'){
+                $price = $activity->packages[0]->price - (($activity->packages[0]->price * $activity->discount_offer) / 100);
+            }else{
+                $price = $activity->packages[0]->adult_price - (($activity->packages[0]->adult_price * $activity->discount_offer) / 100);
+            }
+        }else{
+            if($activity->packages[0]->category == 'private'){
+                $price = $activity->packages[0]->price;
+            }else{
+                $price = $activity->packages[0]->adult_price;
+            } 
+        }
+
+        return $price;
+    }
+}
+
+if (!function_exists('getChildPrice')) {
+    function getChildPrice($activity) {
+        if($activity->discount_offer > 0){
+            $price = $activity->packages[0]->child_price - (($activity->packages[0]->child_price * $activity->discount_offer) / 100);
+        }else{
+            $price = $activity->packages[0]->child_price;
+        }
+
+        return $price;
+    }
+}
+
 if (!function_exists('getPageName')) {
     function getPageName() {
         $pageSlug = request()->segments();

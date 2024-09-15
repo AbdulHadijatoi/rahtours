@@ -17,7 +17,7 @@ class ActivityPicture extends Model
         'filename',
   ];
 
-  public const UPLOADS_IMAGE_PATH = 'uploads/gallery/';
+  public const UPLOADS_IMAGE_PATH = 'storage/uploads/';
 
   protected $appends = ['image_url'];
 
