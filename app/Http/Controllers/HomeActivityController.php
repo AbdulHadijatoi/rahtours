@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class HomeActivityController extends Controller {
     
-    public function activityDetails($slug = null) {
+    public function activityDetails($category, $slug = null) {
         $activity = Activity::where('slug', $slug)->first();
         if(!$activity){
             abort(404, "Resource not found!");
@@ -16,8 +16,15 @@ class HomeActivityController extends Controller {
         return view('pages.activity-details',compact('activity'));
     }
     
-    public function allActivities() {
-        $activities = Activity::get();
+    public function getActivities($categorySlug = null) {
+        if($categorySlug){
+            $activities = Activity::whereHas('category', function ($query) use ($categorySlug){
+                                $query->where('slug', $categorySlug);
+                            })
+                            ->get();
+        }else{
+            $activities = Activity::get();
+        }
         return view('pages.all-activities',compact('activities'));
     }
 }

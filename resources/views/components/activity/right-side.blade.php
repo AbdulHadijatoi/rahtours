@@ -31,7 +31,7 @@
         <div class="border border-secondary2 rounded-lg p-4 mb-6" onclick="selectPackage(this)">
             <div class="flex items-start">
                 <div class="mr-3 text-orange-500">
-                    <input type="radio" name="selectedPackage" data-package-type="{{ $package->category }}" data-key="{{ $key }}" onchange="handlePackageChange(this)">
+                    <input class="checked:bg-[#ee8e3b] border-gray-200 checked:border-none focus:border-none" type="radio" name="selectedPackage" data-package-type="{{ $package->category }}" data-key="{{ $key }}" onchange="handlePackageChange(this)">
                 </div>
                 <div>
                     <h3 class="font-semibold">{{ $package->title }}</h3>

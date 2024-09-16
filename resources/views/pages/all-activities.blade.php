@@ -38,7 +38,7 @@
             @if(!empty($activities))
                 @foreach ($activities as $activity)
                     @include('components.card', [
-                        'card_link' => 'dubai-activities/' . $activity->slug,
+                        'card_link' => 'dubai-activities/'. $activity->category->slug . '/' . $activity->slug,
                         'card_image' => $activity->image_url,
                         'card_title' => $activity->name, 
                         'card_rating' => $activity->average_rating,

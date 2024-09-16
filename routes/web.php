@@ -23,8 +23,8 @@ use Illuminate\Support\Facades\Route;
 // }
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/dubai-activities', [HomeActivityController::class, 'allActivities'])->name('allActivities');
-Route::get('/dubai-activities/{slug?}', [HomeActivityController::class, 'ActivityDetails'])->name('dubaiActivity');
+Route::get('/dubai-activities/{category?}', [HomeActivityController::class, 'getActivities']);
+Route::get('/dubai-activities/{category}/{slug?}', [HomeActivityController::class, 'ActivityDetails'])->name('dubaiActivity');
 Route::get('/dry-cargo', [PageController::class, 'dryCargo'])->name('dry-cargo');
 Route::get('/reefer-cargo', [PageController::class, 'reeferCargo'])->name('reefer-cargo');
 Route::get('/liquid-cargo', [PageController::class, 'liquidCargo'])->name('liquid-cargo');
