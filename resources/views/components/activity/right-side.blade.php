@@ -35,7 +35,7 @@
                 <div>
                     <h3 class="font-semibold">{{ $package->title }}</h3>
                     <p class="text-sm text-gray-500">{{ $package->category }}</p>
-                    <p class="text-sm text-gray-500">{{ $package->highlight }}</p>
+                    <p class="text-sm text-gray-500">{!! $package->highlight !!}</p>
                     @if($package->category == "private")
                     @php
                         $privatePkgPrice = $activity->discount_offer > 0 ? $package->price - (($activity->discount_offer * $package->price) / 100) : $package->price;
