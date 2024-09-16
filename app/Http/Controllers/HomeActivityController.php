@@ -9,6 +9,9 @@ class HomeActivityController extends Controller {
     
     public function activityDetails($slug = null) {
         $activity = Activity::where('slug', $slug)->first();
+        if(!$activity){
+            abort(404, "Resource not found!");
+        }
         // return $activity;
         return view('pages.activity-details',compact('activity'));
     }
