@@ -34,6 +34,9 @@
         .card{
             border-radius: 0.5rem !important;
         }
+        p{
+            font-size: 0.85rem
+        }
     </style>
     @yield('styles')
 
