@@ -51,9 +51,9 @@
                     <li class="hidden md:block">
                         <div class="dropdown">
                             <a tabindex="0" role="button" class="transition hover-text-secondary border-transparent">Recently Viewed</a>
-                            <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded z-[1] w-[25rem] p-2 shadow mt-5">
-                                <li class="w-full" style="padding: 0px !important;">
-                                    <a class="w-full flex items-center p-2 border-b border-gray-200 hover:bg-gray-100">
+                            <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded z-[20] w-[25rem] p-2 shadow mt-5">
+                                <li class="w-full border-b" style="padding: 0px !important;">
+                                    <a class="w-full flex items-center p-2 border-none rounded-none hover:bg-gray-100">
                                         <img src="{{ url('storage/uploads/insight1.webp') }}" alt="Desert" class="w-16 h-16 rounded object-cover mr-4">
                                         <div class="flex flex-col justify-between flex-wrap flex-1 w-auto">
                                             <p class="text-sm font-semibold text-gray-900 w-[15rem] text-wrap">{{ Str::limit('Morning Desert Dune Drive With Sand Boarding, Camel Ride', 55, '...') }}</p>
@@ -61,8 +61,8 @@
                                         </div>
                                     </a>
                                 </li>
-                                <li class="w-full" style="padding: 0px !important;">
-                                    <a class="w-full flex items-center p-2 border-b border-gray-200 hover:bg-gray-100">
+                                <li class="w-full border-b" style="padding: 0px !important;">
+                                    <a class="w-full flex items-center p-2 border-none rounded-none hover:bg-gray-100">
                                         <img src="{{ url('storage/uploads/insight1.webp') }}" alt="Desert" class="w-16 h-16 rounded object-cover mr-4">
                                         <div class="flex flex-col justify-between flex-wrap flex-1 w-auto">
                                             <p class="text-sm font-semibold text-gray-900 w-[15rem] text-wrap">{{ Str::limit('Morning Desert Dune Drive With Sand Boarding, Camel Ride', 55, '...') }}</p>
