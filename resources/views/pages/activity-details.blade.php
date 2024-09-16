@@ -70,101 +70,111 @@
                 @include('components.activity.right-side')
             </div>
         </div>
+        @php
+            // Initialize variables for rating count
+            $totalReviews = $activity->reviews->count();
+            $ratingSum = $activity->reviews->sum('rating');
+            $averageRating = $totalReviews > 0 ? round($ratingSum / $totalReviews, 1) : 0;
+
+            // Initialize rating distribution
+            $starRatings = [5 => 0, 4 => 0, 3 => 0, 2 => 0, 1 => 0];
+
+            // Calculate the count of each rating (1 to 5 stars)
+            foreach ($activity->reviews as $review) {
+                $starRatings[$review->rating]++;
+            }
+
+            // Calculate percentage for each rating
+            foreach ($starRatings as $stars => $count) {
+                $starRatings[$stars] = $totalReviews > 0 ? round(($count / $totalReviews) * 100) : 0;
+            }
+        @endphp
+
         <div class="w-full mt-8">
             <h2 class="text-lg md:text-xl mb-3">
                 {{ $activity->name }} Reviews
             </h2>
             <hr>
 
-
             <div class="flex justify-between items-center">
                 <div>
                     <div class="flex items-center mt-2">
-                        <div class="text-secondary text-2xl mr-2">★★★★☆</div>
-                        <span class="text-gray-600">Based on 1624 reviews</span>
+                        <div class="text-secondary text-2xl mr-2">
+                            <!-- Average Rating Display -->
+                            @for ($i = 1; $i <= 5; $i++)
+                                @if ($i <= floor($averageRating))
+                                    ★
+                                @elseif ($i == ceil($averageRating) && $averageRating % 1 != 0)
+                                    ★
+                                @else
+                                    ☆
+                                @endif
+                            @endfor
+                        </div>
+                        <span class="text-gray-600">
+                            Based on {{ $totalReviews }} reviews ({{ $averageRating }} / 5)
+                        </span>
                     </div>
                 </div>
             </div>
 
             <div class="flex flex-col md:flex-row mt-6">
+                <!-- Ratings Distribution Section -->
                 <div class="w-full md:w-1/3">
-                    <div class="flex items-center mb-2">
-                        <div class="text-secondary">★★★★★</div>
-                        <div class="w-full bg-gray-200 h-2 ml-2">
-                            <div class="text-secondary h-2" style="width: 63%;"></div>
+                    @foreach ($starRatings as $stars => $percentage)
+                        <div class="flex items-center mb-2">
+                            <div class="text-secondary whitespace-nowrap">
+                                <!-- Display Star Text based on star count -->
+                                @for ($i = 1; $i <= 5; $i++)
+                                    @if ($i <= $stars)
+                                        ★
+                                    @else
+                                        ☆
+                                    @endif
+                                @endfor
+                            </div>
+                            <div class="w-full bg-gray-200 h-2 ml-2">
+                                <div class="text-secondary h-2" style="width: {{ $percentage }}%;"></div>
+                            </div>
+                            <span class="ml-2 text-gray-600">{{ $percentage }}%</span>
                         </div>
-                        <span class="ml-2 text-gray-600">63%</span>
-                    </div>
-
-                    <div class="flex items-center mb-2">
-                        <div class="text-secondary">★★★★☆</div>
-                        <div class="w-full bg-gray-200 h-2 ml-2">
-                            <div class="text-secondary h-2" style="width: 10%;"></div>
-                        </div>
-                        <span class="ml-2 text-gray-600">10%</span>
-                    </div>
-
-                    <div class="flex items-center mb-2">
-                        <div class="text-secondary">★★★☆☆</div>
-                        <div class="w-full bg-gray-200 h-2 ml-2">
-                            <div class="text-secondary h-2" style="width: 6%;"></div>
-                        </div>
-                        <span class="ml-2 text-gray-600">6%</span>
-                    </div>
-
-                    <div class="flex items-center mb-2">
-                        <div class="text-secondary">★★☆☆☆</div>
-                        <div class="w-full bg-gray-200 h-2 ml-2">
-                            <div class="text-secondary h-2" style="width: 12%;"></div>
-                        </div>
-                        <span class="ml-2 text-gray-600">12%</span>
-                    </div>
-
-                    <div class="flex items-center mb-2">
-                        <div class="text-secondary">★☆☆☆☆</div>
-                        <div class="w-full bg-gray-200 h-2 ml-2">
-                            <div class="text-secondary h-2" style="width: 9%;"></div>
-                        </div>
-                        <span class="ml-2 text-gray-600">9%</span>
-                    </div>
+                    @endforeach
                 </div>
 
                 <div class="w-full md:w-2/3 max-h-[25rem] overflow-scroll">
                     <div class="space-y-6 px-4">
-                        <!-- Review 1 -->
-                        <div class="flex pb-5 border-b">
-                            <img class="w-12 h-12 rounded-full object-cover mr-4" src="{{ url('storage/uploads/card1_image.jpeg') }}" alt="Emily Selman">
-                            <div>
-                                <h4 class="font-semibold">Emily Selman</h4>
-                                <div class="text-secondary">★★★★★</div>
-                                <p class="mt-2 text-gray-600">This is the bag of my dreams. I took it on my last vacation and was able to fit an absurd amount of snacks for the many long and hungry flights.</p>
-                            </div>
-                        </div>
+                        <!-- Loop through the reviews -->
+                        @foreach ($activity->reviews as $review)
+                            <div class="flex pb-5 @if (!$loop->last) border-b @endif">
 
-                        <!-- Review 2 -->
-                        <div class="flex pb-5 border-b">
-                            <img class="w-12 h-12 rounded-full object-cover mr-4" src="{{ url('storage/uploads/card1_image.jpeg') }}" alt="Hector Gibbons">
-                            <div>
-                                <h4 class="font-semibold">Hector Gibbons</h4>
-                                <div class="text-secondary">★★★★★</div>
-                                <p class="mt-2 text-gray-600">Before getting the Ruck Snack, I struggled my whole life with pulverized snacks, endless crumbs, and other heartbreaking snack catastrophes. Now, I can stow my snacks with confidence and style!</p>
+                                <!-- Profile Image with fallback -->
+                                @if($review->user->profile_image_url)
+                                    <img class="w-12 h-12 rounded-full object-cover mr-4" src="{{ $review->user->profile_image_url ?? url('storage/uploads/placeholder_profile_image.jpeg') }}" alt="{{ $review->user->first_name }} {{ $review->user->last_name }}">
+                                @else
+                                    <svg width="3rem" height="3rem" viewBox="0 0 1024 1024" class="icon mr-3"  version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M691.573 338.89c-1.282 109.275-89.055 197.047-198.33 198.331-109.292 1.282-197.065-90.984-198.325-198.331-0.809-68.918-107.758-68.998-106.948 0 1.968 167.591 137.681 303.31 305.272 305.278C660.85 646.136 796.587 503.52 798.521 338.89c0.811-68.998-106.136-68.918-106.948 0z" fill="#4A5699" /><path d="M294.918 325.158c1.283-109.272 89.051-197.047 198.325-198.33 109.292-1.283 197.068 90.983 198.33 198.33 0.812 68.919 107.759 68.998 106.948 0C796.555 157.567 660.839 21.842 493.243 19.88c-167.604-1.963-303.341 140.65-305.272 305.278-0.811 68.998 106.139 68.919 106.947 0z" fill="#C45FA0" /><path d="M222.324 959.994c0.65-74.688 29.145-144.534 80.868-197.979 53.219-54.995 126.117-84.134 201.904-84.794 74.199-0.646 145.202 29.791 197.979 80.867 54.995 53.219 84.13 126.119 84.79 201.905 0.603 68.932 107.549 68.99 106.947 0-1.857-213.527-176.184-387.865-389.716-389.721-213.551-1.854-387.885 178.986-389.721 389.721-0.601 68.991 106.349 68.933 106.949 0.001z" fill="#E5594F" /></svg>
+                                @endif
+                                <div>
+                                    <h4 class="font-semibold">{{ $review->user->first_name }} {{ $review->user->last_name }}</h4>
+                                    <!-- Display Star Rating -->
+                                    <div class="text-secondary">
+                                        @for ($i = 1; $i <= 5; $i++)
+                                            @if ($i <= $review->rating)
+                                                ★
+                                            @else
+                                                ☆
+                                            @endif
+                                        @endfor
+                                    </div>
+                                    <p class="mt-2 text-gray-600">{{ $review->comment }}</p>
+                                    <p class="text-xs text-gray-500">{{ $review->created_at->format('F j, Y') }}</p>
+                                </div>
                             </div>
-                        </div>
-
-                        <!-- Review 3 -->
-                        <div class="flex pb-5 border-b">
-                            <img class="w-12 h-12 rounded-full object-cover mr-4" src="{{ url('storage/uploads/card1_image.jpeg') }}" alt="Mark Edwards">
-                            <div>
-                                <h4 class="font-semibold">Mark Edwards</h4>
-                                <div class="text-secondary">★★★★☆</div>
-                                <p class="mt-2 text-gray-600">I love how versatile this bag is. It can hold anything ranging from cookies that come in trays to cookies that come in tins.</p>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
-
         </div>
+
 
     </div>
 
