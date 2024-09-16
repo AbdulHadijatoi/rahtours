@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Activity;
 use App\Models\Category;
 use App\Models\Menu;
 use App\Models\PageSetting;
@@ -76,6 +77,19 @@ if (!function_exists('getPrice')) {
         }
 
         return $price;
+    }
+}
+
+if (!function_exists('getRandomActivities')) {
+    function getRandomActivities(int $count)
+    {
+        return Activity::inRandomOrder()->take($count)->get();
+    }
+}
+
+if (!function_exists('getCategories')) {
+    function getCategories() {
+        return Category::get();
     }
 }
 

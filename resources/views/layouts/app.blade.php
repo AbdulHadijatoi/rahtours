@@ -31,6 +31,9 @@
             font-weight: normal;
             font-style: normal;
         }
+        .card{
+            border-radius: 0.5rem !important;
+        }
     </style>
     @yield('styles')
 
@@ -40,9 +43,11 @@
     <div class="nav light-nav">
         @include('components.navbar')
     </div>
-    <div class="nav2 hidden md:block">
-        @include('components.navbar2')
-    </div>
+    @if (request()->segment(count(request()->segments())) !== 'dubai-activities')
+        <div class="nav2 hidden md:block">
+            @include('components.navbar2')
+        </div>
+    @endif
     {{-- WHITE SPACE BELOW SECOND NAV --}}
     <div class="hidden" id="below-nav-space" style="margin-top: 55px"></div>
 

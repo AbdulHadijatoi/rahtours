@@ -23,6 +23,7 @@
     <h2 class="text-lg font-semibold mb-4">Choose a package</h2>
     @php
         $privatePkgPrice = 0;
+        $peoplePerGroup = 0;
         $sharingAdultPrice = 0;
         $sharingChildPrice = 0;
     @endphp
@@ -39,6 +40,7 @@
                     @if($package->category == "private")
                     @php
                         $privatePkgPrice = $activity->discount_offer > 0 ? $package->price - (($activity->discount_offer * $package->price) / 100) : $package->price;
+                        $peoplePerGroup = $package->group_size;
                     @endphp
                         <p class="text-lg font-semibold text-gray-700 mt-2">AED <span id="totalPrice{{ $key }}">{{ $privatePkgPrice }}</span></p>
                     @else
@@ -72,7 +74,10 @@
     <div id="personSelection" class="space-y-4">
         <div id="groupCountSection" class="hidden">
             <div class="flex justify-between items-center">
-                <span class="font-semibold">Group (AED <span id="groupPrice">{{ $privatePkgPrice }}</span>)</span>
+                <div class="flex flex-col">
+                    <span class="font-semibold">Group (AED <span id="groupPrice">{{ $privatePkgPrice }}</span>)</span>
+                    <span class="text-xs">Max {{ $peoplePerGroup }} people per group</span>
+                </div>
                 <div class="flex items-center space-x-4">
                     <button onclick="decrement('groupCount', {{ $privatePkgPrice }})" class="text-orange-500 text-2xl font-bold">−</button>
                     <span id="groupCount" class="font-semibold text-lg">1</span>

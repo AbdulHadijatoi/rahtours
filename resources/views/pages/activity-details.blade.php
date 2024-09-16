@@ -183,35 +183,18 @@
         </h2>
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            @include('components.card', [
-                'card_link' => 'dubai-activities/activity1',
-                'card_image' => 'storage/uploads/card1_image.jpeg',
-                'card_title' => "Dubai Quad Bike ATV Desert Tour with Sandboarding & Camel Ride 12345", 
-                'card_rating' => 5,
-                'card_reviews' => 5,
-                'card_price' => 500,
-            ])
-            @include('components.card', [
-                'card_image' => 'storage/uploads/card1_image.jpeg',
-                'card_title' => "Supply Chain and Logistics", 
-                'card_rating' => 1,
-                'card_reviews' => 3,
-                'card_price' => 300,
-            ])
-            @include('components.card', [
-                'card_image' => 'storage/uploads/card2_image.jpeg',
-                'card_title' => "Supply Chain and Logistics", 
-                'card_rating' => 2,
-                'card_reviews' => 4,
-                'card_price' => 400,
-            ])
-            @include('components.card', [
-                'card_image' => 'storage/uploads/card3_image.jpeg',
-                'card_title' => "Supply Chain and Logistics", 
-                'card_rating' => 3,
-                'card_reviews' => 1,
-                'card_price' => 100,
-            ])
+            @if(!empty(getRandomActivities(4)))
+                @foreach (getRandomActivities(4) as $activity)
+                    @include('components.card', [
+                        'card_link' => 'dubai-activities/' . $activity->slug,
+                        'card_image' => $activity->image_url,
+                        'card_title' => $activity->name, 
+                        'card_rating' => $activity->average_rating,
+                        'card_reviews' => $activity->number_of_reviews,
+                        'card_price' => $activity,
+                    ])
+                @endforeach
+            @endif
         </div>
         <button class="btn btn-outline btn-sm border-gray-500 text-gray-500 mx-auto mt-5">Show More</button>
 

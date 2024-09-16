@@ -1,13 +1,14 @@
 function updateNavbarBackground() {
   const navbar = document.querySelector('.nav2');
   const belowNavSpace = document.querySelector('#below-nav-space');
-  
-  if (window.scrollY > 70) {
-      navbar.classList.add('scrolled');
-      belowNavSpace.style.display= "block";
-  } else {
-      navbar.classList.remove('scrolled');
-      belowNavSpace.style.display= "none";
+  if(navbar){
+    if (window.scrollY > 70) {
+        navbar.classList.add('scrolled');
+        belowNavSpace.style.display= "block";
+    } else {
+        navbar.classList.remove('scrolled');
+        belowNavSpace.style.display= "none";
+    }
   }
 }
 
