@@ -30,24 +30,23 @@
                     <div class="grid grid-cols-1 md:grid-cols-[70%_30%] gap-2">
                         <!-- Large Image (70% width) -->
                         <div class="relative w-full h-[400px] md:h-[600px] overflow-hidden rounded-md">
-                            <img src="{{ url($activity->activityImages[0]->image_url) }}" alt="Large Image" class="w-full h-full object-cover">
+                            <img src="{{ url($activity->activityImages[0]->image_url ?? 'storage/uploads/placeholder_image.png') }}" alt="Large Image" class="w-full h-full object-cover">
                             <!-- Back Button -->
                             <button class="absolute top-5 left-5 bg-white text-black rounded-full py-2 px-5 shadow" 
                                 onclick="window.location.href = '/';">
                                 ← Back
                             </button>
-
                         </div>
 
                         <!-- Right Column with Two Small Images (30% width) -->
                         <div class="hidden md:flex flex-col gap-2">
                             <!-- Small Image 1 -->
                             <div class="w-full h-[195px] md:h-[295px] overflow-hidden rounded-md">
-                                <img src="{{ url($activity->activityImages[1]->image_url) }}" alt="Small Image 1" class="w-full h-full object-cover">
+                                <img src="{{ url($activity->activityImages[1]->image_url ?? 'storage/uploads/placeholder_image.png') }}" alt="Small Image 1" class="w-full h-full object-cover">
                             </div>
                             <!-- Small Image 2 -->
                             <div class="w-full h-[195px] md:h-[295px] overflow-hidden rounded-md">
-                                <img src="{{ url($activity->activityImages[2]->image_url) }}" alt="Small Image 2" class="w-full h-full object-cover">
+                                <img src="{{ url($activity->activityImages[2]->image_url ?? 'storage/uploads/placeholder_image.png') }}" alt="Small Image 2" class="w-full h-full object-cover">
                             </div>
                         </div>
                     </div>
