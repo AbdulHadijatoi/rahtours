@@ -21,6 +21,10 @@ body{
   fill: #ee8e3b;
 }
 
+.hover-fill-secondary:hover svg path{
+  fill: #ee8e3b !important;
+}
+
 .bg-primary{
   background-color:#ee8e3b;
 }
