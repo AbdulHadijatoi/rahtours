@@ -23,14 +23,9 @@
     <script src="https://cdn.tailwindcss.com"></script>
     
     <link rel="stylesheet" href="https://unpkg.com/@themesberg/flowbite@1.2.0/dist/flowbite.min.css" />
-    <link rel="stylesheet" href="{{ url('assets/emirates-medium.ttf') }}" />
+
     <style>
-        @font-face {
-            font-family: 'EmiratesMedium';
-            src: url('{{ url('assets/emirates-medium.ttf') }}') format('truetype');
-            font-weight: normal;
-            font-style: normal;
-        }
+
         .card{
             border-radius: 0.5rem !important;
         }

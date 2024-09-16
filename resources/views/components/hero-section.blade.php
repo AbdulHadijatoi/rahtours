@@ -16,7 +16,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M17.65 10.3a7.35 7.35 0 11-14.7 0 7.35 7.35 0 0114.7 0z"/>
                     </svg>
                     <input class="ml-2 w-full bg-transparent outline-none border-none focus:outline-none focus:ring-0 text-md md:text-lg" type="text" placeholder="Search your activities or destinations">
-                    <button class="btn rounded-lg btn-accent px-10 text-white text-lg" style="background-color: #ee8e3b">Search</button>
+                    <button class="btn rounded-lg font-normal btn-accent px-10 text-white text-lg" style="background-color: #ee8e3b">Search</button>
                 </div>
             </div>
         </div>
