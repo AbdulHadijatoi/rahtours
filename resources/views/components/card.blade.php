@@ -1,4 +1,4 @@
-<a href="{{ url($card_link ?? '#') }}" class="card mx-auto card-compact bg-base-100 w-full border transition ease-out duration-700">
+<a href="{{ url($card_link ?? '#') }}" class="card mx-auto card-compact bg-base-100 w-full border transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-105">
   <figure class="h-[13rem] bg-cover bg-center" style="background-image: url('{{ url($card_image ?? 'default-image-url.jpg') }}')">
   </figure>
   <div class="card-body h-[8rem] flex flex-column justify-between">
