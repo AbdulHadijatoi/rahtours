@@ -38,10 +38,16 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ url('wish-list') }}" class="transition hover-text-secondary border-transparent {{ isActive('wish-list') ? 'text-secondary' : '' }}">
+                        <a href="{{ url('wish-list') }}" class="relative inline-block transition hover:text-secondary border-transparent {{ isActive('wish-list') ? 'text-secondary' : '' }}">
                             Wish List
+                            @if(count(session('wishlist', []))>0)
+                                <div class="absolute top-0 right-0 mt-[-5px] md:mt-[-10px] mr-[-10px] bg-secondary2 text-white text-xs font-semibold px-2 rounded-full">
+                                    {{ count(session('wishlist', [])) }}
+                                </div>
+                            @endif
                         </a>
                     </li>
+
                     <li>
                         <a href="{{ url('cart') }}" class="transition hover-text-secondary border-transparent {{ isActive('cart') ? 'text-secondary' : '' }}">
                             Cart
@@ -49,30 +55,7 @@
                     </li>
 
                     <li class="hidden md:block">
-                        <div class="dropdown">
-                            <a tabindex="0" role="button" class="transition hover-text-secondary border-transparent">Recently Viewed</a>
-                            <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded z-[20] w-[25rem] p-2 shadow mt-5">
-                                <li class="w-full border-b" style="padding: 0px !important;">
-                                    <a class="w-full flex items-center p-2 border-none rounded-none hover:bg-gray-100">
-                                        <img src="{{ url('storage/uploads/insight1.webp') }}" alt="Desert" class="w-16 h-16 rounded object-cover mr-4">
-                                        <div class="flex flex-col justify-between flex-wrap flex-1 w-auto">
-                                            <p class="text-sm font-semibold text-gray-900 w-[15rem] text-wrap">{{ Str::limit('Morning Desert Dune Drive With Sand Boarding, Camel Ride', 55, '...') }}</p>
-                                            <p class="text-xs text-gray-500 w-full flex justify-between items-center mt-1"><span>Per person Price</span> <span class="text-lg font-bold text-orange-500">AED 125</span></p>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="w-full border-b" style="padding: 0px !important;">
-                                    <a class="w-full flex items-center p-2 border-none rounded-none hover:bg-gray-100">
-                                        <img src="{{ url('storage/uploads/insight1.webp') }}" alt="Desert" class="w-16 h-16 rounded object-cover mr-4">
-                                        <div class="flex flex-col justify-between flex-wrap flex-1 w-auto">
-                                            <p class="text-sm font-semibold text-gray-900 w-[15rem] text-wrap">{{ Str::limit('Morning Desert Dune Drive With Sand Boarding, Camel Ride', 55, '...') }}</p>
-                                            <p class="text-xs text-gray-500 w-full flex justify-between items-center mt-1"><span>Per person Price</span> <span class="text-lg font-bold text-orange-500">AED 125</span></p>
-                                        </div>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-
+                        @include('components.recently-viewed')
                     </li>
 
                     

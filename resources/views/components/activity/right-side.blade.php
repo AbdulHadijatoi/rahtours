@@ -26,6 +26,7 @@
         $peoplePerGroup = 0;
         $sharingAdultPrice = 0;
         $sharingChildPrice = 0;
+        $sharingChildPrice = 0;
     @endphp
     @foreach ($activity->packages as $key => $package)
         <div class="border border-secondary2 rounded-lg p-4 mb-6" onclick="selectPackage(this)">
@@ -105,4 +106,45 @@
         </div>
     </div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Activity data to store (get this data from your PHP variables)
+        const activity = {
+            id: "{{ $activity->id }}", // Ensure you include a unique ID for each activity
+            name: "{{ $activity->name }}", // Activity Name
+            slug: "{{ $activity->slug }}", // Activity Slug (URL-friendly name)
+            category_slug: "{{ $activity->category->slug }}", // Activity Slug (URL-friendly name)
+            image: "{{ url($activity->image_url ?? 'storage/uploads/placeholder_image.png') }}", // Activity Image URL
+            group_price: "{{ $privatePkgPrice }}", // Private (group) price
+            adult_price: "{{ $sharingAdultPrice }}", // Sharing (per person) price
+        };
+
+        // Function to manage recently viewed activities
+        function storeActivityInLocalStorage(activity) {
+            const maxActivities = 15; // Limit the number of activities to 15
+
+            // Get existing activities from localStorage
+            let activities = JSON.parse(localStorage.getItem('recentActivities')) || [];
+
+            // Check if the activity already exists using a unique identifier (id or slug)
+            activities = activities.filter(a => a.id !== activity.id && a.slug !== activity.slug);
+
+            // Add the new activity at the beginning of the array
+            activities.unshift(activity);
+
+            // If we have more than the max allowed, remove the oldest one
+            if (activities.length > maxActivities) {
+                activities.pop();
+            }
+
+            // Save the updated activities back to localStorage
+            localStorage.setItem('recentActivities', JSON.stringify(activities));
+        }
+
+        // Call the function to store the activity when the page is viewed
+        storeActivityInLocalStorage(activity);
+    });
+</script>
+
 

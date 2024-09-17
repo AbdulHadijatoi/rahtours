@@ -5,45 +5,26 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Route;
 
-
-// if(getMenu()){
-//     foreach (getMenu() as $menu) {
-//         if($menu->slug == '/'){
-//             Route::get("{$menu->slug}", [PageController::class, 'homePage'])->name($menu->slug);
-//         }else{
-//             Route::get("{$menu->slug}", [PageController::class, 'commonPage'])->name($menu->slug);
-//         }
-//     }
-// }
-
-// if(getMenu(2)){
-//     foreach (getMenu(2) as $menu) {
-//         Route::get("{$menu->slug}", [PageController::class, 'commonPage'])->name($menu->slug);
-//     }
-// }
-
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/dubai-activities/{category?}', [HomeActivityController::class, 'getActivities']);
 Route::get('/dubai-activities/{category}/{slug?}', [HomeActivityController::class, 'ActivityDetails'])->name('dubaiActivity');
-Route::get('/dry-cargo', [PageController::class, 'dryCargo'])->name('dry-cargo');
-Route::get('/reefer-cargo', [PageController::class, 'reeferCargo'])->name('reefer-cargo');
-Route::get('/liquid-cargo', [PageController::class, 'liquidCargo'])->name('liquid-cargo');
-Route::get('/project-cargo', [PageController::class, 'projectCargo'])->name('project-cargo');
-Route::get('/container-haulage', [PageController::class, 'containerHaulage'])->name('container-haulage');
-Route::get('/contact-us', [PageController::class, 'contactUs'])->name('contact-us');
+Route::get('/help', [PageController::class, 'helpPage'])->name('helpPage');
+Route::get('/wish-list', [PageController::class, 'wishList'])->name('wishList');
+Route::get('/about-us', [PageController::class, 'aboutUs'])->name('aboutUs');
+Route::get('/cart', [PageController::class, 'cart'])->name('cart');
+Route::get('/contact-us', [PageController::class, 'contactUs'])->name('contactUs');
+Route::get('/terms-conditions', [PageController::class, 'termsConditions'])->name('termsConditions');
+Route::get('/privacy-policy', [PageController::class, 'privacyPolicy'])->name('privacyPolicy');
+Route::get('/blogs', [PageController::class, 'blogsList'])->name('blogsList');
+Route::get('/blogs/{slug?}', [PageController::class, 'blogDetail'])->name('blogDetail');
+Route::get('/guidelines', [PageController::class, 'guidelines'])->name('guidelines');
+Route::get('/manage-profile', [PageController::class, 'manageProfile'])->name('manageProfile');
+Route::get('/where-to-find-us', [PageController::class, 'whereToFindUs'])->name('whereToFindUs');
 
-Route::get('/automotive-shipping', [PageController::class, 'automotiveShipping'])->name('automotive-shipping');
-Route::get('/dangerous-good-shipping', [PageController::class, 'dangerousGoodShipping'])->name('dangerous-good-shipping');
-Route::get('/cargo-storage-solutions', [PageController::class, 'cargoStorageSolutions'])->name('cargo-storage-solutions');
-Route::get('/exworks-solutions', [PageController::class, 'exworksSolutions'])->name('exworks-solutions');
-Route::get('/container-trading', [PageController::class, 'containerTrading'])->name('container-trading');
-Route::get('/container-bl-tracking', [PageController::class, 'containerBlTracking'])->name('container-bl-tracking');
-Route::get('/client-reg-login', [PageController::class, 'clientRegLogin'])->name('client-reg-login');
-Route::get('/freight-rate', [PageController::class, 'freightRate'])->name('freight-rate');
-Route::get('/get-quote', [PageController::class, 'getQuote'])->name('get-quote');
-Route::get('/general-tariff', [PageController::class, 'generalTariff'])->name('general-tariff');
-Route::get('/quick-payment', [PageController::class, 'quickPayment'])->name('quick-payment');
+Route::get('/gift/{slug?}', [PageController::class, 'giftPage'])->name('giftPage');
+Route::get('/gift/{slug?}/preview', [PageController::class, 'previewGift'])->name('previewGift');
 
-Route::get('/terms-conditions', [PageController::class, 'termsConditions'])->name('terms-conditions');
-Route::get('/privacy-policy', [PageController::class, 'privacyPolicy'])->name('privacy-policy');
-Route::get('/blogs-news', [PageController::class, 'blogsNews'])->name('blogs-news');
+
+Route::get('/add-to-wishlist/{id}', [HomeActivityController::class, 'addToWishList'])->name('wishlist.add');
+Route::get('/remove-from-wishlist/{id}', [HomeActivityController::class, 'removeFromWishList'])->name('wishlist.add');
+Route::get('/wishlist/activities', [HomeActivityController::class, 'getWishlistActivities'])->name('wishlist.activities');

@@ -3,7 +3,7 @@
         {!! $heading !!}
     </h2>
     <hr>
-    <p class="text-xs leading-5 pt-3">
+    <div class="text-xs leading-5 pt-3 list-disc">
         {!! $paragraph !!}
-    </p>
+    </div>
 </div>

@@ -4,10 +4,10 @@
         <div class="py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl lg:py-20">
         <div class="flex flex-col items-center justify-start xl:flex-row sm:min-h-[12rem] md:min-h-[15rem]">
             <div class="w-full mb-12 xl:mb-0 xl:pr-16">
-                <h2 class="mb-4 text-3xl text-center md:text-left font-bold tracking-tight text-white sm:text-5xl sm:leading-none">
+                <h2 class="mb-4 px-4 md:px-0 text-3xl text-center md:text-left font-bold tracking-tight text-white sm:text-4xl sm:leading-none">
                     {{ settings()->hero_title }}
                 </h2>
-                <p class="w-5/6 mb-4 text-base text-white md:text-xl text-center md:text-left m-auto md:m-0">
+                <p class="w-5/6 mb-4 text-base text-white text-lg text-center md:text-left m-auto md:m-0">
                     {{ settings()->hero_text }}
                 </p>
 

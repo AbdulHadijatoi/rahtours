@@ -152,6 +152,10 @@ body{
   background-color: #ee8e3b !important;
 }
 
+.bg-secondary3{
+  background-color: #ffa64d !important;
+}
+
 .hover-text-secondary:hover{
   color: #ee8e3b !important;
 }
@@ -534,4 +538,12 @@ body{
 .dark [role=tab].active, .dark [role=tab].active:hover, [role=tab].active, [role=tab].active:hover{
   border-color: rgb(23,37,84) !important;
   color: rgb(23,37,84) !important;
+}
+
+.list-disc ul {
+  list-style-type: disc !important;
+}
+
+.list-disc ul li {
+  margin-left: 10px;
 }

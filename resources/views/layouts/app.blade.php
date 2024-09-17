@@ -52,8 +52,6 @@
     <main>
         @if(count(request()->segments()) == 0)
             @include('components.hero-section')
-        @else
-            @include('components.breadcrumb')
         @endif
         @yield('content')
     </main>

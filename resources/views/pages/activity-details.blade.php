@@ -1,8 +1,10 @@
+
 @extends('layouts.app')
 
 
 
 @section('content')
+    @include('components.breadcrumb')
     <div class="relative">
         {{-- <img src="{{ url('storage/uploads/card1_image.jpeg') }}" class="absolute inset-0 object-cover w-full h-full" alt="hero_image" /> --}}
         <div class="relative pt-3">
@@ -17,12 +19,23 @@
                         <span class="ml-10">Operated By: <span class="underline">RAH Tourism</span></span>
                     </div>
                 </div>
-                <button class="flex items-center whitespace-nowrap space-x-2 bg-transparent text-gray-800 px-4 py-2 rounded-full hover:bg-white hover:text-black transition-colors duration-300">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-7 w-7 md:w-5 md:h-5">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 016.364 0L12 7.93l1.318-1.612a4.5 4.5 0 016.364 6.364l-7.5 7.5a.75.75 0 01-1.06 0l-7.5-7.5a4.5 4.5 0 010-6.364z" />
-                    </svg>
-                    <span class="hidden md:block">Add to Wishlist</span>
-                </button>
+                @if(isInWishlist($activity->id))
+                    <a href="{{ url('remove-from-wishlist/'. $activity->id) }}" class="flex items-center whitespace-nowrap space-x-2 bg-transparent text-gray-800 px-4 py-2 rounded-full hover:bg-white hover:text-black transition-colors duration-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="red" viewBox="0 0 24 24" class="h-7 w-7 md:w-5 md:h-5 wishlist-icon">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 016.364 0L12 7.93l1.318-1.612a4.5 4.5 0 016.364 6.364l-7.5 7.5a.75.75 0 01-1.06 0l-7.5-7.5a4.5 4.5 0 010-6.364z" />
+                        </svg> 
+                        <span class="hidden md:block">Added to Wishlist</span>
+                    </a>
+                @else
+                    <a href="{{ url('add-to-wishlist/'. $activity->id) }}" class="flex items-center whitespace-nowrap space-x-2 bg-transparent text-gray-800 px-4 py-2 rounded-full hover:bg-white hover:text-black transition-colors duration-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-7 w-7 md:w-5 md:h-5 wishlist-icon">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 016.364 0L12 7.93l1.318-1.612a4.5 4.5 0 016.364 6.364l-7.5 7.5a.75.75 0 01-1.06 0l-7.5-7.5a4.5 4.5 0 010-6.364z" />
+                        </svg>
+                        <span class="hidden md:block">Add to Wishlist</span>
+                    </a>
+                @endif
+
+
             </div>
             
             <div class="relative mx-auto md:px-0 sm:max-w-xl md:max-w-full lg:max-w-screen-xl">
@@ -32,10 +45,9 @@
                         <div class="relative w-full h-[400px] md:h-[600px] overflow-hidden rounded-md">
                             <img src="{{ url($activity->activityImages[0]->image_url ?? 'storage/uploads/placeholder_image.png') }}" alt="Large Image" class="w-full h-full object-cover">
                             <!-- Back Button -->
-                            <button class="absolute top-5 left-5 bg-white text-black rounded-full py-2 px-5 shadow" 
-                                onclick="window.location.href = '/';">
+                            <a href="/dubai-activities" class="absolute top-5 left-5 bg-white text-black rounded-full py-2 px-5 shadow">
                                 ← Back
-                            </button>
+                            </a>
                         </div>
 
                         <!-- Right Column with Two Small Images (30% width) -->
@@ -184,24 +196,23 @@
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             @if(!empty(getRandomActivities(4)))
-                @foreach (getRandomActivities(4) as $activity)
+                @foreach (getRandomActivities(4) as $randomActivity)
                     @include('components.card', [
-                        'card_link' => 'dubai-activities/' . $activity->slug,
-                        'card_image' => $activity->image_url,
-                        'card_title' => $activity->name, 
-                        'card_rating' => $activity->average_rating,
-                        'card_reviews' => $activity->number_of_reviews,
-                        'card_price' => $activity,
+                        'card_link' => 'dubai-activities/'. $randomActivity->category->slug . '/' . $randomActivity->slug,
+                        'card_image' => $randomActivity->image_url,
+                        'card_title' => $randomActivity->name, 
+                        'card_rating' => $randomActivity->average_rating,
+                        'card_reviews' => $randomActivity->number_of_reviews,
+                        'card_price' => $randomActivity,
                     ])
                 @endforeach
             @endif
         </div>
-        <button class="btn btn-outline btn-sm border-gray-500 text-gray-500 mx-auto mt-5">Show More</button>
+        <a href="/dubai-activities" class="btn btn-outline btn-sm border-gray-500 text-gray-500 mx-auto mt-5">Show More</a>
 
     </div>
 
-    @include('components.photos-dialog');
-    
+    @include('components.photos-dialog',['photos'=>$activity->activityImages]);
 @endsection
 
 @section('scripts')
@@ -277,6 +288,10 @@
             radioInput.dispatchEvent(new Event('change'));
         }
     }
+
+    // here write the logic for storing the activities in local storage
 </script>
+
+
 
 @endsection

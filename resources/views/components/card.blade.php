@@ -1,4 +1,4 @@
-<a href="{{ url($card_link ?? '#') }}" class="card mx-auto card-compact bg-base-100 w-full border">
+<a href="{{ url($card_link ?? '#') }}" class="card mx-auto card-compact bg-base-100 w-full border transition ease-out duration-700">
   <figure class="h-[13rem] bg-cover bg-center" style="background-image: url('{{ url($card_image ?? 'default-image-url.jpg') }}')">
   </figure>
   <div class="card-body h-[8rem] flex flex-column justify-between">
@@ -8,26 +8,26 @@
       @include('components.rating', ['card_rating' => $card_rating ?? 0, 'reviews' => $card_reviews ?? 0])
     
       @if(!empty($activity) && isset($activity->packages[0]))
-      <div class="flex">
+      <div class="flex items-center">
 
           @if($activity->packages[0]->category == "private")
               @if($activity->discount_offer > 0)
-                <span class="text-sm font-extrabold mr-1 text-gray-500 line-through">From AED {{ $activity->packages[0]->price }}</span>
+                <span class="text-xs font-extrabold mr-1 text-gray-500 line-through">From AED {{ $activity->packages[0]->price }}</span>
                 <span class="text-sm font-extrabold mr-1 text-gray-500 text-secondary">From AED {{ getDiscountPrice($activity, 'private') }}</span>
               @else
                 <span class="text-sm font-extrabold mr-1 text-gray-500">From AED {{ $activity->packages[0]->price }}</span>
               @endif
               
-              <span class="text-sm text-gray-500 mr-1">Per Group</span>
+              <span class="text-xs text-gray-500 mr-1">Per Group</span>
           @else
               @if($activity->discount_offer > 0)
-                <span class="text-sm font-extrabold mr-1 text-gray-500 line-through">From AED {{ $activity->packages[0]->adult_price }}</span>
-                <span class="text-sm font-extrabold mr-1 text-gray-500 text-secondary">From AED {{ getDiscountPrice($activity) }}</span>
+                <span class="text-xs font-bold mr-1 text-gray-500 line-through">From AED {{ $activity->packages[0]->adult_price }}</span>
+                <span class="text-sm font-bold mr-1 text-gray-500 text-secondary">From AED {{ getDiscountPrice($activity) }}</span>
               @else
-                <span class="text-sm font-extrabold mr-1 text-secondary">From AED {{ $activity->packages[0]->adult_price }}</span>
+                <span class="text-sm font-bold mr-1 text-secondary">From AED {{ $activity->packages[0]->adult_price }}</span>
               @endif
               
-              <span class="text-sm text-gray-500 mr-1">Per person</span>
+              <span class="text-xs text-gray-500 mr-1">Per person</span>
           @endif
           
       </div>

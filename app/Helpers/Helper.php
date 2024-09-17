@@ -21,6 +21,20 @@ if (!function_exists('allCategories')) {
     }
 }
 
+if (!function_exists('isInWishlist')) {
+    function isInWishlist($id) {
+        $wishlist = session('wishlist', []);
+        return in_array($id, $wishlist);
+    }
+}
+
+if (!function_exists('getActivitiesByIds')) {
+    function getActivitiesByIds($ids) {
+        $activities = Activity::whereIn('id',$ids)->get();
+        return $activities;
+    }
+}
+
 if (!function_exists('isRoute')) {
     function isRoute($routeName) {
         return Route::currentRouteName() == $routeName;

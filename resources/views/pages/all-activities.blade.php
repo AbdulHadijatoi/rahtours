@@ -3,6 +3,7 @@
 
 
 @section('content')
+    @include('components.breadcrumb')
     <div class="mx-auto px-5 md:px-0 sm:max-w-xl md:max-w-full lg:max-w-screen-xl mb-10">
         
         @include('components.activity.categories-slider')
@@ -34,8 +35,8 @@
                 </div>
             </div>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            @if(!empty($activities))
+        @if(!empty($activities) && $activities->count() > 0)
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                 @foreach ($activities as $activity)
                     @include('components.card', [
                         'card_link' => 'dubai-activities/'. $activity->category->slug . '/' . $activity->slug,
@@ -46,9 +47,11 @@
                         'card_price' => $activity,
                     ])
                 @endforeach
-            @endif
             
-        </div>
+            </div>
+        @else
+            <h3 class="text-center mx-auto text-xl">No result found!</h3>
+        @endif
     </div>
     
 @endsection
