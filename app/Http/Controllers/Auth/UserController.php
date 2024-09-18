@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Api\User;
+namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\User\UpdateProfileRequest;
 use Illuminate\Http\Request;
-use App\Http\Requests\Api\User\{RegisterRequest, LoginRequest};
+use App\Http\Requests\User\{RegisterRequest, LoginRequest};
 use App\Repositories\User\UserRepository;
 use App\Helpers\ExceptionHandlerHelper;
 use App\Traits\ResponseTrait;
