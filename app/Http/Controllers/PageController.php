@@ -88,4 +88,22 @@ class PageController extends Controller {
         $data = [];
         return view('pages.reset-password', $data);
     }
+    
+    public function login()
+    {
+        $data = [];
+        return view('pages.login', $data);
+    }
+    
+    public function signup()
+    {
+        $data = [];
+        return view('pages.signup', $data);
+    }
+    
+    public function history()
+    {
+        $data = [];
+        return view('pages.history', $data);
+    }
 }

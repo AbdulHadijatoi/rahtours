@@ -1,7 +1,7 @@
 <div class="dropdown">
     <a tabindex="0" role="button" class="transition hover-text-secondary border-transparent">Recently Viewed</a>
 
-    <ul tabindex="0" id="recentActivitiesList" class="flex flex-col flex-nowrap dropdown-content menu bg-base-100 rounded z-[20] w-[25rem] max-h-[25rem] overflow-scroll p-2 shadow mt-5">
+    <ul tabindex="0" id="recentActivitiesList" class="flex flex-col flex-nowrap dropdown-content menu bg-base-100 rounded z-[20] w-[20rem] max-h-[25rem] overflow-scroll p-2 shadow mt-5">
         <!-- Activities will be dynamically populated here -->
     </ul>
 
@@ -39,7 +39,7 @@
                         <a href="/dubai-activities/${activity.category_slug}/${activity.slug}" class="w-full flex items-center p-2 border-none rounded-none hover:bg-gray-100">
                             <img src="${activity.image}" alt="${activity.name}" class="w-16 h-16 rounded object-cover mr-4">
                             <div class="flex flex-col justify-between flex-wrap flex-1 w-auto">
-                                <p class="text-xs font-semibold text-gray-900 w-[15rem] text-wrap">${activity.name}</p>
+                                <p class="text-xs font-semibold text-gray-900 text-wrap">${activity.name}</p>
                                 <p class="text-xs text-gray-500 w-full flex justify-between items-center mt-1">
                                     <span>${priceLabel}</span> 
                                     <span class="text-sm font-bold text-secondary">AED ${price}</span>

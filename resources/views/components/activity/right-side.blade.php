@@ -113,6 +113,7 @@
         const activity = {
             id: "{{ $activity->id }}", // Ensure you include a unique ID for each activity
             name: "{{ $activity->name }}", // Activity Name
+            description: "{{ $activity->description }}", // Activity Name
             slug: "{{ $activity->slug }}", // Activity Slug (URL-friendly name)
             category_slug: "{{ $activity->category->slug }}", // Activity Slug (URL-friendly name)
             image: "{{ url($activity->image_url ?? 'storage/uploads/placeholder_image.png') }}", // Activity Image URL

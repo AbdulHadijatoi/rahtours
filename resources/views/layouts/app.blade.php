@@ -13,7 +13,7 @@
     <link rel="mask-icon" href="{{ url('favicon/safari-pinned-tab.svg') }}" color="#5bbad5">
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
-
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
 
@@ -68,7 +68,14 @@
     <script src="https://unpkg.com/@themesberg/flowbite@1.2.0/dist/flowbite.bundle.js"></script>
     
     <script>
-        //
+        function setInnerText(id, message) {
+            var element = document.getElementById(id);
+            if (element) {
+                element.innerHTML = message;
+                element.classList.remove('hidden');
+            }
+        }
+
     </script>
     @yield('scripts')
 </body>

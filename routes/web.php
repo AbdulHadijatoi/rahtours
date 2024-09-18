@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Auth\UserController;
+use App\Http\Controllers\BookingController;
 use App\Http\Controllers\HomeActivityController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PageController;
@@ -25,6 +27,13 @@ Route::get('/where-to-find-us', [PageController::class, 'whereToFindUs'])->name(
 Route::get('/otp-verfication', [PageController::class, 'otpVerfication'])->name('otpVerfication');
 Route::get('/reset-password', [PageController::class, 'resetPassword'])->name('resetPassword');
 
+Route::get('/login', [PageController::class, 'login'])->name('loginPage');
+Route::get('/signup', [PageController::class, 'signup'])->name('signupPage');
+
+Route::post('/login', [UserController::class, 'login'])->name('login');
+Route::post('/signup', [UserController::class, 'register'])->name('signup');
+
+
 Route::get('/gift/{slug?}', [PageController::class, 'giftPage'])->name('giftPage');
 Route::get('/gift/{slug?}/preview', [PageController::class, 'previewGift'])->name('previewGift');
 
@@ -32,3 +41,14 @@ Route::get('/gift/{slug?}/preview', [PageController::class, 'previewGift'])->nam
 Route::get('/add-to-wishlist/{id}', [HomeActivityController::class, 'addToWishList'])->name('wishlist.add');
 Route::get('/remove-from-wishlist/{id}', [HomeActivityController::class, 'removeFromWishList'])->name('wishlist.add');
 Route::get('/wishlist/activities', [HomeActivityController::class, 'getWishlistActivities'])->name('wishlist.activities');
+
+
+// Auth ROUTES
+Route::any('/logout', [UserController::class, 'logout'])->name('logout');
+Route::any('/update-profile', [UserController::class, 'updateProfile'])->name('updateProfile');
+Route::any('/update-password', [UserController::class, 'updatePassword'])->name('updatePassword');
+Route::get('/bookings', [BookingController::class, 'index'])->name('bookingsPage');
+Route::get('/booking/{id}', [BookingController::class, 'getBooking'])->name('getBooking');
+Route::post('/booking/{id}/update', [BookingController::class, 'updateBooking'])->name('updateBooking');
+Route::post('/booking/{id}/cancel', [BookingController::class, 'cancelBooking'])->name('cancelBooking');
+Route::get('/history', [PageController::class, 'history'])->name('history');

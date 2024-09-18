@@ -5,9 +5,8 @@ namespace App\Repositories\User;
 use App\Models\User;
 use App\Enums\UserRoleEnums;
 use Illuminate\Http\UploadedFile;
-use Hash;
-use Auth;
-
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class UserRepository
 {
