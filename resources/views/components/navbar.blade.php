@@ -67,7 +67,7 @@
                     </li>
                     @else 
                         <li>
-                            <button class="btn rounded-full btn-accent px-5 text-white text-xs btn-sm" data-modal-target="authentication-modal" data-modal-toggle="authentication-modal" type="button" style="background-color: #ee8e3b">Login</button>
+                            <button class="btn rounded-full btn-accent px-5 text-white text-xs btn-sm" type="button" style="background-color: #ee8e3b" onclick="openLogin();">Login</button>
                         </li>
                     @endauth
                 {{-- @endforeach

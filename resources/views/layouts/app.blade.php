@@ -61,11 +61,14 @@
     </footer>
 
 
-    @include('components.login-dialog')
+    @include('components.auth.login-dialog')
+    @include('components.auth.signup-dialog')
+    @include('components.auth.forgot-password-dialog')
     <script src="{{ asset('assets/script.js') }}"></script>
     <script src="https://unpkg.com/@themesberg/flowbite@1.2.0/dist/flowbite.bundle.js"></script>
     
     <script>
+        //
     </script>
     @yield('scripts')
 </body>

@@ -31,7 +31,7 @@
     @foreach ($activity->packages as $key => $package)
         <div class="border border-secondary2 rounded-lg p-4 mb-6" onclick="selectPackage(this)">
             <div class="flex items-start">
-                <div class="mr-3 text-orange-500">
+                <div class="mr-3 text-secondary">
                     <input class="checked:bg-[#ee8e3b] border-gray-200 checked:border-none focus:border-none" type="radio" name="selectedPackage" data-package-type="{{ $package->category }}" data-key="{{ $key }}" onchange="handlePackageChange(this)">
                 </div>
                 <div>
@@ -80,9 +80,9 @@
                     <span class="text-xs">Max {{ $peoplePerGroup }} people per group</span>
                 </div>
                 <div class="flex items-center space-x-4">
-                    <button onclick="decrement('groupCount', {{ $privatePkgPrice }})" class="text-orange-500 text-2xl font-bold">−</button>
+                    <button onclick="decrement('groupCount', {{ $privatePkgPrice }})" class="text-secondary text-2xl font-bold">−</button>
                     <span id="groupCount" class="font-semibold text-lg">1</span>
-                    <button onclick="increment('groupCount', {{ $privatePkgPrice }})" class="text-orange-500 text-2xl font-bold">+</button>
+                    <button onclick="increment('groupCount', {{ $privatePkgPrice }})" class="text-secondary text-2xl font-bold">+</button>
                 </div>
             </div>
         </div>
@@ -90,17 +90,17 @@
             <div class="flex justify-between items-center">
                 <span class="font-semibold">Adult (AED <span id="adultPrice">{{ $sharingAdultPrice }}</span>)</span>
                 <div class="flex items-center space-x-4">
-                    <button onclick="decrement('adultCount', {{ $sharingAdultPrice }})" class="text-orange-500 text-2xl font-bold">−</button>
+                    <button onclick="decrement('adultCount', {{ $sharingAdultPrice }})" class="text-secondary text-2xl font-bold">−</button>
                     <span id="adultCount" class="font-semibold text-lg">1</span>
-                    <button onclick="increment('adultCount', {{ $sharingAdultPrice }})" class="text-orange-500 text-2xl font-bold">+</button>
+                    <button onclick="increment('adultCount', {{ $sharingAdultPrice }})" class="text-secondary text-2xl font-bold">+</button>
                 </div>
             </div>
             <div class="flex justify-between items-center">
                 <span class="font-semibold">Child (AED {{ $sharingChildPrice }})</span>
                 <div class="flex items-center space-x-4">
-                    <button onclick="decrement('childCount', {{ $sharingChildPrice }})" class="text-orange-500 text-2xl font-bold">−</button>
+                    <button onclick="decrement('childCount', {{ $sharingChildPrice }})" class="text-secondary text-2xl font-bold">−</button>
                     <span id="childCount" class="font-semibold text-lg">0</span>
-                    <button onclick="increment('childCount', {{ $sharingChildPrice }})" class="text-orange-500 text-2xl font-bold">+</button>
+                    <button onclick="increment('childCount', {{ $sharingChildPrice }})" class="text-secondary text-2xl font-bold">+</button>
                 </div>
             </div>
         </div>

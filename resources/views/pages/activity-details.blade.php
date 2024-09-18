@@ -63,7 +63,7 @@
                         </div>
                     </div>
                     <!-- See All Photos Button -->
-                    <button class="absolute top-5 right-5 bg-white text-orange-500 rounded-full px-4 py-2 shadow" onclick="photos_dialog.showModal()">
+                    <button class="absolute top-5 right-5 bg-white text-secondary rounded-full px-4 py-2 shadow" onclick="photos_dialog.showModal()">
                         See All Photos
                     </button>
                 </div>

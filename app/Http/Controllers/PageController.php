@@ -76,4 +76,16 @@ class PageController extends Controller {
         $data = [];
         return view('pages.where-to-find-us', $data);
     }
+    
+    public function otpVerfication()
+    {
+        $data = [];
+        return view('pages.otp-verification', $data);
+    }
+    
+    public function resetPassword()
+    {
+        $data = [];
+        return view('pages.reset-password', $data);
+    }
 }

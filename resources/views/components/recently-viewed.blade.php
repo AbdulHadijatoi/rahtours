@@ -42,7 +42,7 @@
                                 <p class="text-xs font-semibold text-gray-900 w-[15rem] text-wrap">${activity.name}</p>
                                 <p class="text-xs text-gray-500 w-full flex justify-between items-center mt-1">
                                     <span>${priceLabel}</span> 
-                                    <span class="text-sm font-bold text-orange-500">AED ${price}</span>
+                                    <span class="text-sm font-bold text-secondary">AED ${price}</span>
                                 </p>
                             </div>
                         </a>

@@ -5,6 +5,8 @@ use App\Models\Category;
 use App\Models\Menu;
 use App\Models\PageSetting;
 use App\Models\Setting;
+use App\Models\Wishlist;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 if (!function_exists('settings')) {
@@ -23,7 +25,11 @@ if (!function_exists('allCategories')) {
 
 if (!function_exists('isInWishlist')) {
     function isInWishlist($id) {
-        $wishlist = session('wishlist', []);
+        if(Auth::user()){
+            $wishlist = Wishlist::where('user_id', Auth::user()->id)->pluck('activity_id')->toArray();
+        }else{
+            $wishlist = session('wishlist', []);
+        }
         return in_array($id, $wishlist);
     }
 }
