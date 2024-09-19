@@ -38,7 +38,7 @@ class PageController extends Controller {
     public function termsConditions()
     {
         $data = [];
-        return view('pages.terms-conditions', $data);
+        return view('pages.terms-and-conditions', $data);
     }
     
     public function privacyPolicy()
@@ -50,7 +50,7 @@ class PageController extends Controller {
     public function blogsList()
     {
         $data = [];
-        return view('pages.blogs-news', $data);
+        return view('pages.blogs', $data);
     }
     
     public function blogDetail($slug)

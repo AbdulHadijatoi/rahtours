@@ -18,7 +18,7 @@ Route::get('/wish-list', [PageController::class, 'wishList'])->name('wishList');
 Route::get('/about-us', [PageController::class, 'aboutUs'])->name('aboutUs');
 Route::get('/cart', [PageController::class, 'cart'])->name('cart');
 Route::get('/contact-us', [PageController::class, 'contactUs'])->name('contactUs');
-Route::get('/terms-conditions', [PageController::class, 'termsConditions'])->name('termsConditions');
+Route::get('/terms-and-conditions', [PageController::class, 'termsConditions'])->name('termsConditions');
 Route::get('/privacy-policy', [PageController::class, 'privacyPolicy'])->name('privacyPolicy');
 Route::get('/blogs', [PageController::class, 'blogsList'])->name('blogsList');
 Route::get('/blogs/{slug?}', [PageController::class, 'blogDetail'])->name('blogDetail');
