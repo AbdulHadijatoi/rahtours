@@ -5,7 +5,7 @@
 
 @section('content')
     @include('components.breadcrumb')
-    @include('components.hero-common')
+    @include('components.hero-help')
     <div class="mx-auto px-5 md:px-0 sm:max-w-xl md:max-w-full lg:max-w-screen-xl mb-20 mt-10">
     
       <div class="grid gap-6 md:grid-cols-3 sm:grid-cols-1">

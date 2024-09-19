@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\UserController;
 use App\Http\Controllers\BookingController;
+use App\Http\Controllers\HelpController;
 use App\Http\Controllers\HomeActivityController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PageController;
@@ -29,6 +30,7 @@ Route::get('/otp-verfication', [PageController::class, 'otpVerfication'])->name(
 Route::get('/send-reset-link', [ForgotPasswordController::class, 'sendResetLink'])->name('sendResetLink');
 Route::post('/verify-otp', [ForgotPasswordController::class, 'verifyOTP'])->name('verifyOTP');
 Route::post('/reset-password', [ForgotPasswordController::class, 'resetPassword'])->name('resetPassword');
+Route::get('/booking-help', [HelpController::class, 'getHelp'])->name('getHelp');
 
 Route::get('/login', [PageController::class, 'login'])->name('loginPage');
 Route::get('/signup', [PageController::class, 'signup'])->name('signupPage');
