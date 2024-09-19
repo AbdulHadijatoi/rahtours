@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api\Auth;
+namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Mail\SendPasswordResetLink;
@@ -14,16 +14,17 @@ use Illuminate\Support\Facades\Mail;
 
 class ForgotPasswordController extends Controller
 {
-    public function sendResetLink(Request $request)
-    {
+    public function sendResetLink(Request $request) {
         $request->validate([
             'email' => 'required|email',
         ]);
 
-        $user = User::where('email', $request->email)->first();
+        $email = $request->email;
+
+        $user = User::where('email', $email)->first();
 
         if (!$user) {
-            return response()->json(['error' => 'User not found'], 404);
+            return redirect()->to('/forgot-password')->with('error', "Email not found!");
         }
 
         // Generate the OTP
@@ -38,25 +39,27 @@ class ForgotPasswordController extends Controller
         // Send the OTP via email
         Mail::to($request->email)->send(new SendPasswordResetLink($otp));
 
-        return response()->json(['message' => 'OTP sent successfully']);
+        return view('pages.otp-verification', compact('email'));
     }
 
-    public function verifyOTP(Request $request)
-    {
+    public function verifyOTP(Request $request) {
         $request->validate([
-            'otp' => 'required|string|min:6|max:6',
+            'otp_code' => 'required',
+            'email' => 'required',
         ]);
 
+        $otp_code = implode('',$request->otp_code);
+        $email = $request->email;
+
         $passwordReset = DB::table('password_resets')
-            ->where('token', $request->otp)
+            ->where('token', $otp_code)
             ->first();
-
+        // return $passwordReset;
         if (!$passwordReset) {
-            return response()->json(['error' => 'Invalid OTP'], 400);
+            return redirect()->back()->with('error', "Invalid OTP!");
         }
-        return response()->json(['message' => 'OTP verified', 'otp' =>$passwordReset]);
+        return view('pages.reset-password', compact('email','otp_code'));
     }
-
 
     public function resetPassword(Request $request)
     {
@@ -67,7 +70,10 @@ class ForgotPasswordController extends Controller
             'otp' => 'required',
         ]);
 
-        $user = DB::table('password_resets')->where('email', $request->email)->first();
+        $user = DB::table('password_resets')
+                    ->where('email', $request->email)
+                    ->where('token', $request->otp)
+                    ->first();
 
         if ($user) {
             $userModel = User::where('email', $user->email)->first();
@@ -83,9 +89,9 @@ class ForgotPasswordController extends Controller
             // Delete the password reset record
             DB::table('password_resets')->where('email', $request->email)->delete();
 
-            return response()->json(['message' => 'Password has been reset successfully']);
+            return redirect()->to('/login')->with('success', "Password has been reset successfully");
         } else {
-            return response()->json(['error' => 'OTP is Expired'], 404);
+            return redirect()->back()->with('error', "OTP is Expired");
         }
     }
 

@@ -28,9 +28,9 @@
                     <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                         Tour Date
                     </th>
-                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                    {{-- <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                         Tickets
-                    </th>
+                    </th> --}}
                     <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                         Price
                     </th>
@@ -62,9 +62,9 @@
                             {{ \Carbon\Carbon::parse($booking->date)->format('Y-m-d') }}
                         </p>
                     </td>
-                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                    {{-- <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                         <p class="text-gray-900 whitespace-no-wrap">X Tickets</p>
-                    </td>
+                    </td> --}}
                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                         <p class="text-gray-900 whitespace-no-wrap">${{ number_format($booking->total_amount, 2) }}</p>
                     </td>
@@ -285,12 +285,11 @@
         fetch(`/booking/${bookingId}`)
         .then(response => response.json())
         .then(data => {
-            console.log()
+                //<p><strong>Tickets:</strong> X Tickets</p>
             document.getElementById('viewDetails').innerHTML = `
                 <p><strong>Tour Name:</strong> ${data.booking.activity_name}</p>
                 <p><strong>Customer Name:</strong> ${data.booking.first_name} ${data.booking.last_name}</p>
                 <p><strong>Tour Date:</strong> ${data.booking.date}</p>
-
                 <p><strong>Price:</strong> $${data.booking.total_amount}</p>
                 <p><strong>Status:</strong> ${data.booking.status}</p>
             `;

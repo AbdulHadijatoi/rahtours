@@ -17,25 +17,33 @@
         </p>
 
         <!-- OTP Input Fields -->
-        <form id="otpForm" class="space-y-4">
+        <form id="otpForm" class="space-y-4" action="{{ route('verifyOTP') }}" method="POST">
+          @csrf
+           @if($email)
+              <input type="hidden" name="email" value="{{ $email }}">
+          @endif
           <!-- OTP -->
           <div class="flex justify-between mb-4">
-            <input type="text" maxlength="1" class="w-12 h-12 border border-gray-300 text-center text-lg rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500" required>
-            <input type="text" maxlength="1" class="w-12 h-12 border border-gray-300 text-center text-lg rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500" required>
-            <input type="text" maxlength="1" class="w-12 h-12 border border-gray-300 text-center text-lg rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500" required>
-            <input type="text" maxlength="1" class="w-12 h-12 border border-gray-300 text-center text-lg rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500" required>
-            <input type="text" maxlength="1" class="w-12 h-12 border border-gray-300 text-center text-lg rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500" required>
-            <input type="text" maxlength="1" class="w-12 h-12 border border-gray-300 text-center text-lg rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500" required>
+            <input type="text" name="otp_code[]" maxlength="1" class="w-12 h-12 border border-gray-300 text-center text-lg rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500" required>
+            <input type="text" name="otp_code[]" maxlength="1" class="w-12 h-12 border border-gray-300 text-center text-lg rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500" required>
+            <input type="text" name="otp_code[]" maxlength="1" class="w-12 h-12 border border-gray-300 text-center text-lg rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500" required>
+            <input type="text" name="otp_code[]" maxlength="1" class="w-12 h-12 border border-gray-300 text-center text-lg rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500" required>
+            <input type="text" name="otp_code[]" maxlength="1" class="w-12 h-12 border border-gray-300 text-center text-lg rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500" required>
+            <input type="text" name="otp_code[]" maxlength="1" class="w-12 h-12 border border-gray-300 text-center text-lg rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500" required>
           </div>
 
           <!-- Verify OTP Button -->
           <button type="submit" class="w-full px-4 py-2 text-white bg-secondary2 rounded-md font-semibold">
             Verify OTP
           </button>
-
+        </form>
+        <form class="space-y-4" action="{{ route('sendResetLink') }}" method="GET">
+          @if($email)
+              <input type="hidden" name="email" value="{{ $email }}">
+          @endif
           <!-- Resend OTP -->
           <p class="text-center text-sm text-gray-600 mt-4">
-            Didn’t receive the OTP? <a href="#" class="text-secondary font-medium">Resend OTP</a>
+            Didn’t receive the OTP? <button type="submit" href="#" class="text-secondary font-medium">Resend OTP</button>
           </p>
         </form>
       </div>

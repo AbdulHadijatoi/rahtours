@@ -16,8 +16,8 @@
 
 <script>
     // Fetch activities from local storage (you may have multiple items in an array)
-    const activityData = JSON.parse(localStorage.getItem('activityData')) || [];
-
+    const activityData = JSON.parse(localStorage.getItem('recentActivities')) || [];
+    console.log("Activity Data: ",activityData);
     // Find the container where activities will be appended
     const activityContainer = document.getElementById('activity-container');
 
@@ -33,23 +33,18 @@
         activityData.forEach(activity => {
             const activityHtml = `
                 <div class="bg-white p-4 flex flex-wrap gap-8">
-                    <!-- Image Container -->
                     <div class="w-1/4">
                         <img src="${activity.image}" alt="${activity.name}" class="w-full h-full object-cover rounded-md" />
                     </div>
 
-                    <!-- Details Container -->
                     <div class="w-2/3 flex flex-col gap-4">
                         <h2 class="text-xl font-semibold">${activity.name}</h2>
                         <p class="text-gray-500">${sanitizeHtml(activity.description)}</p>
                         <div class="flex justify-between items-center">
-                            <span class="text-gray-500 text-lg">Price:</span>
-                            <span class="text-black text-lg">$${activity.adult_price}</span>
+                            <span class="text-gray-500 text-lg">Duration:</span>
+                            <span class="text-black text-lg">${activity.duration}</span>
                         </div>
-                        <div class="flex justify-between items-center">
-                            <span class="text-green-600 text-xl font-semibold">Free Cancellation</span>
-                            <span class="text-blue-600 text-xl font-semibold">$${activity.adult_price}</span>
-                        </div>
+                        
                     </div>
                 </div>
             `;

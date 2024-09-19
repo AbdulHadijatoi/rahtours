@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\UserController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\HomeActivityController;
@@ -25,10 +26,13 @@ Route::get('/manage-profile', [PageController::class, 'manageProfile'])->name('m
 Route::get('/where-to-find-us', [PageController::class, 'whereToFindUs'])->name('whereToFindUs');
 
 Route::get('/otp-verfication', [PageController::class, 'otpVerfication'])->name('otpVerfication');
-Route::get('/reset-password', [PageController::class, 'resetPassword'])->name('resetPassword');
+Route::get('/send-reset-link', [ForgotPasswordController::class, 'sendResetLink'])->name('sendResetLink');
+Route::post('/verify-otp', [ForgotPasswordController::class, 'verifyOTP'])->name('verifyOTP');
+Route::post('/reset-password', [ForgotPasswordController::class, 'resetPassword'])->name('resetPassword');
 
 Route::get('/login', [PageController::class, 'login'])->name('loginPage');
 Route::get('/signup', [PageController::class, 'signup'])->name('signupPage');
+Route::get('/forgot-password', [PageController::class, 'forgotPassword'])->name('forgotPassword');
 
 Route::post('/login', [UserController::class, 'login'])->name('login');
 Route::post('/signup', [UserController::class, 'register'])->name('signup');
@@ -49,6 +53,7 @@ Route::any('/update-profile', [UserController::class, 'updateProfile'])->name('u
 Route::any('/update-password', [UserController::class, 'updatePassword'])->name('updatePassword');
 Route::get('/bookings', [BookingController::class, 'index'])->name('bookingsPage');
 Route::get('/booking/{id}', [BookingController::class, 'getBooking'])->name('getBooking');
+Route::post('/send-otp', [UserController::class, 'sendOTP'])->name('sendOTP');
 Route::post('/booking/{id}/update', [BookingController::class, 'updateBooking'])->name('updateBooking');
 Route::post('/booking/{id}/cancel', [BookingController::class, 'cancelBooking'])->name('cancelBooking');
 Route::get('/history', [PageController::class, 'history'])->name('history');

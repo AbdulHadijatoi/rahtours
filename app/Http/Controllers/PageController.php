@@ -77,10 +77,10 @@ class PageController extends Controller {
         return view('pages.where-to-find-us', $data);
     }
     
-    public function otpVerfication()
+    public function otpVerfication(Request $request)
     {
-        $data = [];
-        return view('pages.otp-verification', $data);
+        $email = $request->email;
+        return view('pages.otp-verification', $email);
     }
     
     public function resetPassword()
@@ -99,6 +99,12 @@ class PageController extends Controller {
     {
         $data = [];
         return view('pages.signup', $data);
+    }
+    
+    public function forgotPassword(Request $request)
+    {
+        
+        return view('pages.forgot-password');
     }
     
     public function history()
