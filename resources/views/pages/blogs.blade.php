@@ -11,10 +11,6 @@
         <div class="flex flex-wrap justify-center md:justify-start gap-10">
         @foreach ($blogs as $blog)  
           @include('components.blog.blog-card')
-          @include('components.blog.blog-card')
-          @include('components.blog.blog-card')
-          @include('components.blog.blog-card')
-          @include('components.blog.blog-card')
         @endforeach
         </div>
       @else
