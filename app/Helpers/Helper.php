@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Activity;
+use App\Models\CartItem;
 use App\Models\Category;
 use App\Models\Menu;
 use App\Models\PageSetting;
@@ -34,10 +35,27 @@ if (!function_exists('isInWishlist')) {
     }
 }
 
-if (!function_exists('getActivitiesByIds')) {
-    function getActivitiesByIds($ids) {
-        $activities = Activity::whereIn('id',$ids)->get();
-        return $activities;
+if (!function_exists('getWishlistCount')) {
+    function getWishlistCount() {
+
+        if(Auth::user()){
+            $count = Wishlist::where('user_id', Auth::id())->count();
+        }else{
+            $count = count(session('wishlist', []));
+        }
+        return $count;
+    }
+}
+
+if (!function_exists('getCartItemsCount')) {
+    function getCartItemsCount() {
+
+        if(Auth::user()){
+            $count = CartItem::where('user_id', Auth::id())->count();
+        }else{
+            $count = count(session('cart_items', []));
+        }
+        return $count;
     }
 }
 

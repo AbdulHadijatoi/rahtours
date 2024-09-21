@@ -11,21 +11,10 @@ class PageController extends Controller {
         return view('pages.help', $data);
     }
     
-    public function wishList() {
-        $data = [];
-        return view('pages.wish-list', $data);
-    }
-    
     public function aboutUs()
     {
         $data = [];
         return view('pages.about-us', $data);
-    }
-
-    public function cart()
-    {
-        $data = [];
-        return view('pages.cart', $data);
     }
 
     public function contactUs()

@@ -231,6 +231,21 @@
             adultChildCountSection.classList.remove('hidden');
         }
     }
+    
+    // Function to toggle between private and sharing package count sections
+    function showOptions() {
+        const packageType = radio.getAttribute('data-package-type');
+        const groupCountSection = document.getElementById('groupCountSection');
+        const adultChildCountSection = document.getElementById('adultChildCountSection');
+
+        if (packageType === 'private') {
+            groupCountSection.classList.remove('hidden');
+            adultChildCountSection.classList.add('hidden');
+        } else {
+            groupCountSection.classList.add('hidden');
+            adultChildCountSection.classList.remove('hidden');
+        }
+    }
 
     // Function to increment the count
     function increment(id, price) {

@@ -1,14 +1,12 @@
 
 @extends('layouts.app')
 
-
-
 @section('content')
     @include('components.breadcrumb')
     <div class="mx-auto px-5 md:px-0 sm:max-w-xl md:max-w-full lg:max-w-screen-xl mb-20 mt-10">
-      @if(getActivitiesByIds(session('wishlist', [])) && getActivitiesByIds(session('wishlist', []))->count()>0)
+      @if($activities->count()>0)
         <ul tabindex="0" id="recentActivitiesList" class=" p-2 mt-5">
-            @foreach (getActivitiesByIds(session('wishlist', [])) as $activity)  
+            @foreach ($activities as $activity)  
               @include('components.activity.wishlist-card')
             @endforeach
         </ul> 

@@ -40,17 +40,22 @@
                     <li>
                         <a href="{{ url('wish-list') }}" class="relative inline-block transition hover:text-secondary border-transparent {{ isActive('wish-list') ? 'text-secondary' : '' }}">
                             Wish List
-                            @if(count(session('wishlist', []))>0)
+                            @if(getWishlistCount()>0)
                                 <div class="absolute top-0 right-0 mt-[-5px] md:mt-[-10px] mr-[-10px] bg-secondary2 text-white text-xs font-semibold px-2 rounded-full">
-                                    {{ count(session('wishlist', [])) }}
+                                    {{ getWishlistCount() }}
                                 </div>
                             @endif
                         </a>
                     </li>
 
                     <li>
-                        <a href="{{ url('cart') }}" class="transition hover-text-secondary border-transparent {{ isActive('cart') ? 'text-secondary' : '' }}">
+                        <a href="{{ url('cart') }}" class="relative transition hover-text-secondary border-transparent {{ isActive('cart') ? 'text-secondary' : '' }}">
                             Cart
+                            @if(getCartItemsCount()>0)
+                                <div class="absolute top-0 right-0 mt-[-5px] md:mt-[-10px] mr-[-10px] bg-secondary2 text-white text-xs font-semibold px-2 rounded-full">
+                                    {{ getCartItemsCount() }}
+                                </div>
+                            @endif
                         </a>
                     </li>
 

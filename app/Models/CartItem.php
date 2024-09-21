@@ -12,13 +12,21 @@ class CartItem extends Model
     protected $fillable = [
         'user_id',
         'package_id',
-        'quantity',
         'tour_date',
+        'group',
         'adult',
         'child',
         'infant',
+        'cancel_date',
         'price',
+        'quantity',
         'group_size',
+        'activity_image',
+        'activity_slug',
+        'package_highlight',
+        'package_title',
+        'cancellation_duration',
+        'category',
     ];
 
     protected $casts = [
