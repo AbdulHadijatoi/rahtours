@@ -7,7 +7,17 @@
     @include('components.breadcrumb')
     @include('components.hero-help')
     <div class="mx-auto px-5 md:px-0 sm:max-w-xl md:max-w-full lg:max-w-screen-xl mb-20 mt-10">
-    
+      @if (session('error'))
+        <div class="bg-red-100 text-red-700 p-4 rounded mb-4">
+            {{ session('error') }}
+        </div>
+      @endif
+
+      @if (session('success'))
+          <div class="bg-green-100 text-green-700 p-4 rounded mb-4">
+              {{ session('success') }}
+          </div>
+      @endif
       <div class="grid gap-6 md:grid-cols-3 sm:grid-cols-1">
         <!-- Booking Card -->
         <div class="bg-white p-6 rounded-lg border text-center">

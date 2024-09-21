@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\UserController;
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\HelpController;
 use App\Http\Controllers\HomeActivityController;
@@ -20,8 +21,8 @@ Route::get('/cart', [PageController::class, 'cart'])->name('cart');
 Route::get('/contact-us', [PageController::class, 'contactUs'])->name('contactUs');
 Route::get('/terms-and-conditions', [PageController::class, 'termsConditions'])->name('termsConditions');
 Route::get('/privacy-policy', [PageController::class, 'privacyPolicy'])->name('privacyPolicy');
-Route::get('/blogs', [PageController::class, 'blogsList'])->name('blogsList');
-Route::get('/blogs/{slug?}', [PageController::class, 'blogDetail'])->name('blogDetail');
+Route::get('/blogs', [BlogController::class, 'index'])->name('blogsList');
+Route::get('/blogs/{slug?}', [BlogController::class, 'blogDetail'])->name('blogDetail');
 Route::get('/guidelines', [PageController::class, 'guidelines'])->name('guidelines');
 Route::get('/manage-profile', [PageController::class, 'manageProfile'])->name('manageProfile');
 Route::get('/where-to-find-us', [PageController::class, 'whereToFindUs'])->name('whereToFindUs');

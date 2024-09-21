@@ -47,18 +47,7 @@ class PageController extends Controller {
         return view('pages.privacy-policy', $data);
     }
 
-    public function blogsList()
-    {
-        $data = [];
-        return view('pages.blogs', $data);
-    }
-    
-    public function blogDetail($slug)
-    {
-        $data = [];
-        return view('pages.blog-details', $data);
-    }
-    
+   
     public function guidelines()
     {
         $data = [];
