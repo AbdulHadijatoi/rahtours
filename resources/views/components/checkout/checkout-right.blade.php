@@ -26,33 +26,37 @@
                     <p>Child: <span class="float-right">{{ $item['child'] }}</span></p>
                     <p>Infant: <span class="float-right">{{ $item['infant'] }}</span></p>
                 @endif
-                <p class="font-bold mt-2">Sub Total: <span class="float-right">AED {{ $item['price'] }}</span></p>
+                <p class="font-bold mt-2 price">Sub Total: <span class="float-right">AED {{ $item['price'] }}</span></p>
             </div>
             
             <div class="mt-4 flex">
                 <input type="text" placeholder="Voucher Code" class="bg-gray-100 border border-gray-200 rounded-md p-2 w-3/4 focus:outline-none focus:ring focus:ring-gray-300">
-                <button class="bg-orange-500 text-white py-2 px-4 rounded-md ml-2">APPLY</button>
+                <button class="bg-orange-500 text-white py-2 px-4 rounded-md ml-2 apply-voucher-button">APPLY</button>
             </div>
+            <div id="errorAlert{{ $index }}" class="hidden w-full bg-red-100 text-red-700 px-4 py-2 rounded-md my-4"></div>
+            <div id="successAlert{{ $index }}" class="hidden w-full bg-green-100 text-green-700 px-4 py-2 rounded-md my-4"></div>
+
         </div>
     </div>
 
     @if(request()->segment(count(request()->segments())) == 'book-now')
         <!-- Total Amount Section For Book Now (Direct Checkout) -->
-        <div class="bg-white p-4 rounded-lg shadow-md">
+        <div class="bg-white p-4 rounded-lg shadow-md mb-5">
             <div class="flex justify-between items-center">
                 <h2 class="text-base font-bold">Total Amount:</h2>
-                <p class="text-orange-500 text-xl font-bold">AED {{ $item['price'] }}</p>
+                <p class="text-orange-500 text-xl font-bold total-amount">AED {{ $item['price'] }}</p>
             </div>
         </div>
     @endif
+
     @endforeach
 
     @if(request()->segment(count(request()->segments())) != 'book-now')
     <!-- Total Amount Section for cart checkout-->
-    <div class="bg-white p-4 rounded-lg shadow-md">
+    <div class="bg-white p-4 rounded-lg shadow-md mb-5">
         <div class="flex justify-between items-center">
             <h2 class="text-base font-bold">Total Amount:</h2>
-            <p class="text-orange-500 text-xl font-bold">AED {{ $totalAmount }}</p>
+            <p class="text-orange-500 text-xl font-bold total-amount">AED {{ $totalAmount }}</p>
         </div>
     </div>
     @endif
@@ -86,4 +90,66 @@ document.addEventListener('DOMContentLoaded', () => {
         firstSection.classList.remove('hidden');
     }
 });
+
+let appliedVoucherId = null;
+
+document.querySelectorAll('.apply-voucher-button').forEach((button, index) => {
+    button.addEventListener('click', async (event) => {
+        const voucherCodeInput = event.target.previousElementSibling;
+        const voucherCode = voucherCodeInput.value.trim();
+
+        // Get the alert boxes
+        const successAlertBox = document.getElementById('successAlert' + index);
+        const errorAlertBox = document.getElementById('errorAlert' + index);
+
+        // Reset alert visibility
+        successAlertBox.classList.add('hidden');
+        errorAlertBox.classList.add('hidden');
+
+        // Check if the voucher code is empty
+        if (!voucherCode) {
+            errorAlertBox.textContent = "Voucher code is required.";
+            errorAlertBox.classList.remove('hidden', 'flex', 'items-center');
+            errorAlertBox.classList.add('flex', 'items-center');
+            return;
+        }
+
+        // Check if the voucher has already been applied
+        if (appliedVoucherId === voucherCode) {
+            errorAlertBox.textContent = "This voucher has already been applied.";
+            errorAlertBox.classList.remove('hidden', 'flex', 'items-center');
+            errorAlertBox.classList.add('flex', 'items-center');
+            return;
+        }
+
+        const response = await fetch('/gift-card/apply-voucher?voucher_code=' + voucherCode);
+
+        if (response.ok) {
+            const data = await response.json();
+            appliedVoucherId = voucherCode; // Store the applied voucher ID
+            const originalPrice = parseFloat(event.target.closest('.bg-white').querySelector('.price span').textContent.replace('AED ', ''));
+            const newPrice = originalPrice - data.price; // Assuming `data.discount` is the voucher amount
+
+            // Update the price in the UI
+            event.target.closest('.bg-white').querySelector('.price span').textContent = "AED " + newPrice.toFixed(2);
+            
+            // Update total amount logic
+            const totalAmountElement = document.querySelector('.total-amount');
+            const currentTotal = parseFloat(totalAmountElement.textContent.replace('AED ', ''));
+            const newTotal = currentTotal - data.price; // Update the total amount
+
+            totalAmountElement.textContent = "AED " + newTotal.toFixed(2);
+            
+            successAlertBox.textContent = "Voucher applied successfully!";
+            successAlertBox.classList.remove('hidden', 'flex', 'items-center');
+            successAlertBox.classList.add('flex', 'items-center');
+        } else {
+            const errorData = await response.json();
+            errorAlertBox.textContent = errorData.message;
+            errorAlertBox.classList.remove('hidden', 'flex', 'items-center');
+            errorAlertBox.classList.add('flex', 'items-center');
+        }
+    });
+});
+
 </script>

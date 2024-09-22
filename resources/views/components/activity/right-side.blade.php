@@ -146,7 +146,6 @@
 
 <script>
 
-
     document.addEventListener('DOMContentLoaded', function () {
         // Activity data to store (get this data from your PHP variables)
         const activity = {
@@ -186,11 +185,9 @@
         // Call the function to store the activity when the page is viewed
         storeActivityInLocalStorage(activity);
 
-        
-
-        
-
     });
+
+
     function checkout(target_url) {
         const activity_image = this.getAttribute('data-activity-image');
         const activity_slug = this.getAttribute('data-activity-slug');
