@@ -11,6 +11,7 @@ use App\Http\Controllers\HelpController;
 use App\Http\Controllers\HomeActivityController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\WishlistController;
 use App\Models\GiftCard;
 use App\Models\Wishlist;
@@ -64,7 +65,11 @@ Route::prefix('cart')->group(function () {
 Route::prefix('checkout')->group(function () {
     Route::get('/', [CheckoutController::class, 'index'])->name('checkout.index');
     Route::post('book-now', [CheckoutController::class, 'bookNow'])->name('checkout.bookNow');
+    
+    Route::get('/place-order', [PaymentController::class, 'placeOrder'])->name('placeOrder');
 });
+Route::get('/success', [PaymentController::class, 'success'])->name('checkout.success');
+Route::get('/cancel', [PaymentController::class, 'cancel'])->name('checkout.cancel');
 
 Route::prefix('gift-card')->group(function () {
     Route::get('/', [GiftCardController::class, 'index'])->name('giftCard.index');
@@ -75,6 +80,8 @@ Route::get('clear_session', function(Request $request){
     $request->session()->flush();
     return "cleared!";
 });
+
+
 
 
 // Auth ROUTES

@@ -1,6 +1,6 @@
 <div class="w-full lg:w-[40%] container mx-auto">
     @foreach($cartItems as $index => $item)
-    <div class="bg-white p-4 rounded-lg shadow-md mb-4">
+    <div class="bg-white p-4 rounded-lg border mb-4">
         <div class="flex justify-between items-center">
             <h2 class="text-base font-bold">{{ $item['package_title'] }}</h2>
             <button onclick="toggleSection('section{{ $index }}')" class="text-gray-500">
@@ -41,7 +41,7 @@
 
     @if(request()->segment(count(request()->segments())) == 'book-now')
         <!-- Total Amount Section For Book Now (Direct Checkout) -->
-        <div class="bg-white p-4 rounded-lg shadow-md mb-5">
+        <div class="bg-white p-4 rounded-lg border mb-5">
             <div class="flex justify-between items-center">
                 <h2 class="text-base font-bold">Total Amount:</h2>
                 <p class="text-orange-500 text-xl font-bold total-amount">AED {{ $item['price'] }}</p>
@@ -53,7 +53,7 @@
 
     @if(request()->segment(count(request()->segments())) != 'book-now')
     <!-- Total Amount Section for cart checkout-->
-    <div class="bg-white p-4 rounded-lg shadow-md mb-5">
+    <div class="bg-white p-4 rounded-lg border mb-5">
         <div class="flex justify-between items-center">
             <h2 class="text-base font-bold">Total Amount:</h2>
             <p class="text-orange-500 text-xl font-bold total-amount">AED {{ $totalAmount }}</p>
