@@ -54,6 +54,7 @@
                 <div class="flex space-x-2 mt-4">
                     {{-- <button class="px-4 py-2 bg-secondary2 text-white font-semibold rounded-md">Add To Cart</button> --}}
                     <button class="add-to-cart px-4 py-2 bg-secondary2 text-white font-semibold rounded-md" 
+                        data-key="{{ $key }}" 
                         data-total-key="totalPrice{{ $key }}" 
                         data-package-id="{{ $package->id }}" 
                         data-activity-image="{{ $activity->image_url }}" 
@@ -67,6 +68,7 @@
                         data-category="{{ $package->category }}"
                         onclick="checkout.call(this, '/cart/add')">Add To Cart</button>
                     <button class="book-now px-4 py-2 bg-secondary2 text-white font-semibold rounded-md"
+                        data-key="{{ $key }}" 
                         data-total-key="totalPrice{{ $key }}" 
                         data-package-id="{{ $package->id }}" 
                         data-activity-image="{{ $activity->image_url }}" 
@@ -83,8 +85,9 @@
 
             </div>
         </div>
-        <div id="errorAlert" class="hidden w-full bg-red-100 text-red-700 px-4 py-2 rounded-md my-4"></div>
-        <div id="successAlert" class="hidden w-full bg-info text-white px-4 py-2 rounded-md my-4"></div>
+        <div id="errorAlert{{ $key }}" class="hidden w-full bg-red-100 text-red-700 px-4 py-2 rounded-md my-4"></div>
+        <div id="successAlert{{ $key }}" class="hidden w-full bg-info text-white px-4 py-2 rounded-md my-4"></div>
+
     </div>
 @endforeach
 
@@ -195,6 +198,7 @@
         const cancellation_duration = this.getAttribute('data-cancellation-duration');
         const packageId = this.getAttribute('data-package-id');
         const totalId = this.getAttribute('data-total-key');
+        const packageIndex = this.getAttribute('data-key');
         const package_title = this.getAttribute('data-package-title');
         const price = this.getAttribute('data-price');
         const groupSize = this.getAttribute('data-group-size');
@@ -205,10 +209,13 @@
         const infantCount = document.querySelector('#infantCount')?.textContent || 0; // Capture infant count
         const groupCount = document.querySelector('#groupCount')?.textContent || 0;
         const totalPrice = document.getElementById(totalId);
+
+        const errorAlertBox = document.getElementById('errorAlert' + packageIndex); // Reference the correct error alert
+        const successAlertBox = document.getElementById('successAlert' + packageIndex); // Reference the correct success alert
         // Date validation check
         if (!date) {
-            const errorAlertBox = document.getElementById('errorAlert');
-            errorAlertBox.textContent = "Please select a date before adding to the cart.";
+
+            errorAlertBox.textContent = "Date is required. Please select date.";
             errorAlertBox.classList.remove('hidden');  // Show errorAlert
             errorAlertBox.classList.add('flex', 'items-center');  // Add Tailwind classes
             return;  // Exit the function if date is not selected
@@ -219,13 +226,10 @@
         form.action = target_url;
 
         // Add CSRF token (you'll need this for Laravel form submissions)
-        if(target_url == '/cart/add'){
-            form.method = 'POST';
-            const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-            form.appendChild(createHiddenInput('_token', csrfToken));
-        }else{
-            form.method = 'GET';
-        }
+
+        form.method = 'POST';
+        const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+        form.appendChild(createHiddenInput('_token', csrfToken));
 
         // Add form data as hidden inputs
         form.appendChild(createHiddenInput('package_id', packageId));

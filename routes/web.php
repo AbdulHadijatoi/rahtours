@@ -63,7 +63,7 @@ Route::prefix('cart')->group(function () {
 
 Route::prefix('checkout')->group(function () {
     Route::get('/', [CheckoutController::class, 'index'])->name('checkout.index');
-    Route::get('book-now', [CheckoutController::class, 'bookNow'])->name('checkout.bookNow');
+    Route::post('book-now', [CheckoutController::class, 'bookNow'])->name('checkout.bookNow');
 });
 
 Route::prefix('gift-card')->group(function () {
