@@ -41,6 +41,6 @@
     <!-- Cart Summary -->
     <div class="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 space-x-0 sm:space-x-4 mt-4 lg:mt-0">
         <span class="text-gray-700 text-sm">Currently, you have <strong>1</strong> item(s) in your cart.</span>
-        <a href="#" class="text-orange-500 text-sm font-semibold">Continue Shopping</a>
+        <a href="{{ url('/dubai-activities') }}" class="text-orange-500 text-sm font-semibold">Continue Shopping</a>
     </div>
 </div>

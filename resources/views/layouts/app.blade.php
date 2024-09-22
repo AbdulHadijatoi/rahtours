@@ -49,7 +49,7 @@
     {{-- WHITE SPACE BELOW SECOND NAV --}}
     <div class="hidden" id="below-nav-space" style="margin-top: 55px"></div>
 
-    <main>
+    <main @if(request()->segment(count(request()->segments())) == 'checkout') style="background-color: #f1f1f1" @endif>
         @if(count(request()->segments()) == 0)
             @include('components.hero-section')
         @endif

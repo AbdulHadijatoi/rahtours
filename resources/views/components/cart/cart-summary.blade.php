@@ -5,8 +5,8 @@
   </div>
   <p class="text-sm text-green-700 font-bold mb-6">No Additional Fees</p>
 
-  <button class="w-full bg-secondary2 text-white py-2 rounded-lg font-bold text-lg mb-4">Checkout</button>
-  <button class="w-full bg-white border border-secondary text-secondary py-2 rounded-lg font-bold text-lg mb-4">Explore more activities</button>
+  <a href="{{ route('checkout.index') }}"><button class="w-full bg-secondary2 text-white py-2 rounded-lg font-bold text-lg mb-4">Checkout</button></a>
+  <a href="{{ url('/dubai-activities') }}"> <button type="button" class="w-full bg-white border border-secondary text-secondary py-2 rounded-lg font-bold text-lg mb-4">Explore more activities</button></a>
 
   <div class="text-center text-sm">
     <button type="button" class="text-secondary" onclick="openSignup();">Create an account</button> 

@@ -28,7 +28,7 @@ class CartController extends Controller {
             $totalAmount += $item['price'];
             $totalActivities++;
         }
-        // return $cartItems;
+
         return view('pages.cart', [
             'cartItems' => $cartItems,
             'totalAmount' => $totalAmount,
