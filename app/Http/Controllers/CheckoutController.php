@@ -33,8 +33,10 @@ class CheckoutController extends Controller {
     }
     
 
-    public function checkout(Request $request) {
-        //
+    public function bookNow(Request $request) {
+        return view('pages.checkout', [
+            'cartItems' => [$request],
+        ]);
     }
 
 }

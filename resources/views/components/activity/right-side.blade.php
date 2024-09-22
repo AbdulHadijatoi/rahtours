@@ -64,8 +64,21 @@
                         data-cancellation-duration="{{ $activity->cancellation_duration }}" 
                         data-price="{{ $package->category == 'private' ? $privatePkgPrice : $sharingAdultPrice }}"
                         data-group-size="{{ $package->category == 'private' ? $peoplePerGroup : 0 }}"
-                        data-category="{{ $package->category }}">Add To Cart</button>
-                    <button class="px-4 py-2 bg-secondary2 text-white font-semibold rounded-md">Book Now</button>
+                        data-category="{{ $package->category }}"
+                        onclick="checkout.call(this, '/cart/add')">Add To Cart</button>
+                    <button class="book-now px-4 py-2 bg-secondary2 text-white font-semibold rounded-md"
+                        data-total-key="totalPrice{{ $key }}" 
+                        data-package-id="{{ $package->id }}" 
+                        data-activity-image="{{ $activity->image_url }}" 
+                        data-package-title="{{ $package->title }}" 
+                        data-activity-slug="{{ $activity->slug }}" 
+                        data-package-highlight="{{ $package->highlight }}" 
+                        data-package-category="{{ $package->category }}" 
+                        data-cancellation-duration="{{ $activity->cancellation_duration }}" 
+                        data-price="{{ $package->category == 'private' ? $privatePkgPrice : $sharingAdultPrice }}"
+                        data-group-size="{{ $package->category == 'private' ? $peoplePerGroup : 0 }}"
+                        data-category="{{ $package->category }}" 
+                        onclick="checkout.call(this, '/checkout/book-now')">Book Now</button>
                 </div>
 
             </div>
@@ -132,106 +145,111 @@
 </div>
 
 <script>
-document.addEventListener('DOMContentLoaded', function () {
-    // Activity data to store (get this data from your PHP variables)
-    const activity = {
-        id: "{{ $activity->id }}", // Ensure you include a unique ID for each activity
-        name: "{{ $activity->name }}", // Activity Name
-        description: "{{ $activity->description }}", // Activity Name
-        slug: "{{ $activity->slug }}", // Activity Slug (URL-friendly name)
-        duration: "{{ $activity->duration }}", // Activity Slug (URL-friendly name)
-        category_slug: "{{ $activity->category->slug }}", // Activity Slug (URL-friendly name)
-        image: "{{ url($activity->image_url ?? 'storage/uploads/placeholder_image.png') }}", // Activity Image URL
-        group_price: "{{ $privatePkgPrice }}", // Private (group) price
-        adult_price: "{{ $sharingAdultPrice }}", // Sharing (per person) price
-    };
-
-    // Function to manage recently viewed activities
-    function storeActivityInLocalStorage(activity) {
-        const maxActivities = 15; // Limit the number of activities to 15
-
-        // Get existing activities from localStorage
-        let activities = JSON.parse(localStorage.getItem('recentActivities')) || [];
-
-        // Check if the activity already exists using a unique identifier (id or slug)
-        activities = activities.filter(a => a.id !== activity.id && a.slug !== activity.slug);
-
-        // Add the new activity at the beginning of the array
-        activities.unshift(activity);
-
-        // If we have more than the max allowed, remove the oldest one
-        if (activities.length > maxActivities) {
-            activities.pop();
-        }
-
-        // Save the updated activities back to localStorage
-        localStorage.setItem('recentActivities', JSON.stringify(activities));
-    }
-
-    // Call the function to store the activity when the page is viewed
-    storeActivityInLocalStorage(activity);
 
 
-    // Add to Cart buttons logic
-    const addToCartButtons = document.querySelectorAll('.add-to-cart');
+    document.addEventListener('DOMContentLoaded', function () {
+        // Activity data to store (get this data from your PHP variables)
+        const activity = {
+            id: "{{ $activity->id }}", // Ensure you include a unique ID for each activity
+            name: "{{ $activity->name }}", // Activity Name
+            description: "{{ $activity->description }}", // Activity Name
+            slug: "{{ $activity->slug }}", // Activity Slug (URL-friendly name)
+            duration: "{{ $activity->duration }}", // Activity Slug (URL-friendly name)
+            category_slug: "{{ $activity->category->slug }}", // Activity Slug (URL-friendly name)
+            image: "{{ url($activity->image_url ?? 'storage/uploads/placeholder_image.png') }}", // Activity Image URL
+            group_price: "{{ $privatePkgPrice }}", // Private (group) price
+            adult_price: "{{ $sharingAdultPrice }}", // Sharing (per person) price
+        };
 
-    addToCartButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const activity_image = this.getAttribute('data-activity-image');
-            const activity_slug = this.getAttribute('data-activity-slug');
-            const highlight = this.getAttribute('data-package-highlight');
-            const cancellation_duration = this.getAttribute('data-cancellation-duration');
-            const packageId = this.getAttribute('data-package-id');
-            const totalId = this.getAttribute('data-total-key');
-            const package_title = this.getAttribute('data-package-title');
-            const price = this.getAttribute('data-price');
-            const groupSize = this.getAttribute('data-group-size');
-            const category = this.getAttribute('data-category');
-            const date = document.querySelector('#date').value; // Get the selected date
-            const adultCount = document.querySelector('#adultCount')?.textContent || 0;
-            const childCount = document.querySelector('#childCount')?.textContent || 0;
-            const infantCount = document.querySelector('#infantCount')?.textContent || 0; // Capture infant count
-            const groupCount = document.querySelector('#groupCount')?.textContent || 0;
-            const totalPrice = document.getElementById(totalId);
-            // Date validation check
-            if (!date) {
-                const errorAlertBox = document.getElementById('errorAlert');
-                errorAlertBox.textContent = "Please select a date before adding to the cart.";
-                errorAlertBox.classList.remove('hidden');  // Show errorAlert
-                errorAlertBox.classList.add('flex', 'items-center');  // Add Tailwind classes
-                return;  // Exit the function if date is not selected
+        // Function to manage recently viewed activities
+        function storeActivityInLocalStorage(activity) {
+            const maxActivities = 15; // Limit the number of activities to 15
+
+            // Get existing activities from localStorage
+            let activities = JSON.parse(localStorage.getItem('recentActivities')) || [];
+
+            // Check if the activity already exists using a unique identifier (id or slug)
+            activities = activities.filter(a => a.id !== activity.id && a.slug !== activity.slug);
+
+            // Add the new activity at the beginning of the array
+            activities.unshift(activity);
+
+            // If we have more than the max allowed, remove the oldest one
+            if (activities.length > maxActivities) {
+                activities.pop();
             }
 
-            // Create a form element
-            const form = document.createElement('form');
-            form.method = 'POST';
-            form.action = '/cart/add';
+            // Save the updated activities back to localStorage
+            localStorage.setItem('recentActivities', JSON.stringify(activities));
+        }
 
-            // Add CSRF token (you'll need this for Laravel form submissions)
+        // Call the function to store the activity when the page is viewed
+        storeActivityInLocalStorage(activity);
+
+        
+
+        
+
+    });
+    function checkout(target_url) {
+        const activity_image = this.getAttribute('data-activity-image');
+        const activity_slug = this.getAttribute('data-activity-slug');
+        const highlight = this.getAttribute('data-package-highlight');
+        const cancellation_duration = this.getAttribute('data-cancellation-duration');
+        const packageId = this.getAttribute('data-package-id');
+        const totalId = this.getAttribute('data-total-key');
+        const package_title = this.getAttribute('data-package-title');
+        const price = this.getAttribute('data-price');
+        const groupSize = this.getAttribute('data-group-size');
+        const category = this.getAttribute('data-category');
+        const date = document.querySelector('#date').value; // Get the selected date
+        const adultCount = document.querySelector('#adultCount')?.textContent || 0;
+        const childCount = document.querySelector('#childCount')?.textContent || 0;
+        const infantCount = document.querySelector('#infantCount')?.textContent || 0; // Capture infant count
+        const groupCount = document.querySelector('#groupCount')?.textContent || 0;
+        const totalPrice = document.getElementById(totalId);
+        // Date validation check
+        if (!date) {
+            const errorAlertBox = document.getElementById('errorAlert');
+            errorAlertBox.textContent = "Please select a date before adding to the cart.";
+            errorAlertBox.classList.remove('hidden');  // Show errorAlert
+            errorAlertBox.classList.add('flex', 'items-center');  // Add Tailwind classes
+            return;  // Exit the function if date is not selected
+        }
+
+        // Create a form element
+        const form = document.createElement('form');
+        form.action = target_url;
+
+        // Add CSRF token (you'll need this for Laravel form submissions)
+        if(target_url == '/cart/add'){
+            form.method = 'POST';
             const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
             form.appendChild(createHiddenInput('_token', csrfToken));
+        }else{
+            form.method = 'GET';
+        }
 
-            // Add form data as hidden inputs
-            form.appendChild(createHiddenInput('package_id', packageId));
-            form.appendChild(createHiddenInput('package_title', package_title));
-            form.appendChild(createHiddenInput('activity_image', activity_image));
-            form.appendChild(createHiddenInput('cancellation_duration', cancellation_duration));
-            form.appendChild(createHiddenInput('activity_slug', activity_slug));
-            form.appendChild(createHiddenInput('highlight', highlight));
-            form.appendChild(createHiddenInput('price', totalPrice.innerHTML));
-            form.appendChild(createHiddenInput('group_size', groupSize));
-            form.appendChild(createHiddenInput('category', category));
-            form.appendChild(createHiddenInput('tour_date', date));
-            form.appendChild(createHiddenInput('adult', adultCount));
-            form.appendChild(createHiddenInput('child', childCount));
-            form.appendChild(createHiddenInput('infant', infantCount));
-            form.appendChild(createHiddenInput('group', groupCount));
+        // Add form data as hidden inputs
+        form.appendChild(createHiddenInput('package_id', packageId));
+        form.appendChild(createHiddenInput('package_title', package_title));
+        form.appendChild(createHiddenInput('activity_image', activity_image));
+        form.appendChild(createHiddenInput('cancellation_duration', cancellation_duration));
+        form.appendChild(createHiddenInput('activity_slug', activity_slug));
+        form.appendChild(createHiddenInput('highlight', highlight));
+        form.appendChild(createHiddenInput('price', totalPrice.innerHTML));
+        form.appendChild(createHiddenInput('group_size', groupSize));
+        form.appendChild(createHiddenInput('category', category));
+        form.appendChild(createHiddenInput('tour_date', date));
+        form.appendChild(createHiddenInput('adult', adultCount));
+        form.appendChild(createHiddenInput('child', childCount));
+        form.appendChild(createHiddenInput('infant', infantCount));
+        form.appendChild(createHiddenInput('group', groupCount));
 
-            // Append the form to the body and submit it
-            document.body.appendChild(form);
-            form.submit();
-        });
-    });
+        // Append the form to the body and submit it
+        document.body.appendChild(form);
+        form.submit();
+    }
 
     // Function to create hidden input elements
     function createHiddenInput(name, value) {
@@ -241,8 +259,6 @@ document.addEventListener('DOMContentLoaded', function () {
         input.value = value;
         return input;
     }
-
-});
 </script>
 
 

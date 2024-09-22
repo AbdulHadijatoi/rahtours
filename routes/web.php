@@ -61,6 +61,7 @@ Route::prefix('cart')->group(function () {
 
 Route::prefix('checkout')->group(function () {
     Route::get('/', [CheckoutController::class, 'index'])->name('checkout.index');
+    Route::get('book-now', [CheckoutController::class, 'bookNow'])->name('checkout.bookNow');
 });
 
 Route::get('clear_session', function(Request $request){
