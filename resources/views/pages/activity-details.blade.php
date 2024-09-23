@@ -7,10 +7,10 @@
     @include('components.breadcrumb')
     <div class="relative">
         {{-- <img src="{{ url('storage/uploads/card1_image.jpeg') }}" class="absolute inset-0 object-cover w-full h-full" alt="hero_image" /> --}}
-        <div class="relative pt-3">
-            <div class="flex justify-between items-start px-2 md:px-0 items-end mx-auto md:px-0 sm:max-w-xl md:max-w-full lg:max-w-screen-xl mb-5">
+        <div class="relative">
+            <div class="flex justify-between items-start px-2 md:px-0 items-end mx-auto md:px-0 sm:max-w-xl md:max-w-full lg:max-w-screen-xl mb-6">
                 <div class="">
-                    <h2 class="text-2xl md:text-4xl">
+                    <h2 class="text-gray-700 text-2xl md:text-3xl font-bold mb-2">
                         {{ $activity->name }}
                     </h2>
                     <div class="flex items-center text-sm">
