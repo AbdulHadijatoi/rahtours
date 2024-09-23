@@ -79,6 +79,6 @@
         </div>
 
         <p>
-            <a href="{{ route('order.pdf', $order->id) }}" class="btn btn-primary">Download PDF</a>
+            <a href="{{ route('generateOrderPDF', ['id'=>$order->id]) }}" class="btn btn-primary">Download PDF</a>
         </p>
     </div>

@@ -10,6 +10,7 @@ use App\Http\Controllers\GiftCardController;
 use App\Http\Controllers\HelpController;
 use App\Http\Controllers\HomeActivityController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\WishlistController;
@@ -66,10 +67,11 @@ Route::prefix('checkout')->group(function () {
     Route::get('/', [CheckoutController::class, 'index'])->name('checkout.index');
     Route::post('book-now', [CheckoutController::class, 'bookNow'])->name('checkout.bookNow');
     
-    Route::get('/place-order', [PaymentController::class, 'placeOrder'])->name('placeOrder');
+    Route::post('/place-order', [OrderController::class, 'placeOrder'])->name('placeOrder');
+    Route::get('/generate-order-pdf/{id}', [OrderController::class, 'generatePdf'])->name('generateOrderPDF');
 });
-Route::get('/success', [PaymentController::class, 'success'])->name('checkout.success');
-Route::get('/cancel', [PaymentController::class, 'cancel'])->name('checkout.cancel');
+Route::get('/success/{reference_id}', [OrderController::class, 'success'])->name('checkout.success');
+Route::get('/cancel', [OrderController::class, 'cancel'])->name('checkout.cancel');
 
 Route::prefix('gift-card')->group(function () {
     Route::get('/', [GiftCardController::class, 'index'])->name('giftCard.index');
@@ -80,7 +82,6 @@ Route::get('clear_session', function(Request $request){
     $request->session()->flush();
     return "cleared!";
 });
-
 
 
 

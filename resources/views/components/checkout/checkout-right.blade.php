@@ -44,7 +44,7 @@
         <div class="bg-white p-4 rounded-lg border mb-5">
             <div class="flex justify-between items-center">
                 <h2 class="text-base font-bold">Total Amount:</h2>
-                <p class="text-orange-500 text-xl font-bold total-amount">AED {{ $item['price'] }}</p>
+                <p class="text-orange-500 text-xl font-bold total-amount" id="total_amount"> AED {{ $item['price'] }}</p>
             </div>
         </div>
     @endif
@@ -56,7 +56,7 @@
     <div class="bg-white p-4 rounded-lg border mb-5">
         <div class="flex justify-between items-center">
             <h2 class="text-base font-bold">Total Amount:</h2>
-            <p class="text-orange-500 text-xl font-bold total-amount">AED {{ $totalAmount }}</p>
+            <p class="text-orange-500 text-xl font-bold total-amount" id="total_amount">AED {{ $totalAmount }}</p>
         </div>
     </div>
     @endif
@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-let appliedVoucherId = null;
+var appliedVoucherId = '';
 
 document.querySelectorAll('.apply-voucher-button').forEach((button, index) => {
     button.addEventListener('click', async (event) => {
@@ -134,11 +134,13 @@ document.querySelectorAll('.apply-voucher-button').forEach((button, index) => {
             event.target.closest('.bg-white').querySelector('.price span').textContent = "AED " + newPrice.toFixed(2);
             
             // Update total amount logic
-            const totalAmountElement = document.querySelector('.total-amount');
+            const totalAmountElement = document.getElementById('total_amount');
             const currentTotal = parseFloat(totalAmountElement.textContent.replace('AED ', ''));
-            const newTotal = currentTotal - data.price; // Update the total amount
+            const newTotal = currentTotal - data.price; // Assuming data.price is the discount amount
 
+            // Update the total amount displayed in the DOM
             totalAmountElement.textContent = "AED " + newTotal.toFixed(2);
+
             
             successAlertBox.textContent = "Voucher applied successfully!";
             successAlertBox.classList.remove('hidden', 'flex', 'items-center');

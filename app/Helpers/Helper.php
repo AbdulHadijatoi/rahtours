@@ -238,3 +238,47 @@ if (!function_exists('generateBreadcrumbs')) {
         return $breadcrumbs;
     }
 }
+
+if (!function_exists('generateReference')) {
+    function generateReference($length = 6)
+    {
+        $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        $result = '';
+        $charactersLength = strlen($characters);
+        for ($i = 0; $i < $length; $i++) {
+            $result .= $characters[rand(0, $charactersLength - 1)];
+        }
+        return "RAH-" . $result;
+    }
+}
+
+if (!function_exists('encryptData')) {
+    /**
+     * Encrypt the given data.
+     *
+     * @param  mixed  $data
+     * @return string
+     */
+    function encryptData($data)
+    {
+        return encrypt($data);
+    }
+}
+
+if (!function_exists('decryptData')) {
+    /**
+     * Decrypt the given encrypted data.
+     *
+     * @param  string  $encryptedData
+     * @return mixed
+     */
+    function decryptData($encryptedData)
+    {
+        try {
+            return decrypt($encryptedData);
+        } catch (\Illuminate\Contracts\Encryption\DecryptException $e) {
+            // Handle the decryption error (optional)
+            return null; // Return null or handle the error as needed
+        }
+    }
+}

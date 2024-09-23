@@ -97,14 +97,14 @@
             <input id="terms" type="checkbox" class="focus:ring focus:ring-gray-300 text-orange-500 border-gray-200">
             <label for="terms" class="ml-2 block text-sm text-gray-700">By Clicking Pay Now you agree that you have read and understood our <a href="#" class="text-orange-500">Terms and Conditions</a></label>
         </div>
-        <a href="{{ route('placeOrder') }}" id="pay-now" class="mt-2 md:mt-0 bg-gray-300 text-white py-2 px-4 rounded-md opacity-50 cursor-not-allowed" disabled>Pay Now</a>
+        <a href="{{ route('placeOrder') }}" id="pay-now-btn" class="mt-2 md:mt-0 bg-gray-300 text-white py-2 px-4 rounded-md opacity-50 cursor-not-allowed" disabled>Pay Now</a>
     </div>
 </div>
 
 <!-- Tailwind Scripts -->
 <script>
     const checkoutTermsCheckbox = document.getElementById('terms');
-    const payNowButton = document.getElementById('pay-now');
+    const payNowButton = document.getElementById('pay-now-btn');
 
     checkoutTermsCheckbox.addEventListener('change', function() {
         if (checkoutTermsCheckbox.checked) {
@@ -129,7 +129,7 @@
 
                 countries.forEach(country => {
                     const option = document.createElement('option');
-                    option.value = country.value;
+                    option.value = country.label;
                     option.text = country.label;
                     countryDropdown.appendChild(option);
                 });
