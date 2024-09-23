@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\SettingContactUs;
 use Illuminate\Http\Request;
 
 class PageController extends Controller {
@@ -17,10 +18,9 @@ class PageController extends Controller {
         return view('pages.about-us', $data);
     }
 
-    public function contactUs()
-    {
-        $data = [];
-        return view('pages.contact-us', $data);
+    public function contactUs() {
+        $data=SettingContactUs::first();
+        return view('pages.contact-us', compact('data'));
     }
    
 
@@ -89,5 +89,9 @@ class PageController extends Controller {
     {
         $data = [];
         return view('pages.history', $data);
+    }
+    
+    public function thankYou() {
+        return view('pages.thank-you');
     }
 }

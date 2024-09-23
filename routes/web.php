@@ -13,6 +13,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\User\ContactController;
 use App\Http\Controllers\WishlistController;
 use App\Models\GiftCard;
 use App\Models\Wishlist;
@@ -45,6 +46,9 @@ Route::get('/forgot-password', [PageController::class, 'forgotPassword'])->name(
 
 Route::post('/login', [UserController::class, 'login'])->name('login');
 Route::post('/signup', [UserController::class, 'register'])->name('signup');
+
+Route::post('/contact', [ContactController::class, 'createInquiry'])->name('createInquiry');
+Route::get('/thank-you', [PageController::class, 'thankYou'])->name('thankyou');
 
 
 Route::get('/gift/{slug?}', [PageController::class, 'giftPage'])->name('giftPage');

@@ -1,35 +1,25 @@
 <?php
 
-namespace App\Http\Controllers\Api\User;
+namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Http\Requests\Api\User\ContactRequest;
-use App\Helpers\ExceptionHandlerHelper;
 use App\Models\Contact;
 
-class ContactController extends Controller
-{
-    private $model;
+class ContactController extends Controller {
+   
+    public function createInquiry(Request $request) {
 
-    public function __construct(Contact $model)
-    {
-        $this->model = $model;
-    }
+        Contact::create([
+            'first_name' => $request->first_name,
+            'email'      => $request->email,
+            'company_name'  => $request->company_name,
+            'mobile'     => $request->mobile,
+            'inquiry_topic' => $request->inquiry_topic,
+            'message'    => $request->message
+        ]);
 
-    public function contact_us(ContactRequest $request)
-    {
-        return ExceptionHandlerHelper::tryCatch(function () use($request) {
-            $data = $request->validated();
-            $contact = $this->model::create([
-                'first_name' => $data['first_name'],
-                'email'      => $data['email'],
-                'company_name'  => $data['company_name'],
-                'mobile'     => $data['mobile'],
-                'inquiry_topic' => $data['inquiry_topic'],
-                'message'    => $data['message']
-            ]);
-            return $this->sendResponse($contact, 'Contact Added');
-        });
+        return redirect()->route('thankyou');
+        
     }
 }
