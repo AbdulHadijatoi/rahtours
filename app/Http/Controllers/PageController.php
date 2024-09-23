@@ -2,20 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Aboutus;
 use App\Models\SettingContactUs;
+use App\Models\SettingFindUs;
+use App\Models\SettingTermsCondition;
 use Illuminate\Http\Request;
 
 class PageController extends Controller {
     
     public function helpPage() {
         $data = [];
-        return view('pages.help', $data);
+        return view('pages.help', compact('data'));
     }
     
     public function aboutUs()
     {
-        $data = [];
-        return view('pages.about-us', $data);
+        $data=Aboutus::first();
+        return view('pages.about-us', compact('data'));
     }
 
     public function contactUs() {
@@ -26,33 +29,34 @@ class PageController extends Controller {
 
     public function termsConditions()
     {
-        $data = [];
-        return view('pages.terms-and-conditions', $data);
+        $data=SettingTermsCondition::first();
+        return view('pages.terms-and-conditions', compact('data'));
     }
     
     public function privacyPolicy()
     {
         $data = [];
-        return view('pages.privacy-policy', $data);
+        return view('pages.privacy-policy', compact('data'));
     }
 
    
     public function guidelines()
     {
         $data = [];
-        return view('pages.guidelines', $data);
+        return view('pages.guidelines', compact('data'));
     }
     
     public function manageProfile()
     {
         $data = [];
-        return view('pages.manage-profile', $data);
+        return view('pages.manage-profile', compact('data'));
     }
     
     public function whereToFindUs()
     {
-        $data = [];
-        return view('pages.where-to-find-us', $data);
+        $data = SettingFindUs::first();
+
+        return view('pages.where-to-find-us', compact('data'));
     }
     
     public function otpVerfication(Request $request)
@@ -64,19 +68,19 @@ class PageController extends Controller {
     public function resetPassword()
     {
         $data = [];
-        return view('pages.reset-password', $data);
+        return view('pages.reset-password', compact('data'));
     }
     
     public function login()
     {
         $data = [];
-        return view('pages.login', $data);
+        return view('pages.login', compact('data'));
     }
     
     public function signup()
     {
         $data = [];
-        return view('pages.signup', $data);
+        return view('pages.signup', compact('data'));
     }
     
     public function forgotPassword(Request $request)
@@ -88,7 +92,7 @@ class PageController extends Controller {
     public function history()
     {
         $data = [];
-        return view('pages.history', $data);
+        return view('pages.history', compact('data'));
     }
     
     public function thankYou() {
