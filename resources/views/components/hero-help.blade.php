@@ -5,7 +5,7 @@
         <form class="px-4 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8" action="{{ route('getHelp') }}" method="GET">
             <div class="flex flex-col items-center justify-center xl:flex-row min-h-[15rem]">
                 <div class="w-full mb-12 xl:mb-0 xl:pr-16 text-center">
-                    <h1 class="mb-6 font-sans text-3xl font-bold tracking-tight text-white sm:text-4xl sm:leading-none">
+                    <h1 class="mb-4 mt-6 md:mt-0 md:mb-6 font-sans text-3xl font-bold tracking-tight text-white sm:text-4xl sm:leading-none">
                         How can we help you?
                     </h1>
                     <div class="flex flex-col items-center md:justify-center md:flex-row mx-auto">

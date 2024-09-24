@@ -28,7 +28,7 @@ class SitemapController extends Controller {
         foreach ($blogs as $blog) {
             $xml .= '
             <url>
-                <loc>https://pacific-adventures.com/blogs/' . $blog->slug . '</loc>
+                <loc>https://rahtours.ae/blogs/' . $blog->slug . '</loc>
                 <lastmod>' . $blog->updated_at->format('Y-m-d') . '</lastmod>
                 <changefreq>daily</changefreq>
                 <priority>0.9</priority>
@@ -39,7 +39,7 @@ class SitemapController extends Controller {
         foreach ($activities as $activity) {
             $xml .= '
             <url>
-                <loc>https://pacific-adventures.com/things-to-do-in-dubai/' . $activity->slug . '</loc>
+                <loc>https://rahtours.ae/dubai-activities/' . $activity->category->slug . '/' . $activity->slug . '</loc>
                 <lastmod>' . $activity->updated_at->format('Y-m-d') . '</lastmod>
                 <changefreq>daily</changefreq>
                 <priority>0.8</priority>
@@ -79,7 +79,7 @@ class SitemapController extends Controller {
         foreach ($blogs as $blog) {
             $xml .= '
             <url>
-                <loc>https://pacific-adventures.com/blogs/' . $blog->slug . '</loc>
+                <loc>https://rahtours.ae/blogs/' . $blog->slug . '</loc>
                 <lastmod>' . $blog->updated_at->format('Y-m-d') . '</lastmod>
                 <changefreq>daily</changefreq>
                 <priority>0.9</priority>
@@ -90,7 +90,7 @@ class SitemapController extends Controller {
         foreach ($activities as $activity) {
             $xml .= '
             <url>
-                <loc>https://pacific-adventures.com/things-to-do-in-dubai/' . $activity->slug . '</loc>
+                <loc>https://rahtours.ae/dubai-activities/' . $activity->slug . '</loc>
                 <lastmod>' . $activity->updated_at->format('Y-m-d') . '</lastmod>
                 <changefreq>daily</changefreq>
                 <priority>0.8</priority>
@@ -109,169 +109,169 @@ class SitemapController extends Controller {
     public function staticRoutes(){
         return '
             <url>
-                <loc>https://pacific-adventures.com/</loc>
+                <loc>https://rahtours.ae/</loc>
                 <lastmod>' . date('Y-m-d') . '</lastmod>
                 <changefreq>daily</changefreq>
                 <priority>1.0</priority>
             </url>
             <url>
-                <loc>https://pacific-adventures.com/signup</loc>
+                <loc>https://rahtours.ae/signup</loc>
                 <lastmod>' . date('Y-m-d') . '</lastmod>
                 <changefreq>daily</changefreq>
                 <priority>0.7</priority>
             </url>
             <url>
-                <loc>https://pacific-adventures.com/login</loc>
+                <loc>https://rahtours.ae/login</loc>
                 <lastmod>' . date('Y-m-d') . '</lastmod>
                 <changefreq>daily</changefreq>
                 <priority>0.7</priority>
             </url>
             <url>
-                <loc>https://pacific-adventures.com/manage-profile</loc>
+                <loc>https://rahtours.ae/manage-profile</loc>
                 <lastmod>' . date('Y-m-d') . '</lastmod>
                 <changefreq>daily</changefreq>
                 <priority>0.7</priority>
             </url>
             <url>
-                <loc>https://pacific-adventures.com/forget-password</loc>
+                <loc>https://rahtours.ae/forget-password</loc>
                 <lastmod>' . date('Y-m-d') . '</lastmod>
                 <changefreq>daily</changefreq>
                 <priority>0.7</priority>
             </url>
             <url>
-                <loc>https://pacific-adventures.com/otp-authentication</loc>
+                <loc>https://rahtours.ae/otp-authentication</loc>
                 <lastmod>' . date('Y-m-d') . '</lastmod>
                 <changefreq>daily</changefreq>
                 <priority>0.7</priority>
             </url>
             <url>
-                <loc>https://pacific-adventures.com/change-password</loc>
+                <loc>https://rahtours.ae/change-password</loc>
                 <lastmod>' . date('Y-m-d') . '</lastmod>
                 <changefreq>daily</changefreq>
                 <priority>0.7</priority>
             </url>
             <url>
-                <loc>https://pacific-adventures.com/guest-details</loc>
+                <loc>https://rahtours.ae/guest-details</loc>
                 <lastmod>' . date('Y-m-d') . '</lastmod>
                 <changefreq>daily</changefreq>
                 <priority>0.7</priority>
             </url>
             <url>
-                <loc>https://pacific-adventures.com/about</loc>
+                <loc>https://rahtours.ae/about</loc>
                 <lastmod>' . date('Y-m-d') . '</lastmod>
                 <changefreq>daily</changefreq>
                 <priority>0.8</priority>
             </url>
             <url>
-                <loc>https://pacific-adventures.com/invoice-details</loc>
+                <loc>https://rahtours.ae/invoice-details</loc>
                 <lastmod>' . date('Y-m-d') . '</lastmod>
                 <changefreq>daily</changefreq>
                 <priority>0.7</priority>
             </url>
             <url>
-                <loc>https://pacific-adventures.com/search-result</loc>
+                <loc>https://rahtours.ae/search-result</loc>
                 <lastmod>' . date('Y-m-d') . '</lastmod>
                 <changefreq>daily</changefreq>
                 <priority>0.9</priority>
             </url>
             <url>
-                <loc>https://pacific-adventures.com/desert-safari</loc>
+                <loc>https://rahtours.ae/desert-safari</loc>
                 <lastmod>' . date('Y-m-d') . '</lastmod>
                 <changefreq>daily</changefreq>
                 <priority>0.8</priority>
             </url>
             <url>
-                <loc>https://pacific-adventures.com/privacy-policy</loc>
+                <loc>https://rahtours.ae/privacy-policy</loc>
                 <lastmod>' . date('Y-m-d') . '</lastmod>
                 <changefreq>daily</changefreq>
                 <priority>0.6</priority>
             </url>
             <url>
-                <loc>https://pacific-adventures.com/confirmation</loc>
+                <loc>https://rahtours.ae/confirmation</loc>
                 <lastmod>' . date('Y-m-d') . '</lastmod>
                 <changefreq>daily</changefreq>
                 <priority>0.9</priority>
             </url>
             <url>
-                <loc>https://pacific-adventures.com/booking-info</loc>
+                <loc>https://rahtours.ae/booking-info</loc>
                 <lastmod>' . date('Y-m-d') . '</lastmod>
                 <changefreq>daily</changefreq>
                 <priority>0.7</priority>
             </url>
             <url>
-                <loc>https://pacific-adventures.com/contact-us</loc>
+                <loc>https://rahtours.ae/contact-us</loc>
                 <lastmod>' . date('Y-m-d') . '</lastmod>
                 <changefreq>daily</changefreq>
                 <priority>0.8</priority>
             </url>
             <url>
-                <loc>https://pacific-adventures.com/blogs</loc>
+                <loc>https://rahtours.ae/blogs</loc>
                 <lastmod>' . date('Y-m-d') . '</lastmod>
                 <changefreq>daily</changefreq>
                 <priority>0.9</priority>
             </url>
             <url>
-                <loc>https://pacific-adventures.com/help</loc>
+                <loc>https://rahtours.ae/help</loc>
                 <lastmod>' . date('Y-m-d') . '</lastmod>
                 <changefreq>daily</changefreq>
                 <priority>0.7</priority>
             </url>
             <url>
-                <loc>https://pacific-adventures.com/where-to-find-us</loc>
+                <loc>https://rahtours.ae/where-to-find-us</loc>
                 <lastmod>' . date('Y-m-d') . '</lastmod>
                 <changefreq>daily</changefreq>
                 <priority>0.7</priority>
             </url>
             <url>
-                <loc>https://pacific-adventures.com/payment-details</loc>
+                <loc>https://rahtours.ae/payment-details</loc>
                 <lastmod>' . date('Y-m-d') . '</lastmod>
                 <changefreq>daily</changefreq>
                 <priority>0.7</priority>
             </url>
             <url>
-                <loc>https://pacific-adventures.com/admin-login</loc>
+                <loc>https://rahtours.ae/admin-login</loc>
                 <lastmod>' . date('Y-m-d') . '</lastmod>
                 <changefreq>daily</changefreq>
                 <priority>0.6</priority>
             </url>
             <url>
-                <loc>https://pacific-adventures.com/whish-list</loc>
+                <loc>https://rahtours.ae/whish-list</loc>
                 <lastmod>' . date('Y-m-d') . '</lastmod>
                 <changefreq>daily</changefreq>
                 <priority>0.7</priority>
             </url>
             <url>
-                <loc>https://pacific-adventures.com/cart</loc>
+                <loc>https://rahtours.ae/cart</loc>
                 <lastmod>' . date('Y-m-d') . '</lastmod>
                 <changefreq>daily</changefreq>
                 <priority>0.8</priority>
             </url>
             <url>
-                <loc>https://pacific-adventures.com/history</loc>
+                <loc>https://rahtours.ae/history</loc>
                 <lastmod>' . date('Y-m-d') . '</lastmod>
                 <changefreq>daily</changefreq>
                 <priority>0.7</priority>
             </url>
             <url>
-                <loc>https://pacific-adventures.com/all-booking</loc>
+                <loc>https://rahtours.ae/all-booking</loc>
                 <lastmod>' . date('Y-m-d') . '</lastmod>
                 <changefreq>daily</changefreq>
                 <priority>0.7</priority>
             </url>
             <url>
-                <loc>https://pacific-adventures.com/terms-&amp;-conditions</loc>
+                <loc>https://rahtours.ae/terms-&amp;-conditions</loc>
                 <lastmod>' . date('Y-m-d') . '</lastmod>
                 <changefreq>daily</changefreq>
                 <priority>0.6</priority>
             </url>
             <url>
-                <loc>https://pacific-adventures.com/view-gift</loc>
+                <loc>https://rahtours.ae/view-gift</loc>
                 <lastmod>' . date('Y-m-d') . '</lastmod>
                 <changefreq>daily</changefreq>
                 <priority>0.7</priority>
             </url>
             <url>
-                <loc>https://pacific-adventures.com/visa-info</loc>
+                <loc>https://rahtours.ae/visa-info</loc>
                 <lastmod>' . date('Y-m-d') . '</lastmod>
                 <changefreq>daily</changefreq>
                 <priority>0.6</priority>
