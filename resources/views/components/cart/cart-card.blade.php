@@ -2,7 +2,7 @@
     <div class="flex flex-col lg:flex-row gap-4">
         <!-- Image -->
         <div class="w-full lg:w-5/12">
-            <img src="{{ url($cart_item['activity_image']??'') }}" alt="Desert Tour Image" class="rounded-lg object-cover">
+            <img src="{{ url($cart_item['activity_image']??'storage/uploads/placeholder_image.png') }}" alt="Desert Tour Image" class="rounded-lg object-cover">
         </div>
         <!-- Content -->
         <div class="w-full lg:w-7/12 flex flex-col justify-between">
