@@ -13,7 +13,7 @@
     @else
         <title>@yield('title', getPageName())</title>
     @endif
-    
+
     <meta name="description" content="Find top-rated tours and activities in Dubai with RAH Tourism one of the best leading destination management companies in Dubai that deliver the highest quality standards of service, offering experiences in which every detail has been taken care of for our guests to be able to live in a unique way the soul of our destinations. We invite our guests to breathe the fun and the excitement of a new adventure in the same way that they can enjoy the peace of the calm nature.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Google tag (gtag.js) -->
@@ -96,6 +96,19 @@
             }
         }
 
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const closeButtons = document.querySelectorAll('[role="button"]');
+            if(closeButtons){
+                closeButtons.forEach(button => {
+                    button.addEventListener('click', function() {
+                        this.closest('[role="alert"]').remove();
+                    });
+                });
+            }
+        });
     </script>
     @yield('scripts')
 </body>

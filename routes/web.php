@@ -1,5 +1,27 @@
 <?php
 
+use App\Http\Controllers\Admin\ActivityController;
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\BlogController as AdminBlogController;
+use App\Http\Controllers\Admin\BookingController as AdminBookingController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ContactController as AdminContactController;
+use App\Http\Controllers\Admin\CouponController;
+use App\Http\Controllers\Admin\MenuController;
+use App\Http\Controllers\Admin\MostpopularActivityController;
+use App\Http\Controllers\Admin\OtherExperianceController;
+use App\Http\Controllers\Admin\PackageController;
+use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\Admin\ReviewsController;
+use App\Http\Controllers\Admin\Setting\AboutController;
+use App\Http\Controllers\Admin\Setting\BlogPageController;
+use App\Http\Controllers\Admin\Setting\GuidelinesController;
+use App\Http\Controllers\Admin\Setting\HomeController as SettingHomeController;
+use App\Http\Controllers\Admin\Setting\PrivacyPolicyController;
+use App\Http\Controllers\Admin\Setting\TermsConditionController;
+use App\Http\Controllers\Admin\SettingController;
+use App\Http\Controllers\Admin\SubCategoryController;
+use App\Http\Controllers\Admin\SubscriptionController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\UserController;
 use App\Http\Controllers\BlogController;
@@ -15,6 +37,7 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\User\ContactController;
 use App\Http\Controllers\WishlistController;
+use App\Http\Middleware\CheckRole;
 use App\Models\GiftCard;
 use App\Models\Wishlist;
 use Illuminate\Http\Request;
@@ -39,6 +62,7 @@ Route::get('/send-reset-link', [ForgotPasswordController::class, 'sendResetLink'
 Route::post('/verify-otp', [ForgotPasswordController::class, 'verifyOTP'])->name('verifyOTP');
 Route::post('/reset-password', [ForgotPasswordController::class, 'resetPassword'])->name('resetPassword');
 Route::get('/booking-help', [HelpController::class, 'getHelp'])->name('getHelp');
+
 
 Route::get('/login', [PageController::class, 'login'])->name('loginPage');
 Route::get('/signup', [PageController::class, 'signup'])->name('signupPage');
@@ -99,3 +123,207 @@ Route::post('/send-otp', [UserController::class, 'sendOTP'])->name('sendOTP');
 Route::post('/booking/{id}/update', [BookingController::class, 'updateBooking'])->name('updateBooking');
 Route::post('/booking/{id}/cancel', [BookingController::class, 'cancelBooking'])->name('cancelBooking');
 Route::get('/history', [PageController::class, 'history'])->name('history');
+
+
+// ADMIN ROUTES
+Route::get('/adminrah51786/login', [AdminController::class, 'index'])->name('admin.loginPage');
+
+Route::post('/adminrah51786/login', [AdminController::class, 'login'])->name('admin.login');
+Route::get('admin/order/{id}/pdf', [OrderController::class, 'generatePdf'])->name('order.pdf');
+
+Route::middleware([CheckRole::class])
+    ->prefix('admin')
+    ->name('admin.')
+    ->group(function () {
+
+        Route::get('/dashboard',        [AdminController::class, 'dashboard'])->name('dashboard');
+
+        Route::get('/profile',          [ProfileController::class,'Profile'])->name('profile');
+        Route::post('/profile/{id}',    [ProfileController::class,'updateProfile'])->name('updateProfile');
+        Route::get('/update-password',  [ProfileController::class, 'changePassword'])->name('changePassword');
+        Route::post('/update-password', [ProfileController::class, 'updatePassword'])->name('updatePassword');
+
+        Route::resource('categories',    CategoryController::class)->names([
+            'index' => 'categories.index',
+            'create' => 'categories.create',
+            'store' => 'categories.store',
+            'show' => 'categories.show',
+            'edit' => 'categories.edit',
+            'update' => 'categories.update',
+            'destroy' => 'categories.destroy',
+        ]);
+        
+        Route::resource('menus',         MenuController::class)->names([
+            'index' => 'menus.index',
+            'create' => 'menus.create',
+            'store' => 'menus.store',
+            'show' => 'menus.show',
+            'edit' => 'menus.edit',
+            'update' => 'menus.update',
+            'destroy' => 'menus.destroy',
+        ]);
+
+        Route::resource('subcategories', SubCategoryController::class)->names([
+            'index' => 'subcategories.index',
+            'create' => 'subcategories.create',
+            'store' => 'subcategories.store',
+            'show' => 'subcategories.show',
+            'edit' => 'subcategories.edit',
+            'update' => 'subcategories.update',
+            'destroy' => 'subcategories.destroy',
+        ]);
+
+        Route::resource('packages',      PackageController::class)->names([
+            'index' => 'packages.index',
+            'create' => 'packages.create',
+            'store' => 'packages.store',
+            'show' => 'packages.show',
+            'edit' => 'packages.edit',
+            'update' => 'packages.update',
+            'destroy' => 'packages.destroy',
+        ]);
+
+        Route::get('package/{id}',      [PackageController::class,'destroy'])->name('packages.destroy');
+
+        Route::get('/contact_us', [AdminContactController::class,'index'])->name('contact_us');
+
+        Route::get('/helps', [HelpController::class,'index'])->name('helps');
+
+        /* Activity images routes */
+        Route::resource('activities',              ActivityController::class)->names([
+            'index' => 'activities.index',
+            'create' => 'activities.create',
+            'store' => 'activities.store',
+            'show' => 'activities.show',
+            'edit' => 'activities.edit',
+            'update' => 'activities.update',
+            'destroy' => 'activities.destroy',
+        ]);
+        
+        Route::resource('homeimages',              SettingHomeController::class)->names([
+            'index' => 'homeimages.index',
+            'create' => 'homeimages.create',
+            'store' => 'homeimages.store',
+            'show' => 'homeimages.show',
+            'edit' => 'homeimages.edit',
+            'update' => 'homeimages.update',
+            'destroy' => 'homeimages.destroy',
+        ]);
+        
+        Route::resource('aboutimages',              AboutController::class)->names([
+            'index' => 'aboutimages.index',
+            'create' => 'aboutimages.create',
+            'store' => 'aboutimages.store',
+            'show' => 'aboutimages.show',
+            'edit' => 'aboutimages.edit',
+            'update' => 'aboutimages.update',
+            'destroy' => 'aboutimages.destroy',
+        ]);
+        
+        Route::resource('otherexperiances',        OtherExperianceController::class)->names([
+            'index' => 'otherexperiances.index',
+            'create' => 'otherexperiances.create',
+            'store' => 'otherexperiances.store',
+            'show' => 'otherexperiances.show',
+            'edit' => 'otherexperiances.edit',
+            'update' => 'otherexperiances.update',
+            'destroy' => 'otherexperiances.destroy',
+        ]);
+        
+        Route::resource('mostpopularactivities',   MostpopularActivityController::class)->names([
+            'index' => 'mostpopularactivities.index',
+            'create' => 'mostpopularactivities.create',
+            'store' => 'mostpopularactivities.store',
+            'show' => 'mostpopularactivities.show',
+            'edit' => 'mostpopularactivities.edit',
+            'update' => 'mostpopularactivities.update',
+            'destroy' => 'mostpopularactivities.destroy',
+        ]);
+        
+        Route::resource('homeactivities',          HomeactivityController::class)->names([
+            'index' => 'homeactivities.index',
+            'create' => 'homeactivities.create',
+            'store' => 'homeactivities.store',
+            'show' => 'homeactivities.show',
+            'edit' => 'homeactivities.edit',
+            'update' => 'homeactivities.update',
+            'destroy' => 'homeactivities.destroy',
+        ]);
+
+        Route::get('/activityimages/{id}',         [ActivityController::class, 'createActivityImages'])->name('activityimages');
+        Route::post('/activity-images',            [ActivityController::class, 'storeImages'])->name('activity-images');
+        Route::get('/activity-getimages/{id}',     [ActivityController::class, 'getImages'])->name('activity-getimages');
+        Route::post('/activity-deleteimages/{id}', [ActivityController::class, 'destroyImages'])->name('activity-deleteimages');
+        Route::get('instruction/delete/{id}',[ActivityController::class, 'instructionDestroy'])->name('instruction.destroy');
+
+        /* Admin logout */
+        Route::get('/logout', [AdminController::class, 'logout'])->name('logout');
+
+        /* Blog */
+        Route::resource('blogs', AdminBlogController::class)->names([
+            'index' => 'blogs.index',
+            'create' => 'blogs.create',
+            'store' => 'blogs.store',
+            'show' => 'blogs.show',
+            'edit' => 'blogs.edit',
+            'update' => 'blogs.update',
+            'destroy' => 'blogs.destroy',
+        ]);
+        
+        Route::resource('subscription', SubscriptionController::class)->names([
+            'index' => 'subscription.index',
+            'create' => 'subscription.create',
+            'store' => 'subscription.store',
+            'show' => 'subscription.show',
+            'edit' => 'subscription.edit',
+            'update' => 'subscription.update',
+            'destroy' => 'subscription.destroy',
+        ]);
+
+        Route::get('blogs/contents/{blog}',   [AdminBlogController::class, 'viewContents'])->name('blogs.contents');
+        Route::get('blogs/faqs/{blog}',       [AdminBlogController::class, 'viewFaqs'])->name('blogs.faqs');
+        Route::get('/contents/edit/{content}', [AdminBlogController::class, 'editContents'])->name('contents.edit');
+        Route::put('/contents/{content}',     [AdminBlogController::class, 'updateContents'])->name('contents.update');
+        Route::delete('/contents/{content}',  [AdminBlogController::class, 'destroyContents'])->name('contents.destroy');
+        Route::get('/faqs/{faq}/edit',        [AdminBlogController::class, 'editFaqs'])->name('faqs.edit');
+        Route::put('/faqs/{faq}',             [AdminBlogController::class, 'updateFaqs'])->name('faqs.update');
+        Route::delete('/faqs/{faq}',          [AdminBlogController::class, 'destroyFaqs'])->name('faqs.destroy');
+
+        /* Bookings */
+        Route::get('bookings',          [AdminBookingController::class, 'index'])->name('bookings');
+        Route::get('bookings/package/{id}',          [AdminBookingController::class, 'package'])->name('bookings.package');
+        Route::post('/send-coupon', [CouponController::class, 'sendCoupon'])->name('coupon.store');
+        Route::get('/create', [CouponController::class, 'create'])->name('coupon.create');
+        Route::get('/index', [CouponController::class, 'index'])->name('coupon.index');
+        Route::get('/coupon/delete/{id}', [CouponController::class, 'destroy'])->name('coupon.destroy');
+
+        /* Setting ContactUs */
+        Route::get('setting/contact/create',[SettingController::class, 'contactUsCreate'])->name('setting.contact.create');
+        Route::get('setting/contact',[SettingController::class, 'contactUsIndex'])->name('setting.contact.index');
+        Route::get('setting/contact/{id}',[SettingController::class, 'contactUsEdit'])->name('setting.contact.edit');
+        Route::post('setting/contact',[SettingController::class, 'contactUsStore'])->name('setting.contact.store');
+        Route::put('setting/contact/{id}',[SettingController::class, 'contactUsUpdate'])->name('setting.contact.update');
+        Route::get('contact/delete/{id}',[SettingController::class, 'contactUsDestroy'])->name('setting.contact.destroy');
+        Route::put('/contacts/{id}/email', [AdminContactController::class, 'updateStatus'])->name('contacts.contactEmail');
+
+        /* Setting Find Us */
+        Route::get('setting/findus/create',[SettingController::class, 'findUsCreate'])->name('setting.find.create');
+        Route::get('setting/findus',[SettingController::class, 'findUsIndex'])->name('setting.find.index');
+        Route::get('setting/findus/{id}',[SettingController::class, 'findUsEdit'])->name('setting.find.edit');
+        Route::post('setting/findus',[SettingController::class, 'findUsStore'])->name('setting.find.store');
+        Route::put('setting/findus/{id}',[SettingController::class, 'findUsUpdate'])->name('setting.find.update');
+        Route::get('findus/delete/{id}',[SettingController::class, 'findUsDestroy'])->name('setting.find.destroy');
+
+        /*Reviews*/
+        Route::resource('reviews',ReviewsController::class);
+
+        /*settings*/
+        Route::resource('guidelines',GuidelinesController::class);
+        Route::get('guidelines/delete/{id}',[GuidelinesController::class, 'destroy'])->name('guidelines-destroy');
+        Route::resource('termsconditions',TermsConditionController::class);
+        Route::get('termsconditions/delete/{id}',[TermsConditionController::class, 'destroy'])->name('termsconditions-destroy');
+        Route::resource('blogPage',BlogPageController::class);
+        Route::get('blogPage/delete/{id}',[BlogPageController::class, 'destroy'])->name('blogPage-destroy');
+        Route::resource('privacypolicy',PrivacyPolicyController::class);
+        Route::get('privacypolicy/delete/{id}',[PrivacyPolicyController::class, 'destroy'])->name('privacypolicy-destroy');
+    });

@@ -137,11 +137,15 @@
                             <span>Activity Name: {{ $activity_name }}</span><br>
                             <span>Option Booked: 
                                     @php
-                                        $total_participants = $option->infant + $option->child + $option->adult;
+                                        if($option->package_category == "private"){
+                                            $total_participants = $option->groups * ($option->package?$option->package->group_size:1);
+                                        }else{
+                                            $total_participants = $option->infant + $option->child + $option->adult;
+                                        }
                                     @endphp
                                     {{ $option->package_title }}
                             </span><br>
-                            <span>Tour date: {{ $booking_date? Carbon\Carbon::parse($booking_date)->format('M d, Y'): '' }}, Participants: {{ $total_participants }}</span>
+                            <span>Tour date: {{ $option->booking_date? Carbon\Carbon::parse($option->booking_date)->format('M d, Y'): '' }}, Participants: {{ $total_participants }}</span>
                         </td>
                         <td class="float-right text-bold text-right" colspan="1" style="width: 230px; vertical-align: top;">{{ number_format($option->total_price, 2) }}</td>
                     </tr>
@@ -210,7 +214,7 @@
             <tr>
                 <td class="float-left text-bold" colspan="3">
                     <span>
-                        RAH Tours L.L.C
+                        RAH Tourism LLC
                     </span>
                 </td>
             </tr>
@@ -222,11 +226,11 @@
                 </td>
                 <td class="float-left text-center" colspan="1" style="min-height: 50px; border-left: 1px solid black; border-right: 1px solid black;">
                     Phone: +971 52 933 1100<br>
-                    info@rahtours.ae<br>
+                    bookings@rahtours.ae<br>
                     www.rahtours.ae
                 </td>
                 <td class="float-left text-right" colspan="1" style="min-height: 50px;">
-                    RAH Tours L.L.C
+                    RAH Tourism LLC
                 </td>
             </tr>
 

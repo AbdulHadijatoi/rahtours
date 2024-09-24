@@ -50,7 +50,7 @@
         <p><span class="highlight">Title:</span> {{ $order->title }}</p>
         <p><span class="highlight">Nationality:</span> {{ $order->nationality }}</p>
         <p><span class="highlight">Phone Number:</span> {{ $order->phone }}</p>
-        <p><span class="highlight">Date:</span> {{ $order->date }}</p>
+        {{-- <p><span class="highlight">Date:</span> {{ $order->date }}</p> --}}
         <p><span class="highlight">Status:</span> {{ $order->status }}</p>
         <p><span class="highlight">Total Amount:</span> {{ $order->total_amount }}</p>
         <p><span class="highlight">Pickup Location:</span> {{ $order->pickup_location }}</p>
@@ -63,11 +63,17 @@
                     <div class="card mb-3  shadow bg-light">
                         <div class="card-body">
                             <h5 class="card-title">Package: {{ $item->package_title }}</h5>
-                            <p class="card-text">Adults: {{ $item->adult }}</p>
-                            <p class="card-text">Children: {{ $item->child }}</p>
-                            <p class="card-text">Infants: {{ $item->infant }}</p>
+                            @if($item->package_category == 'sharing')
+                                <p class="card-text">Adults: {{ $item->adult }}</p>
+                                <p class="card-text">Children: {{ $item->child }}</p>
+                                <p class="card-text">Infants: {{ $item->infant }}</p>
+                            @else
+                                <p class="card-text">Groups: {{ $item->groups }}</p>
+                                <p class="card-text">Per Group People: {{ $item->package?$item->package->group_size:1 }}</p>
+                            @endif
                             <p class="card-text">Total Price: {{ $item->total_price }}</p>
                             <p class="card-text">Package Category: {{ $item->package_category }}</p>
+                            <p class="card-text">Booking Date: {{ $item->booking_date }}</p>
                         </div>
                     </div>
                 @empty
@@ -79,6 +85,6 @@
         </div>
 
         <p>
-            <a href="{{ route('generateOrderPDF', ['id'=>$order->id]) }}" class="btn btn-primary">Download PDF</a>
+            <a href="{{ route('order.pdf', $order->id) }}" class="btn btn-primary">Download PDF</a>
         </p>
     </div>

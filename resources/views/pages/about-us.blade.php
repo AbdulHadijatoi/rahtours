@@ -5,7 +5,7 @@
 
 @section('content')
 
-  @include('components.hero-common')
+  @include('components.hero-common', ['page_banner_image'=>$data->header_image_url])
   <div class="mx-auto px-5 md:px-0 sm:max-w-xl md:max-w-full lg:max-w-screen-xl mb-20 mt-10">
 
     {{-- Main Content --}}
@@ -33,7 +33,7 @@
 
             {{-- Image Section --}}
             <div class="flex justify-center">
-                <img class="w-full h-96 object-cover rounded-lg" src="{{ $data->aboutImage }}" alt="About Image">
+                <img class="w-full h-96 object-cover rounded-lg" src="{{ $data->image_url }}" alt="About Image">
             </div>
         </div>
     </div>

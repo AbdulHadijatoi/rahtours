@@ -208,11 +208,13 @@ class OrderController extends Controller {
                     'adult'=> $item['adult'] ?? null,
                     'child'=>$item['child'] ?? null,
                     'infant'=>$item['infant'] ?? null,
+                    'groups'=>$package->category == 'private' ? $item['adult'] : null,
                     'total_price'=>$item['price'] ?? null,
                     'package_title'=>$package->title,
                     'package_category'=>$package->category,
                     'package_id'=>$package->id,
                     'order_id'=>$orderDetail->id,
+                    'booking_date'=>$item['tour_date'],
                 ]);
             }
         }
