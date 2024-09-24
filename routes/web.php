@@ -35,6 +35,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\User\ContactController;
 use App\Http\Controllers\WishlistController;
 use App\Http\Middleware\CheckRole;
@@ -84,6 +85,8 @@ Route::get('/add-to-wishlist/{id}', [WishlistController::class, 'addToWishList']
 Route::get('/remove-from-wishlist/{id}', [WishlistController::class, 'removeFromWishList'])->name('wishlist.add');
 Route::get('/wishlist/clear', [WishlistController::class, 'clearWishlist'])->name('wishlist.clear');
 
+Route::get('/search-result', [SearchController::class, 'index'])->name('search.index');
+
 Route::prefix('cart')->group(function () {
     Route::get('/', [CartController::class, 'index'])->name('cart.index');
     Route::post('/add', [CartController::class, 'addToCart'])->name('cart.add');
@@ -129,6 +132,7 @@ Route::get('/history', [PageController::class, 'history'])->name('history');
 Route::get('/adminrah51786/login', [AdminController::class, 'index'])->name('admin.loginPage');
 
 Route::post('/adminrah51786/login', [AdminController::class, 'login'])->name('admin.login');
+Route::get('admin/order/{id}/pdf', [OrderController::class, 'generatePdf'])->name('order.pdf');
 Route::get('admin/order/{id}/pdf', [OrderController::class, 'generatePdf'])->name('order.pdf');
 
 Route::middleware([CheckRole::class])
