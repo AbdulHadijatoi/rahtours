@@ -11,13 +11,13 @@
                     {{ settings()->hero_text }}
                 </p>
 
-                <div class="flex items-center bg-gray-100 rounded-xl shadow-inner pl-4 pr-1 py-1 h-13 w-full md:w-3/4 mt-3">
+                <form action="{{ route('search.index') }}" method="GET" class="flex items-center bg-gray-100 rounded-xl shadow-inner pl-4 pr-1 py-1 h-13 w-full md:w-3/4 mt-3">
                     <svg class="w-8 h-8 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M17.65 10.3a7.35 7.35 0 11-14.7 0 7.35 7.35 0 0114.7 0z"/>
                     </svg>
-                    <input class="ml-2 w-full bg-transparent outline-none border-none focus:outline-none focus:ring-0 text-md md:text-lg" type="text" placeholder="Search your activities or destinations">
+                    <input name="search" onkeydown="if (event.key === 'Enter') { this.form.submit(); event.preventDefault(); }" class="ml-2 w-full bg-transparent outline-none border-none focus:outline-none focus:ring-0 text-md md:text-lg" type="text" placeholder="Search your activities or destinations">
                     <button class="btn rounded-lg font-normal btn-accent px-10 text-white text-lg" style="background-color: #ee8e3b">Search</button>
-                </div>
+                </form >
             </div>
         </div>
         </div>
