@@ -46,7 +46,7 @@
                 </button>
                 <div id="accordion-{{ $index }}" class="max-h-0 overflow-hidden transition-all duration-300">
                     <div class="p-4 text-gray-600">
-                        {{ $instruction->instruction_description }}
+                        {!! $instruction->instruction_description !!}
                     </div>
                 </div>
             </div>
