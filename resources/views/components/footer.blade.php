@@ -211,13 +211,13 @@
     <div class="mx-auto max-w-screen-xl text-center sm:flex sm:justify-between sm:text-left">
         <p class="text-sm text-gray-500">
 
-            <a href="{{ url('terms-and-conditions') }}" class="inline-block underline transition text-gray-700 hover-text-secondary">
+            <a href="{{ url('terms-and-conditions') }}" class="inline-block transition text-gray-500 hover-text-secondary">
                 Terms & Conditions
             </a>
 
             <span> | </span>
 
-            <a href="{{ url('privacy-policy') }}" class="inline-block underline transition text-gray-700 hover-text-secondary">
+            <a href="{{ url('privacy-policy') }}" class="inline-block transition text-gray-500 hover-text-secondary">
                 Privacy Policy
             </a>
         </p>
