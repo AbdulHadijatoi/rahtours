@@ -48,7 +48,9 @@ class GiftCardController extends Controller {
     public function applyVoucher(Request $request)
     {
         $voucherCode = $request->input('voucher_code');
-        $voucher = GiftCard::where('code', $voucherCode)->first();
+        $voucher = GiftCard::where('code', $voucherCode)
+                            ->whereRaw("STR_TO_DATE(valid_date, '%d-%m-%Y') > ?", [now()->format('Y-m-d')])
+                            ->first();
 
         // Check if the voucher exists
         if (!$voucher) {

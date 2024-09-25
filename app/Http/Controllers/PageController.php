@@ -201,4 +201,5 @@ class PageController extends Controller {
     public function thankYou() {
         return view('pages.thank-you');
     }
+  
 }

@@ -252,6 +252,20 @@ if (!function_exists('generateReference')) {
     }
 }
 
+if (!function_exists('generateVoucher')) {
+    function generateVoucher($length = 6)
+    {
+        $characters = '0123456789'; // Numeric characters only
+        $result = '';
+        $charactersLength = strlen($characters);
+        for ($i = 0; $i < $length; $i++) {
+            $result .= $characters[rand(0, $charactersLength - 1)];
+        }
+        return $result;
+    }
+}
+
+
 if (!function_exists('encryptData')) {
     /**
      * Encrypt the given data.

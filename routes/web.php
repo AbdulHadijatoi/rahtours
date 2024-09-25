@@ -36,6 +36,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\SendGiftController;
 use App\Http\Controllers\User\ContactController;
 use App\Http\Controllers\WishlistController;
 use App\Http\Middleware\CheckRole;
@@ -76,8 +77,11 @@ Route::post('/contact', [ContactController::class, 'createInquiry'])->name('crea
 Route::get('/thank-you', [PageController::class, 'thankYou'])->name('thankyou');
 
 
-Route::get('/gift/{slug?}', [PageController::class, 'giftPage'])->name('giftPage');
-Route::get('/gift/{slug?}/preview', [PageController::class, 'previewGift'])->name('previewGift');
+Route::get('/gift', [SendGiftController::class, 'index'])->name('sendGift.index');
+Route::get('/gift/preview', [SendGiftController::class, 'previewGift'])->name('sendGift.preview');
+Route::post('/gift/buy-now', [SendGiftController::class, 'buyNow'])->name('sendGift.buyNow');
+Route::get('/gift/success', [SendGiftController::class, 'paymentSuccess'])->name('voucher.success');
+Route::get('/gift/cancel', [SendGiftController::class, 'paymentCancel'])->name('voucher.cancel');
 
 
 Route::get('/wish-list', [WishlistController::class, 'index'])->name('wishlist.index');
