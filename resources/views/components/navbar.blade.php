@@ -11,11 +11,12 @@
             <svg class="w-5 h-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M17.65 10.3a7.35 7.35 0 11-14.7 0 7.35 7.35 0 0114.7 0z"/>
             </svg>
-            <input name="search" 
-           onkeydown="if (event.key === 'Enter') { this.form.submit(); event.preventDefault(); }"
-           class="ml-2 w-full bg-transparent outline-none border-none focus:outline-none focus:ring-0 text-xs" 
-           type="text" 
-           placeholder="Search your activities or destinations">
+           <input id="search" 
+                onkeydown="if (event.key === 'Enter') { this.form.submit(); event.preventDefault(); }"
+                class="ml-2 w-full bg-transparent outline-none border-none focus:outline-none focus:ring-0 text-xs" 
+                type="text" 
+                placeholder="Search your activities or experiences" />
+
         </form>
     </div>
     <div class="nav-links relative">

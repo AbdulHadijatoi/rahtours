@@ -210,13 +210,12 @@
 <div class="mt-12 border-t border-gray-200 pt-6 pb-6">
     <div class="mx-auto max-w-screen-xl text-center sm:flex sm:justify-between sm:text-left">
         <p class="text-sm text-gray-500">
-            <span class="block sm:inline">All rights reserved.</span>
 
-            <a href="{{ url('terms-conditions') }}" class="inline-block underline transition text-gray-700 hover-text-secondary">
+            <a href="{{ url('terms-and-conditions') }}" class="inline-block underline transition text-gray-700 hover-text-secondary">
                 Terms & Conditions
             </a>
 
-            <span>&middot;</span>
+            <span> | </span>
 
             <a href="{{ url('privacy-policy') }}" class="inline-block underline transition text-gray-700 hover-text-secondary">
                 Privacy Policy

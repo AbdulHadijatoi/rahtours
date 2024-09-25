@@ -110,6 +110,41 @@
             }
         });
     </script>
+
+    <script>
+        // Define your placeholder text array
+        const placeholderLines = ["Search your activities or destinations"];
+        let currentLineIndex = 0;
+        let placeholderText = '';
+        let typingSpeed = 100;  // Adjust typing speed
+        let delayBetweenLines = 2000;  // Adjust delay between typing loops
+        let currentIndex = 0;  // Tracks the index of the character being typed
+
+        // Grab the input field element
+        const searchInput = document.getElementById('search');
+
+        function typePlaceholder() {
+            if (currentIndex < placeholderLines[currentLineIndex].length) {
+                // Append the next character to the placeholder
+                placeholderText += placeholderLines[currentLineIndex][currentIndex];
+                searchInput.setAttribute('placeholder', placeholderText);
+                currentIndex++;
+                setTimeout(typePlaceholder, typingSpeed); // Recursively call until full line is typed
+            } else {
+                // Once the line is fully typed, reset after a delay
+                setTimeout(() => {
+                    placeholderText = '';
+                    currentIndex = 0;
+                    searchInput.setAttribute('placeholder', '');
+                    typePlaceholder();
+                }, delayBetweenLines);
+            }
+        }
+
+        // Call the function to start typing
+        typePlaceholder();
+    </script>
+
     @yield('scripts')
 </body>
 </html>
