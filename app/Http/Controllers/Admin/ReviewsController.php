@@ -40,7 +40,7 @@ class ReviewsController extends Controller
 
         Review::create($request->all());
 
-        return redirect()->route('reviews.index')->with('success', 'Review added successfully');
+        return redirect()->route('admin.reviews.index')->with('success', 'Review added successfully');
     }
 
 

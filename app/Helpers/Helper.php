@@ -127,16 +127,18 @@ if (!function_exists('getPageName')) {
     function getPageName() {
         $pageSlug = request()->segments();
 
+
         if (count($pageSlug) >= 1) {
             $pageSlug = request()->segment(count($pageSlug));
+            
         } else {
             $pageSlug = "home";
         }
 
-        $pageSetting = PageSetting::where("slug",$pageSlug)->first();
-        
+        $pageSetting = Menu::where("slug",$pageSlug)->first();
+
         if($pageSetting){
-            return $pageSetting->title;
+            return $pageSetting->page_title;
         }
         
         return ucwords(str_replace('-', ' ', $pageSlug));

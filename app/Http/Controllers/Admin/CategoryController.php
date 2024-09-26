@@ -41,7 +41,7 @@ class CategoryController extends Controller
                 'image' => UploadFiles::upload($request->image, 'image', 'category_image')
             ]);
             if ($category) {
-                return redirect()->route('categories.index')->with('success', 'Category added successfully.');
+                return redirect()->route('admin.categories.index')->with('success', 'Category added successfully.');
             }
         } catch (\Exception $e) {
             return redirect()->back()->with('error', $e->getMessage());
@@ -62,7 +62,7 @@ class CategoryController extends Controller
             }
             $category->delete();
 
-            return redirect()->route('categories.index')->with('success', 'Category deleted successfully.');
+            return redirect()->route('admin.categories.index')->with('success', 'Category deleted successfully.');
         } catch (\Exception $e) {
             return redirect()->back()->with('error', $e->getMessage());
         }
@@ -101,7 +101,7 @@ class CategoryController extends Controller
             ]);
 
             if ($update) {
-                return redirect()->route('categories.index')->with('success', 'Category updated successfully.');
+                return redirect()->route('admin.categories.index')->with('success', 'Category updated successfully.');
             }
         } catch (\Exception $e) {
             return redirect()->back()->with('error', $e->getMessage());
