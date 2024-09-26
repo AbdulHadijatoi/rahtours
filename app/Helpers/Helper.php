@@ -65,7 +65,7 @@ if (!function_exists('isRoute')) {
     }
 }
 
-if (!function_exists('getDiscount')) {
+if (!function_exists('getDiscountPrice')) {
     function getDiscountPrice($activity, $type = "sharing") {
 
         if($type == 'private'){
