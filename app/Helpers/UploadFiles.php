@@ -2,7 +2,7 @@
 namespace App\Helpers;
 use Illuminate\Http\Request;
 
-class UploadFiles extends Helper
+class UploadFiles
 {
 
     public static function upload($image, string $fieldName, string $folder)
