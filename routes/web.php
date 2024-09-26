@@ -329,9 +329,9 @@ Route::middleware([CheckRole::class])
         Route::resource('guidelines',GuidelinesController::class);
         Route::get('guidelines/delete/{id}',[GuidelinesController::class, 'destroy'])->name('guidelines-destroy');
         Route::resource('termsconditions',TermsConditionController::class);
-        Route::get('termsconditions/delete/{id}',[TermsConditionController::class, 'destroy'])->name('termsconditions-destroy');
+        Route::get('termsconditions/delete/{id}',[TermsConditionController::class, 'destroy'])->name('termsconditions.destroy');
         Route::resource('blogPage',BlogPageController::class);
-        Route::get('blogPage/delete/{id}',[BlogPageController::class, 'destroy'])->name('blogPage-destroy');
+        Route::get('blogPage/delete/{id}',[BlogPageController::class, 'destroy'])->name('blogPage.destroy');
         Route::resource('privacypolicy',PrivacyPolicyController::class);
-        Route::get('privacypolicy/delete/{id}',[PrivacyPolicyController::class, 'destroy'])->name('privacypolicy-destroy');
+        Route::get('privacypolicy/delete/{id}',[PrivacyPolicyController::class, 'destroy'])->name('privacypolicy.destroy');
     });

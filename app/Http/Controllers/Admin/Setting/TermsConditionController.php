@@ -36,7 +36,7 @@ class TermsConditionController extends Controller
             $data['image'] = UploadFiles::upload($request->file('image'), 'image', 'images/termsconditions');
         }
         SettingTermsCondition::create($data);
-        return redirect()->route('termsconditions.index')->with('success','Terms & Conditions Image added successfully');
+        return redirect()->route('admin.termsconditions.index')->with('success','Terms & Conditions Image added successfully');
     }
 
     /**
@@ -71,7 +71,7 @@ class TermsConditionController extends Controller
             $data->image = UploadFiles::upload($request->file('image'), 'image', 'images/termsconditions');
             $data->save();
         }
-        return redirect()->route('termsconditions.index')->with('success','Terms & Conditions Image Updated successfully');
+        return redirect()->route('admin.termsconditions.index')->with('success','Terms & Conditions Image Updated successfully');
     }
 
     /**
