@@ -183,7 +183,7 @@ if (!function_exists('getHeroImage')) {
     }
 }
 
-if (!function_exists('makeActiveLink')) {
+if (!function_exists('isActive')) {
     function isActive($slug) {
         if(in_array($slug, request()->segments())){
             return true;
