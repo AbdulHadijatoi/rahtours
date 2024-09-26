@@ -23,7 +23,7 @@
                                                         <div class="text-center">
                                                             <a href="{{ route('admin.blogPage.edit', $image->id) }}"
                                                                 class="btn btn-primary btn-icon-text">Edit</a>
-                                                            <a href="{{ route('admin.blogPage-destroy', $image->id) }}"
+                                                            <a href="{{ route('admin.blogPage.destroy', $image->id) }}"
                                                                 class="btn btn-danger btn-icon-text">delete</a>
                                                         </div>
                                                     </div>
