@@ -44,7 +44,7 @@ class SubCategoryController extends Controller
                     'category_id' => $validatedData['category_id']
                 ]);
 
-            return redirect()->route('subcategories.index')->with('success', 'SubCategories added successfully.');
+            return redirect()->route('admin.subcategories.index')->with('success', 'SubCategories added successfully.');
         } catch (\Exception $e) {
             return redirect()->back()->with('error', $e->getMessage());
         }
@@ -56,9 +56,9 @@ class SubCategoryController extends Controller
         try {
             $category = $this->subcategory::findOrFail($id);
             $category->delete();
-            return redirect()->route('subcategories.index')->with('success', 'SubCategory deleted successfully.');
+            return redirect()->route('admin.subcategories.index')->with('success', 'SubCategory deleted successfully.');
         } catch (\Exception $e) {
-            return redirect()->route('subcategories.index')->with('error', 'Failed to delete subcategory: ' . $e->getMessage());
+            return redirect()->route('admin.subcategories.index')->with('error', 'Failed to delete subcategory: ' . $e->getMessage());
         }
     }
 
@@ -82,7 +82,7 @@ class SubCategoryController extends Controller
             ]);
             if($update)
             {
-                return redirect()->route('subcategories.index')->with('success', 'SubCategory updated successfully.');
+                return redirect()->route('admin.subcategories.index')->with('success', 'SubCategory updated successfully.');
             }
         } catch (\Exception $e) {
             return redirect()->back()->with('error', $e->getMessage());

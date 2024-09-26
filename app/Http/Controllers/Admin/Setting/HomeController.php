@@ -33,7 +33,7 @@ class HomeController extends Controller
 
             Setting::where('id', 1)->update(['hero_image' => $imagePath]);
 
-            return redirect()->route('homeimages.index');
+            return redirect()->route('admin.homeimages.index');
         } catch (\Exception $e) {
             throw $e;
         }
@@ -65,7 +65,7 @@ class HomeController extends Controller
             $homeimage->save();
 
 
-            return redirect()->route('homeimages.index');
+            return redirect()->route('admin.homeimages.index');
 
         } catch (\Exception $e) {
             throw $e;

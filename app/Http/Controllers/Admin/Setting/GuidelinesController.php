@@ -37,7 +37,7 @@ class GuidelinesController extends Controller
             $data['image'] = UploadFiles::upload($request->file('image'), 'image', 'images/guidelines');
         }
         SettingGuideline::create($data);
-        return redirect()->route('guidelines.index')->with('success','Guidelines Image added successfully');
+        return redirect()->route('admin.guidelines.index')->with('success','Guidelines Image added successfully');
     }
 
     /**
@@ -72,7 +72,7 @@ class GuidelinesController extends Controller
             $data->image = UploadFiles::upload($request->file('image'), 'image', 'images/guidelines');
             $data->save();
         }
-        return redirect()->route('guidelines.index')->with('success','Guidelines Image Updated successfully');
+        return redirect()->route('admin.guidelines.index')->with('success','Guidelines Image Updated successfully');
     }
 
     /**

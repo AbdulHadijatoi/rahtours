@@ -37,7 +37,7 @@ class PrivacyPolicyController extends Controller
             $data['image'] = UploadFiles::upload($request->file('image'), 'image', 'images/privacypolicy');
         }
         SettingPrivacyPolicy::create($data);
-        return redirect()->route('privacypolicy.index')->with('success','Privacy Policy Image added successfully');
+        return redirect()->route('admin.privacypolicy.index')->with('success','Privacy Policy Image added successfully');
     }
 
     /**
@@ -72,7 +72,7 @@ class PrivacyPolicyController extends Controller
             $data->image = UploadFiles::upload($request->file('image'), 'image', 'images/privacypolicy');
             $data->save();
         }
-        return redirect()->route('privacypolicy.index')->with('success','Privacy Policy Image Updated successfully');
+        return redirect()->route('admin.privacypolicy.index')->with('success','Privacy Policy Image Updated successfully');
     }
 
     /**

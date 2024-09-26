@@ -34,7 +34,7 @@ class MenuController extends Controller
     {
 
         $menus = $this->menuRepo->store($request->validated());
-        return redirect()->route('menus.index')->with('success', 'Menu Created Successfully');
+        return redirect()->route('admin.menus.index')->with('success', 'Menu Created Successfully');
     }
 
 
@@ -48,14 +48,14 @@ class MenuController extends Controller
     public function update(Request $request, string $id)
     {
         $menu = $this->menuRepo->update($request->all(), $id);
-        return redirect()->route('menus.index')->with('success', 'Menu Updated Successfully');
+        return redirect()->route('admin.menus.index')->with('success', 'Menu Updated Successfully');
     }
 
 
     public function destroy(string $id)
     {
         $menu = $this->menuRepo->destroy($id);
-        return redirect()->route('menus.index')->with('success', 'Menu Deleted Successfully');
+        return redirect()->route('admin.menus.index')->with('success', 'Menu Deleted Successfully');
     }
 
     public function allMenus()

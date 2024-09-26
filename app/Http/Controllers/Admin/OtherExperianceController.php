@@ -68,7 +68,7 @@ class OtherExperianceController extends Controller
             }
         }
 
-        return redirect()->route('otherexperiances.index')->with('success', 'Activity added successfully');
+        return redirect()->route('admin.otherexperiances.index')->with('success', 'Activity added successfully');
     }
 
     public function destroy(string $id)
@@ -120,7 +120,7 @@ class OtherExperianceController extends Controller
             }
         }
 
-        return redirect()->route('otherexperiances.index')->with('success', 'Activity updated successfully');
+        return redirect()->route('admin.otherexperiances.index')->with('success', 'Activity updated successfully');
     }
 
     public function createActivityImages($id)

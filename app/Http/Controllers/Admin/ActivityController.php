@@ -107,7 +107,7 @@ class ActivityController extends Controller
             return redirect()->back()->withErrors(['error', 'Failed to create package']);
         }
     }
-       return redirect()->route('activities.index')->with('success','Activity added successfully');
+       return redirect()->route('admin.activities.index')->with('success','Activity added successfully');
     }
 
     public function destroy(string $id)
@@ -196,7 +196,7 @@ class ActivityController extends Controller
         }
     }
 
-        return redirect()->route('activities.index')->with('success','Activity Updated successfully');
+        return redirect()->route('admin.activities.index')->with('success','Activity Updated successfully');
     }
 
     public function createActivityImages($id)

@@ -65,7 +65,7 @@ class HomeactivityController extends Controller
             }
         }
 
-        return redirect()->route('homeactivities.index')->with('success', 'Activity added successfully');
+        return redirect()->route('admin.homeactivities.index')->with('success', 'Activity added successfully');
     }
 
     public function destroy(string $id)
@@ -115,7 +115,7 @@ class HomeactivityController extends Controller
             }
         }
 
-        return redirect()->route('homeactivities.index')->with('success', 'Activity updated successfully');
+        return redirect()->route('admin.homeactivities.index')->with('success', 'Activity updated successfully');
     }
 
     public function createActivityImages($id)

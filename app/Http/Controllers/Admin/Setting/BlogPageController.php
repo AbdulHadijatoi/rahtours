@@ -37,7 +37,7 @@ class BlogPageController extends Controller
             $data['image'] = UploadFiles::upload($request->file('image'), 'image', 'images/blogPage');
         }
         SettingBlog::create($data);
-        return redirect()->route('blogPage.index')->with('success','Blog Image added successfully');
+        return redirect()->route('admin.blogPage.index')->with('success','Blog Image added successfully');
     }
 
     /**
@@ -72,7 +72,7 @@ class BlogPageController extends Controller
             $data->image = UploadFiles::upload($request->file('image'), 'image', 'images/blogPage');
             $data->save();
         }
-        return redirect()->route('blogPage.index')->with('success','Blog Image Updated successfully');
+        return redirect()->route('admin.blogPage.index')->with('success','Blog Image Updated successfully');
     }
 
     /**

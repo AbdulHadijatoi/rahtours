@@ -26,7 +26,7 @@ class SettingController extends Controller
             $data['image'] = UploadFiles::upload($request->file('image'), 'image', 'images/contact-us');
         }
         SettingContactUs::create($data);
-        return redirect()->route('setting.contact.index')->with('success','Contact-us details added successfully');
+        return redirect()->route('admin.setting.contact.index')->with('success','Contact-us details added successfully');
 
     }
 
@@ -54,7 +54,7 @@ class SettingController extends Controller
             $data->image = UploadFiles::upload($request->file('image'), 'image', 'images/contact-us');
             $data->save();
         }
-        return redirect()->route('setting.contact.index')->with('success','Contact-us details Updated successfully');
+        return redirect()->route('admin.setting.contact.index')->with('success','Contact-us details Updated successfully');
     }
     public function contactUsDestroy($id)
     {
@@ -85,7 +85,7 @@ class SettingController extends Controller
 
         SettingFindUs::create($data);
 
-        return redirect()->route('setting.find.index')->with('success', 'Find-us details added successfully');
+        return redirect()->route('admin.setting.find.index')->with('success', 'Find-us details added successfully');
     }
 
 
@@ -125,7 +125,7 @@ class SettingController extends Controller
 
         $data->save();
 
-        return redirect()->route('setting.find.index')->with('success', 'Find-us details updated successfully');
+        return redirect()->route('admin.setting.find.index')->with('success', 'Find-us details updated successfully');
     }
 
     public function findUsDestroy($id)

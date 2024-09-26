@@ -87,7 +87,7 @@ class BlogController extends Controller
             }
         }
 
-        return redirect()->route('blogs.index')->with('success', 'Blog created successfully');
+        return redirect()->route('admin.blogs.index')->with('success', 'Blog created successfully');
     }
 
 
@@ -165,7 +165,7 @@ class BlogController extends Controller
             }
         }
 
-        return redirect()->route('blogs.index')->with('success', 'Blog updated successfully');
+        return redirect()->route('admin.blogs.index')->with('success', 'Blog updated successfully');
     }
 
 
@@ -183,7 +183,7 @@ class BlogController extends Controller
         }
 
         $blog->delete();
-        return redirect()->route('blogs.index')->with('success', 'Blog deleted successfully');
+        return redirect()->route('admin.blogs.index')->with('success', 'Blog deleted successfully');
     }
 
             public function viewContents($id)
@@ -221,7 +221,7 @@ class BlogController extends Controller
 
             $content->update($contentData);
 
-            return redirect()->route('blogs.index')->with('success', 'Content updated successfully');
+            return redirect()->route('admin.blogs.index')->with('success', 'Content updated successfully');
         }
 
         public function destroyContents(BlogContent $content)
@@ -245,7 +245,7 @@ class BlogController extends Controller
             $faqData = $request->only('question', 'answer');
             $faq->update($faqData);
 
-            return redirect()->route('blogs.index')->with('success', 'FAQ updated successfully');
+            return redirect()->route('admin.blogs.index')->with('success', 'FAQ updated successfully');
         }
 
         public function destroyFaqs(Faq $faq)

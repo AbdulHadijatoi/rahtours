@@ -33,7 +33,7 @@ class AboutController extends Controller
                 'header_image_url' => url($headerImagePath),
             ]);
 
-            return redirect()->route('aboutimages.index');
+            return redirect()->route('admin.aboutimages.index');
         } catch (\Exception $e) {
             throw $e;
         }
@@ -70,7 +70,7 @@ class AboutController extends Controller
                 $homeimage->header_image_url = url($headerImagePath);
             }
             $homeimage->save();
-            return redirect()->route('aboutimages.index');
+            return redirect()->route('admin.aboutimages.index');
 
         } catch (\Exception $e) {
             throw $e;

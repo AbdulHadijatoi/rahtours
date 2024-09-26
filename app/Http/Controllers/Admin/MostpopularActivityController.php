@@ -62,7 +62,7 @@ class MostpopularActivityController extends Controller
             }
         }
 
-        return redirect()->route('mostpopularactivities.index')->with('success', 'Activity added successfully');
+        return redirect()->route('admin.mostpopularactivities.index')->with('success', 'Activity added successfully');
     }
 
     public function destroy(string $id)
@@ -112,7 +112,7 @@ class MostpopularActivityController extends Controller
             }
         }
 
-        return redirect()->route('mostpopularactivities.index')->with('success', 'Activity updated successfully');
+        return redirect()->route('admin.mostpopularactivities.index')->with('success', 'Activity updated successfully');
     }
 
     public function createActivityImages($id)

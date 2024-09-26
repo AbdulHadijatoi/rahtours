@@ -60,7 +60,7 @@ class PackageController extends Controller
             'activity_id' => $request->activity_id
         ]);
         if ($package) {
-            return redirect()->route('packages.index')->with('success', 'Package created successfully');
+            return redirect()->route('admin.packages.index')->with('success', 'Package created successfully');
         } else {
             return redirect()->back()->withErrors(['error', 'Failed to create package']);
         }
@@ -86,7 +86,7 @@ class PackageController extends Controller
         ]);
         if($package)
         {
-            return redirect()->route('packages.index')->with('success', 'Package updated successfully');
+            return redirect()->route('admin.packages.index')->with('success', 'Package updated successfully');
         }
     }
 
@@ -97,7 +97,7 @@ class PackageController extends Controller
             $category->delete();
             return back()->with('success', 'Package deleted successfully.');
         } catch (\Exception $e) {
-            return redirect()->route('packages.index')->with('error', 'Failed to delete category: ' . $e->getMessage());
+            return redirect()->route('admin.packages.index')->with('error', 'Failed to delete category: ' . $e->getMessage());
         }
     }
 }
