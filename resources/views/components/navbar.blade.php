@@ -81,12 +81,12 @@
                             <a>{{ auth()->user()->first_name }}</a>
                         </div>
                         <i class='bx bxs-chevron-down htmlcss-arrow arrow  '></i>
-                        <ul class="htmlCss-sub-menu sub-menu bg-white">
+                        <ul class="htmlCss-sub-menu sub-menu bg-white" style="z-index: 20;">
                             <li>
                                 <a class="transition hover-text-secondary border-transparent" href="{{ url('manage-profile') }}">Manage Profile</a>
                             </li>
                             <li>
-                                <a href="{{ url('/bookings') }}" class="transition hover-text-secondary border-transparent" href="#">Booking</a>
+                                <a class="transition hover-text-secondary border-transparent" href="{{ url('/bookings') }}">Booking</a>
                             </li>
                             <li>
                                 <a class="transition hover-text-secondary border-transparent" href="{{ url('/history') }}">History</a>
