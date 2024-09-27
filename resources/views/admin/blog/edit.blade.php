@@ -27,7 +27,7 @@
                             <label for="banner_image">Banner Image</label>
                             <input type="file" class="form-control-file mb-2" id="banner_image" name="banner_image">
                             @if ($blog->banner_image)
-                            <img src="{{ url($blog->banner_image_url) }}" alt="Banner Image" style="width: 200px; height: auto;">
+                            <img src="{{ url($blog->banner_image) }}" alt="Banner Image" style="width: 200px; height: auto;">
                             @else
                             <p>No banner image uploaded.</p>
                             @endif

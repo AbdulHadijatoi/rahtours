@@ -32,8 +32,8 @@ class BlogController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
+        
         $request->validate([
             'title' => 'required',
             'description' => 'required',
@@ -45,13 +45,13 @@ class BlogController extends Controller
             'faqs.*.answer' => 'required',
         ]);
 
-        // Upload the banner image to the 'uploads/blog' folder
+        // Upload the banner image to the 'uploads/blog' folder inside storage/app/public/uploads
         $bannerImageAddress = null;
-        if($request->hasFile('banner_image')) {
+        if ($request->hasFile('banner_image')) {
             $bannerImage = $request->file('banner_image');
             $bannerImageName = uniqid() . '.' . $bannerImage->getClientOriginalExtension();
-            $bannerImagePath = $bannerImage->storeAs('uploads/blog', $bannerImageName, 'public');
-            $bannerImageAddress = 'storage/' . $bannerImagePath;
+            $bannerImagePath = $bannerImage->storeAs('uploads/blog', $bannerImageName, 'public'); // Stores under storage/app/public/uploads/blog
+            $bannerImageAddress = 'storage/' . $bannerImagePath; // This creates a link accessible via public/storage/uploads/blog
         }
 
         // Create the blog record
@@ -66,7 +66,7 @@ class BlogController extends Controller
         if ($request->has('contents')) {
             foreach ($request->contents as $content) {
                 $contentImageAddress = null;
-                if(isset($content['image']) && $content['image']) {
+                if (isset($content['image']) && $content['image']) {
                     $contentImage = $content['image'];
                     $contentImageName = uniqid() . '.' . $contentImage->getClientOriginalExtension();
                     $contentImagePath = $contentImage->storeAs('uploads/blog_contents', $contentImageName, 'public');
@@ -87,10 +87,12 @@ class BlogController extends Controller
                 $blog->faqs()->create($faq);
             }
         }
+
         (new SitemapController())->generateSitemap();
-        
+
         return redirect()->route('admin.blogs.index')->with('success', 'Blog created successfully');
     }
+
 
 
     public function show(Blog $blog)
@@ -108,6 +110,7 @@ class BlogController extends Controller
 
     public function update(Request $request, Blog $blog)
     {
+        
         $blogData = [
             'title' => $request->input('title'),
             'description' => $request->input('description'),
@@ -115,10 +118,13 @@ class BlogController extends Controller
 
         // Update the banner image
         if ($request->hasFile('banner_image')) {
+
             if ($blog->banner_image && file_exists(public_path($blog->banner_image))) {
                 unlink(public_path($blog->banner_image));
             }
+
             $bannerImage = $request->file('banner_image');
+
             $bannerImageName = uniqid() . '.' . $bannerImage->getClientOriginalExtension();
             $bannerImagePath = $bannerImage->storeAs('uploads/blog', $bannerImageName, 'public');
             $blogData['banner_image'] = 'storage/' . $bannerImagePath;
@@ -140,9 +146,9 @@ class BlogController extends Controller
                 $content->description = $contentDescriptions[$index];
 
                 if (isset($contentImages[$index])) {
-                    if ($content->image && file_exists(public_path($content->image))) {
-                        unlink(public_path($content->image));
-                    }
+                    // if ($content->image && file_exists(public_path($content->image))) {
+                    //     unlink(public_path($content->image));
+                    // }
                     $contentImage = $contentImages[$index];
                     $contentImageName = uniqid() . '.' . $contentImage->getClientOriginalExtension();
                     $contentImagePath = $contentImage->storeAs('uploads/blog_contents', $contentImageName, 'public');

@@ -50,8 +50,8 @@
                                         <td>{{ $blog->title }}</td>
                                         <td>{!! Str::limit($blog->description, 50) !!}</td>
                                         <td>
-                                            @if($blog->banner_image_url)
-                                            <img src="{{ url($blog->banner_image_url) }}" alt="Banner Image" style="width: 50px; height: 50px;">
+                                            @if($blog->banner_image)
+                                            <img src="{{ url($blog->banner_image) }}" alt="Banner Image" style="width: 50px; height: 50px;">
                                             @else
                                             No Image
                                             @endif

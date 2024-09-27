@@ -1,6 +1,6 @@
 <div class="card bg-base-100 w-96 border transition duration-500 ease-in-out transform hover:scale-105">
   <figure>
-    <img src="{{ url($blog->banner_image_url) }}" alt="blog_image" />
+    <img src="{{ url($blog->banner_image) }}" alt="blog_image" />
   </figure>
   <div class="card-body">
     {{ \Carbon\Carbon::parse($blog->created_at)->format('d M Y') }}

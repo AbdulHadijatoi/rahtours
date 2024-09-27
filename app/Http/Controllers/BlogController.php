@@ -29,7 +29,7 @@ class BlogController extends Controller {
             }
         }
 
-        return view('pages.blog_details', compact('blog'));
+        return view('pages.blog-details', compact('blog'));
     }
     
 }
