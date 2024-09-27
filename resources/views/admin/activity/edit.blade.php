@@ -122,7 +122,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputName1">Discount Offer</label>
-                                <input type="number" class="form-control @error('discount_offer') is-invalid @enderror"
+                                <input type="number" min="0" onblur="if(!this.value) this.value = 0" class="form-control @error('discount_offer') is-invalid @enderror"
                                     id="exampleInputName1" placeholder="discount_offer" name="discount_offer"
                                     value="{{ $activity->discount_offer }}">
                                 @error('discount_offer')
@@ -285,7 +285,7 @@
                             <div class="form-group">
                                 <hr>
                                 <h4>Instructions</h4>
-                                <div id="instructions-container">
+                                <div id="#instructions-container">
                                     @foreach ($activity->instructions as $index => $instruction)
                                         <div class="instruction-item mt-3">
                                             <input type="hidden"
@@ -694,7 +694,7 @@
                 var instructionContainer = document.createElement('div');
                 instructionContainer.innerHTML = instructionItem;
 
-                document.querySelector('.instruction-item').parentNode.appendChild(instructionContainer);
+                document.getElementById('#instructions-container').appendChild(instructionContainer);
 
                 // Initialize CKEditor for the new textarea
                 var newTextarea = instructionContainer.querySelector('textarea');

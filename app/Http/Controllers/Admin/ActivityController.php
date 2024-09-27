@@ -135,7 +135,7 @@ class ActivityController extends Controller
     public function update(Request  $request, string $id)
     {
 
-
+        // return $request->input();
         $record=Activity::activityUpdate($id,$request->all());
         if (isset($request->image) && !empty($request->image)) {
             if ($record->image) {
@@ -168,37 +168,38 @@ class ActivityController extends Controller
         }
 
            // Handle packages
-    if (isset($request->packages) && is_array($request->packages)) {
-        foreach ($request->packages as $packageData) {
-            if (isset($packageData['id']) && !empty($packageData['id'])) {
-                // Update existing package
-                $package = Package::findOrFail($packageData['id']);
-                $package->update([
-                    'category' => $packageData['category'],
-                    'title' => $packageData['title'],
-                    'price' => $packageData['category'] == 'private' ? $packageData['price'] : null,
-                    'group_size' => $packageData['category'] == 'private' ? $packageData['group_size'] : null,
-                    'adult_price' => $packageData['category'] == 'sharing' ? $packageData['adult_price'] : null,
-                    'child_price' => $packageData['category'] == 'sharing' ? $packageData['child_price'] : null,
-                    'highlight' => $packageData['highlight'],
-                ]);
-            } else {
-                // Add new package
-                $packageData['activity_id'] = $record->id;
-                Package::create([
-                    'activity_id' => $record->id,
-                    'category' => $packageData['category'],
-                    'title' => $packageData['title'],
-                    'price' => $packageData['category'] == 'private' ? $packageData['price'] : null,
-                    'group_size' => $packageData['category'] == 'private' ? $packageData['group_size'] : null,
-                    'adult_price' => $packageData['category'] == 'sharing' ? $packageData['adult_price'] : null,
-                    'child_price' => $packageData['category'] == 'sharing' ? $packageData['child_price'] : null,
-                    'highlight' => $packageData['highlight'],
-                ]);
+        if (isset($request->packages) && is_array($request->packages)) {
+            foreach ($request->packages as $packageData) {
+                if (isset($packageData['id']) && !empty($packageData['id'])) {
+                    // Update existing package
+                    $package = Package::findOrFail($packageData['id']);
+                    $package->update([
+                        'category' => $packageData['category'],
+                        'title' => $packageData['title'],
+                        'price' => $packageData['category'] == 'private' ? $packageData['price'] : null,
+                        'group_size' => $packageData['category'] == 'private' ? $packageData['group_size'] : null,
+                        'adult_price' => $packageData['category'] == 'sharing' ? $packageData['adult_price'] : null,
+                        'child_price' => $packageData['category'] == 'sharing' ? $packageData['child_price'] : null,
+                        'highlight' => $packageData['highlight'],
+                    ]);
+                } else {
+                    // Add new package
+                    $packageData['activity_id'] = $record->id;
+                    Package::create([
+                        'activity_id' => $record->id,
+                        'category' => $packageData['category'],
+                        'title' => $packageData['title'],
+                        'price' => $packageData['category'] == 'private' ? $packageData['price'] : null,
+                        'group_size' => $packageData['category'] == 'private' ? $packageData['group_size'] : null,
+                        'adult_price' => $packageData['category'] == 'sharing' ? $packageData['adult_price'] : null,
+                        'child_price' => $packageData['category'] == 'sharing' ? $packageData['child_price'] : null,
+                        'highlight' => $packageData['highlight'],
+                    ]);
+                }
             }
         }
-    }
-    (new SitemapController())->generateSitemap();
+        
+        (new SitemapController())->generateSitemap();
 
         return redirect()->route('admin.activities.index')->with('success','Activity Updated successfully');
     }
