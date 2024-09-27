@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Helpers\UploadFiles;
+use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
@@ -36,10 +37,16 @@ class CategoryController extends Controller
                 'name' => 'required|string|max:255|unique:categories',
                 'image' => 'required'
             ]);
+
+            // Generate slug from name
+            $slug = Str::slug($validatedData['name']);
+
             $category = $this->model::create([
                 'name' => $validatedData['name'],
+                'slug' => $slug,  // Add slug to the category
                 'image' => UploadFiles::upload($request->image, 'image', 'category_image')
             ]);
+
             if ($category) {
                 return redirect()->route('admin.categories.index')->with('success', 'Category added successfully.');
             }
@@ -84,6 +91,10 @@ class CategoryController extends Controller
                 'name' => 'required|string|max:255|unique:categories,name,' . $id,
                 'image' => 'sometimes|image|mimes:jpeg,png,jpg,gif,svg'
             ]);
+
+            // Generate slug from the updated name
+            $slug = Str::slug($validatedData['name']);
+
             if ($request->hasFile('image') && $request->file('image')->isValid()) {
                 if ($category->image) {
                     $oldImagePath = public_path('storage/category_image/' . basename($category->image));
@@ -97,6 +108,7 @@ class CategoryController extends Controller
 
             $update = $category->update([
                 'name' => $validatedData['name'],
+                'slug' => $slug,  // Update slug with the new name
                 'image' => $newImageURL ?? $category->image
             ]);
 
