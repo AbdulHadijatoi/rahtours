@@ -21,7 +21,7 @@
                     <p class="text-gray-600 text-sm text-justify">{!! $content['description'] !!}</p>
                 </div>
                 <div class="md:w-5/12">
-                    <img src="{{ url('storage/uploads/'.$content['image']) }}" alt="{{ $content['title'] }}" class="w-full object-cover rounded-md">
+                    <img src="{{ url($content['image']) }}" alt="{{ $content['title'] }}" class="w-full object-cover rounded-md">
                 </div>
             @else
                 <!-- Right Aligned Text, Left Aligned Image -->

@@ -145,6 +145,22 @@ if (!function_exists('getPageName')) {
     }
 }
 
+if (!function_exists('getPageNameFromSlug')) {
+    function getPageNameFromSlug() {
+        $pageSlug = request()->segments();
+
+
+        if (count($pageSlug) >= 1) {
+            $pageSlug = request()->segment(count($pageSlug));
+
+        } else {
+            $pageSlug = "home";
+        }
+
+        return ucwords(str_replace('-', ' ', $pageSlug));
+    }
+}
+
 if (!function_exists('getHeroImage')) {
     function getHeroImage() {
         $pageSlug = request()->segments();
