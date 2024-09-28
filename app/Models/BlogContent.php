@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Storage;
 class BlogContent extends Model
 {
     use HasFactory;
-    protected $gaurded = [];
+    protected $guarded = [];
 
     public function blog() {
         return $this->belongsTo(Blog::class);

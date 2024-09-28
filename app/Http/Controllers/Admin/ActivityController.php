@@ -30,87 +30,76 @@ class ActivityController extends Controller
         return view('admin.activity.create',compact('categories', 'subCategories'));
     }
 
-    public function store(ActivityRequest $request)
-    {
+    public function store(ActivityRequest $request) {
 
-       $validatedData=$request->validated();
-      $record= Activity::activity($validatedData);
+        $validatedData=$request->validated();
 
+        $record= Activity::activity($validatedData);
 
-      if($request->has('images'))
-      {
-        foreach($request->file('images') as $image)
+        if($request->has('images'))
         {
-            $fileInfo = $image->getClientOriginalName();
-            $filename = pathinfo($fileInfo, PATHINFO_FILENAME);
-            $extension = pathinfo($fileInfo, PATHINFO_EXTENSION);
-            $file_name= $filename.'-'.time().'.'.$extension;
-            $image->move(storage_path('app/public/storage/uploads'), $file_name);
-            // Create a new Portfolio record in the database
-            $imageUpload = new ActivityPicture();
-            $imageUpload->activity_id = $record->id;
-            $imageUpload->original_filename = $image->getClientOriginalName();
-            $imageUpload->filename = $file_name;
-            $imageUpload->save();
+            foreach($request->file('images') as $image)
+            {
+                $fileInfo = $image->getClientOriginalName();
+                $filename = pathinfo($fileInfo, PATHINFO_FILENAME);
+                $extension = pathinfo($fileInfo, PATHINFO_EXTENSION);
+                $file_name= $filename.'-'.time().'.'.$extension;
+                $image->move(storage_path('app/public/storage/uploads'), $file_name);
+                // Create a new Portfolio record in the database
+                $imageUpload = new ActivityPicture();
+                $imageUpload->activity_id = $record->id;
+                $imageUpload->original_filename = $image->getClientOriginalName();
+                $imageUpload->filename = $file_name;
+                $imageUpload->save();
+
+            }
 
         }
 
-      }
 
 
        if (isset($request->image) && !empty($request->image)) {
-        $imageData = $request->image;
-        $imageInfo = json_decode($imageData, true);
-        $imageName = date('YmdHis') . $imageInfo['name'];
-        $imageData = base64_decode($imageInfo['data']);
-        Storage::disk('public')->put(Activity::UPLOADS_IMAGE_PATH . $imageName, $imageData);
-        Activity::updateImageName($record->id, ['image' => $imageName]);
+            $imageData = $request->image;
+            $imageInfo = json_decode($imageData, true);
+            $imageName = date('YmdHis') . $imageInfo['name'];
+            $imageData = base64_decode($imageInfo['data']);
+            Storage::disk('public')->put(Activity::UPLOADS_IMAGE_PATH . $imageName, $imageData);
+            Activity::updateImageName($record->id, ['image' => $imageName]);
 
-    }
-
-    if (isset($validatedData['instructions']) && is_array($validatedData['instructions'])) {
-        foreach ($validatedData['instructions'] as $instructionData) {
-            $instructionData['activity_id'] = $record->id;
-            ActivityInstruction::create($instructionData);
         }
-    }
 
-
-    $packages = [];
-
-    foreach ($validatedData['packages'] as $data) {
-        // Add conditional validation rules based on the category
-        // if ($data['category'] === 'private') {
-        //     $request->validate([
-        //         'price' => 'required|integer'
-        //     ]);
-        // } elseif ($data['category'] === 'sharing') {
-        //     $request->validate([
-        //         'adult_price' => 'required|integer',
-        //         'child_price' => 'required|integer'
-        //     ]);
-        // }
-
-        $package = Package::create([
-            'title' => $data['title'],
-            'price' => $data['price'],
-            'group_size' => $data['group_size'],
-            'adult_price' => $data['adult_price'],
-            'child_price' => $data['child_price'],
-            'highlight' => $data['highlight'],
-            'category' => $data['category'],
-            'activity_id' => $record->id,
-        ]);
-
-        if ($package) {
-            $packages[] = $package;
-        } else {
-            return redirect()->back()->withErrors(['error', 'Failed to create package']);
+        if (isset($validatedData['instructions']) && is_array($validatedData['instructions'])) {
+            foreach ($validatedData['instructions'] as $instructionData) {
+                $instructionData['activity_id'] = $record->id;
+                ActivityInstruction::create($instructionData);
+            }
         }
-    }
+
+        
+        $packages = [];
+
+        foreach ($validatedData['packages'] as $data) {
+          
+            $package = Package::create([
+                'title' => $data['title'],
+                'price' => $data['price'],
+                'group_size' => isset($data['group_size'])?$data['group_size']:null,
+                'adult_price' => isset($data['adult_price'])?$data['adult_price']:null,
+                'child_price' => isset($data['child_price'])?$data['child_price']:null,
+                'highlight' => $data['highlight'],
+                'category' => $data['category'],
+                'activity_id' => $record->id,
+            ]);
+
+            if ($package) {
+                $packages[] = $package;
+            } else {
+                return redirect()->back()->withErrors(['error', 'Failed to create package']);
+            }
+        }
 
         (new SitemapController())->generateSitemap();
-       return redirect()->route('admin.activities.index')->with('success','Activity added successfully');
+        return redirect()->route('admin.activities.index')->with('success','Activity added successfully');
     }
 
     public function destroy(string $id)
