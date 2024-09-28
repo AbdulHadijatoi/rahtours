@@ -541,5 +541,7 @@ body{
 }
 
 .list-disc ul li {
+  font-size: 0.85rem;
+  line-height: 1.6rem !important;
   margin-left: 10px;
 }

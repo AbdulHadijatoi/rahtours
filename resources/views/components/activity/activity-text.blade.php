@@ -3,7 +3,7 @@
         {!! $heading !!}
     </h2>
     <hr>
-    <div class="text-xs leading-5 pt-3 list-disc">
+    <div class="leading-5 pt-3 list-disc" style="font-size: 0.85rem !important; line-height: 1.6rem !important;">
         {!! $paragraph !!}
     </div>
 </div>
