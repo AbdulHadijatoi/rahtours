@@ -313,6 +313,9 @@ Route::middleware([CheckRole::class])
         Route::put('setting/contact/{id}',[SettingController::class, 'contactUsUpdate'])->name('setting.contact.update');
         Route::get('contact/delete/{id}',[SettingController::class, 'contactUsDestroy'])->name('setting.contact.destroy');
         Route::put('/contacts/{id}/email', [AdminContactController::class, 'updateStatus'])->name('contacts.contactEmail');
+        
+        Route::get('setting/meta-content', [SettingController::class, 'metaContent'])->name('setting.metaContent.index');
+        Route::post('setting/meta-content/update', [SettingController::class, 'metaContentUpdate'])->name('setting.metaContent.update');
 
         /* Setting Find Us */
         Route::get('setting/findus/create',[SettingController::class, 'findUsCreate'])->name('setting.find.create');

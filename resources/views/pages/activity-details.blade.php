@@ -12,9 +12,9 @@
         <div class="relative">
             <div class="flex justify-between items-start px-2 md:px-0 items-end mx-auto md:px-0 sm:max-w-xl md:max-w-full lg:max-w-screen-xl mb-6">
                 <div class="">
-                    <h2 class="text-gray-700 text-2xl md:text-3xl font-bold mb-2">
+                    <h1 class="text-gray-700 text-2xl md:text-3xl font-bold mb-2">
                         {{ $activity->name }}
-                    </h2>
+                    </h1>
                     <div class="flex items-center text-sm">
                         @include('components.rating', ['card_rating'=> $activity->average_rating, 'card_reviews'=> $activity->number_of_reviews])
                         <span class="ml-1">Reviews</span>

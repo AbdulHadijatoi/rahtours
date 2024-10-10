@@ -14,7 +14,7 @@
     </div>
 
     <!-- Error Message -->
-    <h4 class="text-2xl font-bold text-orange-500 mb-2">Oops! your payment did not get through</h4>
+    <h1 class="text-2xl font-bold text-orange-500 mb-2">Oops! your payment did not get through</h1>
     <p class="text-lg mb-6">
         We regret to inform you that your payment has been declined. The following might be one of the reasons for the payment decline:
     </p>

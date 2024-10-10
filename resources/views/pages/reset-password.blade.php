@@ -9,7 +9,7 @@
     
       <div class="mx-auto bg-white p-8 rounded-lg shadow-lg w-96">
 
-        <h2 class="text-center text-2xl text-gray-700 font-bold mb-4">Reset Your Password</h2>
+        <h1 class="text-center text-2xl text-gray-700 font-bold mb-4">Reset Your Password</h1>
 
         <p class="text-center text-sm text-gray-600 mb-6">
           Enter a new password below to reset your account password.

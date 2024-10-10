@@ -8,7 +8,7 @@
     <div class="mx-auto px-5 md:px-0 sm:max-w-xl md:max-w-full lg:max-w-screen-xl mb-20 mt-10">
     
       <div class="mx-auto bg-white p-6 rounded-lg shadow-lg w-[30rem]">
-      <h2 class="text-center text-2xl font-bold mb-4">SIGN UP</h2>
+      <h1 class="text-center text-2xl font-bold mb-4">SIGN UP</h1>
       <p class="text-center text-xl font-semibold">Welcome to Rah Tours</p>
       <p class="text-center text-sm font-medium text-gray-600 mb-4">
         Your Gateway to Unforgettable Adventures!

@@ -145,6 +145,46 @@ if (!function_exists('getPageName')) {
     }
 }
 
+if (!function_exists('getMetaTitle')) {
+    function getMetaTitle() {
+        $pageSlug = request()->segments();
+
+        if (count($pageSlug) >= 1) {
+            $pageSlug = request()->segment(count($pageSlug));
+        } else {
+            return false;
+        }
+
+        $pageSetting = Menu::where("slug",$pageSlug)->where('has_meta_content',1)->first();
+
+        if($pageSetting && $pageSetting->meta_title){
+            return $pageSetting->meta_title;
+        }
+        
+        return false;
+    }
+}
+
+if (!function_exists('getMetaDescription')) {
+    function getMetaDescription() {
+        $pageSlug = request()->segments();
+
+        if (count($pageSlug) >= 1) {
+            $pageSlug = request()->segment(count($pageSlug));
+        } else {
+            return false;
+        }
+
+        $pageSetting = Menu::where("slug",$pageSlug)->where('has_meta_content',1)->first();
+
+        if($pageSetting && $pageSetting->meta_description){
+            return $pageSetting->meta_description;
+        }
+        
+        return false;
+    }
+}
+
 if (!function_exists('getPageNameFromSlug')) {
     function getPageNameFromSlug() {
         $pageSlug = request()->segments();

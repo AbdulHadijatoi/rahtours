@@ -9,6 +9,7 @@ use App\Http\Requests\Admin\ContactUsRequest;
 use App\Models\SettingFindUs;
 use App\Http\Requests\Admin\FindUsRequest;
 use App\Helpers\UploadFiles;
+use App\Models\Menu;
 use Illuminate\Support\Facades\Storage;
 class SettingController extends Controller
 {
@@ -41,6 +42,29 @@ class SettingController extends Controller
         $data=SettingContactUs::findOrFail($id);
         return view('admin.setting.contact.edit',compact('data'));
     }
+    
+    public function metaContent() {
+        // Fetch all the necessary data (slug, meta title, and meta description) from menus table
+        $pages = Menu::where('has_meta_content', 1)->get(['id', 'slug', 'name', 'meta_title', 'meta_description']);
+        return view('admin.setting.meta-content.index', compact('pages'));
+    }
+    
+    public function metaContentUpdate(Request $request) {
+        // Loop through each page and update meta title and description
+        foreach ($request->pages as $pageId => $pageData) {
+            $menu = Menu::find($pageId);
+            if ($menu) {
+                $menu->meta_title = $pageData['meta_title'];
+                $menu->meta_description = $pageData['meta_description'];
+                $menu->save();
+            }
+        }
+    
+        // Return back with success message
+        return redirect()->back()->with('success', "Successfully updated meta content for all pages");
+    }
+    
+
     public function contactUsUpdate(Request $request,$id)
     {
         $data=SettingContactUs::findOrFail($id);

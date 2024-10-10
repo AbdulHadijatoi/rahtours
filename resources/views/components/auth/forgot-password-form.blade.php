@@ -11,7 +11,7 @@
         </div>
     @endif
     
-    <h2 class="text-center text-2xl font-bold mb-4">Forget Your Password</h2>
+    <h1 class="text-center text-2xl font-bold mb-4">Forget Your Password</h1>
     <p class="text-center text-sm text-gray-600 mb-6">
         Don’t worry we can help you out! If you still remember your email address, you can quickly reset your password.
     </p>

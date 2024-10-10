@@ -10,7 +10,7 @@
       <!-- OTP Verification Form -->
       <div class="m-auto bg-white p-8 rounded-lg shadow-lg w-96">
         <!-- Title -->
-        <h2 class="text-center text-2xl text-gray-700 font-bold mb-4">Verify Your OTP</h2>
+        <h1 class="text-center text-2xl text-gray-700 font-bold mb-4">Verify Your OTP</h1>
         <!-- Subtitle -->
         <p class="text-center text-sm text-gray-600 mb-6">
           Please enter the 6-digit OTP sent to your registered email address.

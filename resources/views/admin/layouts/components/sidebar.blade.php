@@ -74,6 +74,11 @@
                     <li class="nav-item"> <a class="nav-link" href="{{ route('admin.blogPage.index') }}">Blog Page
                             Image</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('admin.setting.metaContent.index') }}">
+                        Meta Content
+                        </a>
+                    </li>
                 </ul>
             </div>
 

@@ -6,7 +6,7 @@
     
       <div class="mx-auto bg-white p-6 rounded-lg shadow-lg w-[30rem] relative">
       
-      <h2 class="text-center text-2xl font-bold mb-4">Sign in to our platform</h2>
+      <h1 class="text-center text-2xl font-bold mb-4">Sign in to our platform</h1>
       
       <p class="text-center text-sm text-gray-600 mb-6">
         Sign in to unlock a world of rewards – accumulate RAH Tours Loyalty points or snag exclusive discounts on your booked travel experiences!

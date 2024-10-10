@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Helpers\ExceptionHandlerHelper;
 use App\Models\Activity;
 use App\Models\Blog;
+use App\Models\Category;
 use App\Repositories\User\ActivityRepository;
 use Illuminate\Support\Facades\Response;
 
@@ -16,6 +17,7 @@ class SitemapController extends Controller {
     {
         $blogs = Blog::get(['id', 'slug', 'updated_at']);
         $activities = Activity::with(['category'])->get(['id', 'category_id', 'slug', 'updated_at']);
+        $categories = Category::get(['id', 'slug', 'name', 'updated_at']);
         
         // Start building the XML sitemap
         $xml = '<?xml version="1.0" encoding="UTF-8"?>' . "\n";
@@ -32,6 +34,17 @@ class SitemapController extends Controller {
                 <lastmod>' . $blog->updated_at->format('Y-m-d') . '</lastmod>
                 <changefreq>daily</changefreq>
                 <priority>0.9</priority>
+            </url>';
+        }
+
+        // Dynamic categories routes
+        foreach ($categories as $category) {
+            $xml .= '
+            <url>
+                <loc>https://rahtours.ae/dubai-activities/' . $category->slug . '</loc>
+                <lastmod>' . $category->updated_at->format('Y-m-d') . '</lastmod>
+                <changefreq>daily</changefreq>
+                <priority>0.8</priority>
             </url>';
         }
         

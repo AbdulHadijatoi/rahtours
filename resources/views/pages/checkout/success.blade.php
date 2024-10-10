@@ -9,7 +9,7 @@
   
     <div class="container mx-auto p-4 lg:w-2/3">
     <div class="text-center py-5">
-        <h4 class="font-bold text-2xl">Thank you, Your Booking is Almost Complete</h4>
+        <h1 class="font-bold text-2xl">Thank you, Your Booking is Almost Complete</h1>
     </div>
 
     <div class="bg-gray-100 p-6">

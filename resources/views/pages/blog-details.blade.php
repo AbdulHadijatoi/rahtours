@@ -6,7 +6,7 @@
     <div class="mx-auto px-5 md:px-0 sm:max-w-xl md:max-w-full lg:max-w-screen-xl mb-20 mt-10">
         <!-- Blog Post Date and Title -->
         <button type="button" class="btn btn-sm btn-success px-5 text-white">{{ \Carbon\Carbon::parse($blog->created_at)->format('d M Y') }}</button>
-        <h2 class="text-2xl font-bold w-full my-5">{{ $blog->title }}</h2>
+        <h1 class="text-2xl font-bold w-full my-5">{{ $blog->title }}</h1>
         
         <!-- Blog Description -->
         <p class="text-justify text-gray-600"> {!! $blog->description !!} </p>

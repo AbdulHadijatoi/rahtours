@@ -19,7 +19,7 @@
       <div class="flex justify-center items-center flex-col md:flex-row my-10">
         <img class="w-[20rem] mr-5" src="{{ url('storage/uploads/emptycart.webp') }}">
         <div class="flex flex-col items-center">
-          <h2 class="text-3xl font-extrabold">Nothing to checkout!</h2>
+          <h1 class="text-3xl font-extrabold">Nothing to checkout!</h1>
           <a href="{{ url('/dubai-activities') }}" class="btn rounded mt-10">Find things to do</a>
         </div>
       </div>

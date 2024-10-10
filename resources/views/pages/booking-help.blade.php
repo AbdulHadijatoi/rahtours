@@ -14,7 +14,7 @@
       @else
         <div class="flex justify-center items-center">
           <div class="flex flex-col items-center">
-            <h2 class="text-3xl font-extrabold">No Booking found</h2>
+            <h1 class="text-3xl font-extrabold">No Booking found</h1>
             <a href="{{ url('/dubai-activities') }}" class="btn rounded mt-10">Find things to do</a>
           </div>
         </div>

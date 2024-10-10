@@ -14,7 +14,7 @@
     <div class="flex flex-wrap justify-between">
         <!-- Contact Information Section -->
         <div class="lg:w-1/3 md:w-1/3 sm:w-full bg-orange-500 text-white rounded-lg p-8">
-            <h2 class="text-xl font-semibold mb-4">Contact Information</h2>
+            <h1 class="text-xl font-semibold mb-4">Contact Us</h1>
             <p>Feel free to contact us</p>
             <div class="mt-6">
                 <div class="flex items-center mb-4">

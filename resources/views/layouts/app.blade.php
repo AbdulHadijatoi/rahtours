@@ -6,15 +6,34 @@
     
 
     <meta property="og:site_name" content="RAH Tours" />
-    <meta name="google-site-verification" content="2qpWNOZ6MPUXBZnmbr1Mh5L7yhvKsHj14YrYOi_m-oc" />
+    <!-- Dynamic Open Graph meta tags -->
+    <meta property="og:title" content="@yield('og_title', 'RAH Tours')" />
+    <meta property="og:description" content="@yield('og_description', 'Find top-rated tours and activities in Dubai with RAH Tourism one of the best leading destination management companies in Dubai that deliver the highest quality standards of service, offering experiences in which every detail has been taken care of for our guests to be able to live in a unique way the soul of our destinations. We invite our guests to breathe the fun and the excitement of a new adventure in the same way that they can enjoy the peace of the calm nature.')" />
+    <meta property="og:url" content="{{ request()->url() }}" />
+    <meta property="og:type" content="website" />
     
+    {{-- <meta name="keywords" content="@yield('keywords')"> --}}
+
+    <meta name="google-site-verification" content="2qpWNOZ6MPUXBZnmbr1Mh5L7yhvKsHj14YrYOi_m-oc" />
+
+    <link rel="canonical" href="{{ url()->current() }}">
+
     @if(count(request()->segments()) == 0)
         <title>Book Things To Do, Experiences, and Activities in Dubai</title>
     @else
-        <title>@yield('title', getPageName())</title>
+        @if(getMetaTitle())
+            <title>@yield('title', getMetaTitle())</title>
+        @else
+            <title>@yield('title', getPageName())</title>
+        @endif
     @endif
 
-    <meta name="description" content="Find top-rated tours and activities in Dubai with RAH Tourism one of the best leading destination management companies in Dubai that deliver the highest quality standards of service, offering experiences in which every detail has been taken care of for our guests to be able to live in a unique way the soul of our destinations. We invite our guests to breathe the fun and the excitement of a new adventure in the same way that they can enjoy the peace of the calm nature.">
+    @if(getMetaDescription())
+        <meta name="description" content="@yield('meta_description', getMetaDescription())"/>
+    @else
+        <meta name="description" content="@yield('meta_description', 'Find top-rated tours and activities in Dubai with RAH Tourism one of the best leading destination management companies in Dubai that deliver the highest quality standards of service, offering experiences in which every detail has been taken care of for our guests to be able to live in a unique way the soul of our destinations. We invite our guests to breathe the fun and the excitement of a new adventure in the same way that they can enjoy the peace of the calm nature.')"/>
+    @endif
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-YVF7S8YTPJ"></script>
