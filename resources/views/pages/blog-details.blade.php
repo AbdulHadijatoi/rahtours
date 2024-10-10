@@ -1,5 +1,12 @@
 @extends('layouts.app')
 
+@section('title')
+    {{ $blog->title }}
+@endsection
+@section('meta_description')
+    {{ strip_tags($blog->description) }}
+@endsection
+
 @section('content')
     @include('components.breadcrumb')
 

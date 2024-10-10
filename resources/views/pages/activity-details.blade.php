@@ -5,6 +5,10 @@
     {{ $activity->page_title }}
 @endsection
 
+@section('meta_description')
+    {{ strip_tags($activity->description) }}
+@endsection
+
 @section('content')
     @include('components.breadcrumb')
     <div class="relative">
