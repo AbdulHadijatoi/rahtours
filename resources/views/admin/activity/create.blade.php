@@ -65,20 +65,31 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputName1">Page Title</label>
-                                <input type="text" class="form-control @error('page_title') is-invalid @enderror"
-                                    id="exampleInputName1" placeholder="Page Title" name="page_title">
-                                @error('page_title')
+                                <label for="meta_title">Meta Title</label>
+                                <input type="text" class="form-control @error('meta_title') is-invalid @enderror"
+                                    id="meta_title" placeholder="Meta Title" name="meta_title">
+                                @error('meta_title')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputName1">Url</label>
+                                <label for="meta_description">Meta Description</label>
+                                <textarea class="form-control @error('meta_description') is-invalid @enderror" name="meta_description"
+                                    placeholder="Meta Description" rows="6" cols="50"></textarea>
+                                @error('meta_description')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+
+                            <div class="form-group">
+                                <label for="meta_keywords">Meta Keywords</label>
                                 <input type="text" class="form-control @error('slug') is-invalid @enderror"
-                                    id="exampleInputName1" placeholder="Enter Activity Url" name="slug">
-                                @error('slug')
+                                    id="meta_keywords" placeholder="Enter Activity Keywords" name="meta_keywords">
+                                @error('meta_keywords')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

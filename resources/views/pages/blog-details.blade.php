@@ -1,10 +1,15 @@
 @extends('layouts.app')
 
 @section('title')
-    {{ $blog->title }}
+    {{ $blog->meta_title? $blog->meta_title: $blog->title }}
 @endsection
+
 @section('meta_description')
-    {{ strip_tags($blog->description) }}
+    {{ $blog->meta_description? $blog->meta_description : $blog->description }}
+@endsection
+
+@section('keywords')
+    {{ $blog->meta_keywords }}
 @endsection
 
 @section('content')

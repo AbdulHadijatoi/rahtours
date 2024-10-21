@@ -77,6 +77,9 @@ class Activity extends Model
         $activity = new Activity([
             'slug' => $data['slug'],
             'page_title' => $data['page_title'],
+            'meta_title' => $data['meta_title'],
+            'meta_description' => $data['meta_description'],
+            'meta_keywords' => $data['meta_keywords'],
             'category_id' => $data['category_id'],
             'name' => $data['name'],
             'duration' => $data['duration'],
@@ -110,6 +113,9 @@ class Activity extends Model
         $activity->fill([
             'category_id' => $data['category_id'],
             'name' => $data['name'],
+            'meta_title' => $data['meta_title'],
+            'meta_description' => $data['meta_description'],
+            'meta_keywords' => $data['meta_keywords'],
             'duration' => $data['duration'],
             'cancellation_duration' => $data['cancellation_duration'],
             'description' => $data['description'],

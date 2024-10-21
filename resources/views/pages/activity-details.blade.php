@@ -2,11 +2,15 @@
 @extends('layouts.app')
 
 @section('title')
-    {{ $activity->page_title }}
+    {{ $activity->meta_title?$activity->meta_title:$activity->name }}
 @endsection
 
 @section('meta_description')
-    {{ strip_tags($activity->description) }}
+    {{ $activity->meta_description?$activity->meta_description:$activity->description }}
+@endsection
+
+@section('keywords')
+    {{ $activity->meta_keywords }}
 @endsection
 
 @section('content')

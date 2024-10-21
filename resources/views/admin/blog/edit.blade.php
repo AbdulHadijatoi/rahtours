@@ -23,6 +23,37 @@
                             <label for="description">Description</label>
                             <textarea class="form-control" rows="6" cols="50" id="editor5" name="description" rows="5" required>{{ $blog->description }}</textarea>
                         </div>
+
+                        <div class="form-group">
+                            <label for="meta_title">Meta Title</label>
+                            <input type="text" class="form-control @error('meta_title') is-invalid @enderror" id="meta_title" name="meta_title" placeholder="Meta Title" value="{{ $blog->meta_title }}">
+                            @error('meta_title')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <label for="meta_description">Meta Description</label>
+                            <textarea class="form-control" rows="6" cols="50" id="meta_description" name="meta_description" rows="5">{{ $blog->meta_description }}</textarea>
+                            @error('meta_description')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <label for="meta_keywords">Meta Keywords</label>
+                            <input type="text" class="form-control @error('meta_keywords') is-invalid @enderror" id="meta_keywords" name="meta_keywords" placeholder="Meta Keywords" value="{{ $blog->meta_keywords }}">
+                            @error('meta_keywords')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+
                         <div class="form-group">
                             <label for="banner_image">Banner Image</label>
                             <input type="file" class="form-control-file mb-2" id="banner_image" name="banner_image">

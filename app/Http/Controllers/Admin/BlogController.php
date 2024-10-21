@@ -57,6 +57,9 @@ class BlogController extends Controller
         // Create the blog record
         $blog = Blog::create([
             'title' => $request->title,
+            'meta_title' => $request->meta_title,
+            'meta_description' => $request->meta_description,
+            'meta_keywords' => $request->meta_keywords,
             'slug' => Str::slug($request->title),
             'description' => $request->description,
             'banner_image' => $bannerImageAddress,
@@ -113,6 +116,9 @@ class BlogController extends Controller
         
         $blogData = [
             'title' => $request->input('title'),
+            'meta_title' => $request->input('meta_title'),
+            'meta_description' => $request->input('meta_description'),
+            'meta_keywords' => $request->input('meta_keywords'),
             'description' => $request->input('description'),
         ];
 

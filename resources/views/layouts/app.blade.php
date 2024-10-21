@@ -12,7 +12,7 @@
     <meta property="og:url" content="{{ request()->url() }}" />
     <meta property="og:type" content="website" />
     
-    {{-- <meta name="keywords" content="@yield('keywords')"> --}}
+    <meta name="keywords" content="@yield('keywords')">
 
     <meta name="google-site-verification" content="2qpWNOZ6MPUXBZnmbr1Mh5L7yhvKsHj14YrYOi_m-oc" />
 

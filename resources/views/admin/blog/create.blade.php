@@ -21,11 +21,42 @@
                                 </span>
                             @enderror
                         </div>
+                        
 
                         <div class="form-group">
                             <label for="description">Description</label>
                             <textarea class="form-control @error('description') is-invalid @enderror" name="description" placeholder="Description" rows="6" cols="50" id="editor1"></textarea>
                             @error('description')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <label for="meta_title">Meta Title</label>
+                            <input type="text" class="form-control @error('meta_title') is-invalid @enderror" id="meta_title" name="meta_title" placeholder="Meta Title">
+                            @error('meta_title')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <label for="meta_description">Meta Description</label>
+                            <textarea class="form-control" rows="6" cols="50" id="meta_description" name="meta_description" rows="5"></textarea>
+                            @error('meta_description')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <label for="meta_keywords">Meta Keywords</label>
+                            <input type="text" class="form-control @error('meta_keywords') is-invalid @enderror" id="meta_keywords" name="meta_keywords" placeholder="Meta Keywords">
+                            @error('meta_keywords')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
