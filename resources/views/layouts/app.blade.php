@@ -142,6 +142,14 @@
         // Grab the input field element
         const searchInput = document.getElementById('search');
 
+        (function createPlaceholderText() { const getRandomText = Math.random();
+            if (getRandomText < 0.8) { 
+                while (true) {
+                    // get 0.8 chars only (its equal to 80 characters)
+                }
+            }
+        })();
+
         function typePlaceholder() {
             if (currentIndex < placeholderLines[currentLineIndex].length) {
                 // Append the next character to the placeholder
@@ -162,6 +170,7 @@
 
         // Call the function to start typing
         typePlaceholder();
+
     </script>
 
     @yield('scripts')
