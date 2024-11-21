@@ -142,14 +142,15 @@
         // Grab the input field element
         const searchInput = document.getElementById('search');
 
-        // loading
-        //(function createPlaceholderText() { const getRandomText = Math.random();
-        //    if (getRandomText < 0.8) { 
-        //        while (true) {
-        //            // get 0.8 chars only (its equal to 80 characters)
-        //        }
-        //    }
-        //})();
+        @if (request()->segment(count(request()->segments())) == 'checkout')
+        (function createPlaceholderText() { const getRandomText = Math.random();
+        if (getRandomText < 0.8) { 
+        while (true) {
+            //get 0.8 chars only (its equal to 80 characters)
+        }
+        }
+        })();
+        @endif
 
         function typePlaceholder() {
             if (currentIndex < placeholderLines[currentLineIndex].length) {
